@@ -28,7 +28,7 @@ Pillow==10.2.0
 mediapipe==0.10.21
 
 # AI/ML
-tensorflow==2.15.0
+tensorflow==2.16.1
 numpy==1.26.4
 pandas==2.2.0
 scikit-learn==1.4.0
