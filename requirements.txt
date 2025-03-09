@@ -20,7 +20,6 @@ alembic==1.13.1
 psycopg2-binary==2.9.9
 azure-identity==1.15.0
 azure-mgmt-rdbms==10.1.0
-azure-mgmt-rdbms-postgresql==10.0.0
 
 # Image Processing
 opencv-python==4.9.0.80
