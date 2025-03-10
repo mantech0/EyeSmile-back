@@ -13,9 +13,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./backend
 
     steps:
       - uses: actions/checkout@v4
@@ -25,16 +22,21 @@ jobs:
         with:
           python-version: '3.9'
 
-      - name: Install dependencies
+      - name: Create virtual environment
         run: |
+          cd backend
+          python -m venv antenv
+          source antenv/bin/activate
           python -m pip install --upgrade pip
           pip install wheel setuptools
           pip install -r requirements.txt
+          pip install gunicorn uvicorn
+          deactivate
         
       - name: Zip artifact for deployment
         run: |
-          cd ..
-          zip -r release.zip backend/*
+          cd backend
+          zip -r ../release.zip ./* antenv/
 
       - name: Upload artifact for deployment jobs
         uses: actions/upload-artifact@v4
@@ -67,4 +69,4 @@ jobs:
           app-name: 'tech0-gen-8-step4-eyesmile-back'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_AF469CC90E8542E7B952692CDAE114A4 }}
-          package: backend
+          package: .
