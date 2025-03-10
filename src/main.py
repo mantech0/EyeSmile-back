@@ -10,7 +10,10 @@ app = FastAPI(
 # CORSの設定
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # 本番環境では適切なオリジンに制限する
+    allow_origins=[
+        "https://tech0-gen-8-step4-eyesmile.azurewebsites.net",
+        "http://localhost:3000"  # 開発環境用
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

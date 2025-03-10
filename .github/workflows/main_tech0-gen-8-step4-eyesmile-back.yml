@@ -75,4 +75,4 @@ jobs:
           app-name: 'tech0-gen-8-step4-eyesmile-back'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_AF469CC90E8542E7B952692CDAE114A4 }}
-          startup-command: 'bash startup.sh'
+          package: .
