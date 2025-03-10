@@ -22,21 +22,24 @@ jobs:
         with:
           python-version: '3.9'
 
+      - name: Debug directory
+        run: |
+          pwd
+          ls -la
+          
       - name: Create virtual environment
         run: |
-          cd backend
           python -m venv antenv
           source antenv/bin/activate
           python -m pip install --upgrade pip
           pip install wheel setuptools
-          pip install -r requirements.txt
+          pip install -r EyeSmile/backend/requirements.txt
           pip install gunicorn uvicorn
           deactivate
         
       - name: Zip artifact for deployment
         run: |
-          cd backend
-          zip -r ../release.zip ./* antenv/
+          zip -r release.zip EyeSmile/backend/* antenv/
 
       - name: Upload artifact for deployment jobs
         uses: actions/upload-artifact@v4
