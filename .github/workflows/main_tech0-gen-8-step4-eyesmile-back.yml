@@ -24,12 +24,27 @@ jobs:
 
       - name: Debug directory
         run: |
+          echo "Current working directory:"
           pwd
+          echo "Directory contents:"
           ls -la
+          echo "Repository root contents:"
+          ls -la $GITHUB_WORKSPACE
+          echo "EyeSmile directory contents (if exists):"
+          ls -la EyeSmile || echo "EyeSmile directory not found"
           
       - name: Create virtual environment
         run: |
-          cd EyeSmile/backend
+          echo "Creating virtual environment..."
+          ls -la
+          if [ -d "EyeSmile/backend" ]; then
+            cd EyeSmile/backend
+          elif [ -d "backend" ]; then
+            cd backend
+          else
+            echo "Error: Cannot find backend directory"
+            exit 1
+          fi
           python -m venv antenv
           source antenv/bin/activate
           python -m pip install --upgrade pip
@@ -40,8 +55,19 @@ jobs:
         
       - name: Zip artifact for deployment
         run: |
-          cd EyeSmile/backend
-          zip -r ../../release.zip * antenv/
+          echo "Current directory before zip:"
+          pwd
+          ls -la
+          if [ -d "EyeSmile/backend" ]; then
+            cd EyeSmile/backend
+            zip -r ../../release.zip * antenv/
+          elif [ -d "backend" ]; then
+            cd backend
+            zip -r ../release.zip * antenv/
+          else
+            echo "Error: Cannot find backend directory"
+            exit 1
+          fi
 
       - name: Upload artifact for deployment jobs
         uses: actions/upload-artifact@v4
