@@ -1,11 +1,15 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from .database import engine, Base
 
 app = FastAPI(
     title="EyeSmile API",
     description="API for EyeSmile application",
     version="1.0.0"
 )
+
+# Create database tables
+Base.metadata.create_all(bind=engine)
 
 # CORSの設定
 app.add_middleware(
