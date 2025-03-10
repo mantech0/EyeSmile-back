@@ -25,26 +25,23 @@ jobs:
           python-version: '3.9'
 
       - name: Create and start virtual environment
-        working-directory: ./src
         run: |
+          cd backend
           python -m venv venv
           source venv/bin/activate
 
       - name: Install dependencies
-        working-directory: .
         run: |
+          cd backend
           python -m pip install --upgrade pip
           pip install wheel setuptools
           pip install -r requirements.txt
         
-      - name: Set execute permissions
-        run: |
-          chmod +x startup.sh
-          
       - name: Zip artifact for deployment
         run: |
+          cd backend
           zip release.zip ./* -r
-          zip -g release.zip --no-dir-entries startup.sh
+          mv release.zip ..
 
       - name: Upload artifact for deployment jobs
         uses: actions/upload-artifact@v4
