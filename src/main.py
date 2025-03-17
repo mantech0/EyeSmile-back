@@ -1,6 +1,9 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Depends, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from .database import engine, Base
+from sqlalchemy.orm import Session
+from . import crud, models, schemas
+from .database import engine, get_db
+from typing import List
 
 app = FastAPI(
     title="EyeSmile API",
@@ -29,4 +32,40 @@ async def health_check():
 
 @app.get("/")
 async def root():
-    return {"message": "Welcome to EyeSmile API"} 
+    return {"message": "Welcome to EyeSmile API"}
+
+# 新しいエンドポイント：回答の保存
+@app.post("/api/v1/questionnaire/submit", response_model=List[schemas.UserResponse])
+async def submit_questionnaire(
+    submission: schemas.QuestionnaireSubmission,
+    db: Session = Depends(get_db)
+):
+    # 仮のユーザーID（本来はログインユーザーのIDを使用）
+    temporary_user_id = 1
+    
+    try:
+        responses = crud.questionnaire.create_user_responses(
+            db=db,
+            user_id=temporary_user_id,
+            responses=submission.responses
+        )
+        return responses
+    except Exception as e:
+        raise HTTPException(
+            status_code=400,
+            detail=f"Failed to save responses: {str(e)}"
+        )
+
+# 回答の取得
+@app.get("/api/v1/questionnaire/responses", response_model=List[schemas.UserResponse])
+async def get_questionnaire_responses(
+    db: Session = Depends(get_db)
+):
+    # 仮のユーザーID（本来はログインユーザーのIDを使用）
+    temporary_user_id = 1
+    
+    responses = crud.questionnaire.get_user_responses(
+        db=db,
+        user_id=temporary_user_id
+    )
+    return responses 
