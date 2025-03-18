@@ -4,6 +4,11 @@ from sqlalchemy.orm import Session
 from . import crud, models, schemas
 from .database import engine, get_db
 from typing import List
+import logging
+
+# ロギングの設定
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 app = FastAPI(
     title="EyeSmile API",
@@ -12,7 +17,11 @@ app = FastAPI(
 )
 
 # Create database tables
-Base.metadata.create_all(bind=engine)
+try:
+    Base.metadata.create_all(bind=engine)
+except Exception as e:
+    logger.error(f"Database initialization error: {e}")
+    raise
 
 # CORSの設定
 app.add_middleware(
@@ -28,7 +37,14 @@ app.add_middleware(
 
 @app.get("/api/v1/health")
 async def health_check():
-    return {"status": "healthy", "service": "EyeSmile API"}
+    try:
+        # データベース接続テスト
+        db = next(get_db())
+        db.execute("SELECT 1")
+        return {"status": "healthy", "service": "EyeSmile API"}
+    except Exception as e:
+        logger.error(f"Health check failed: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
 
 @app.get("/")
 async def root():
@@ -40,7 +56,7 @@ async def submit_questionnaire(
     submission: schemas.QuestionnaireSubmission,
     db: Session = Depends(get_db)
 ):
-    # 仮のユーザーID（本来はログインユーザーのIDを使用）
+    logger.info(f"Received submission: {submission}")
     temporary_user_id = 1
     
     try:
@@ -49,10 +65,12 @@ async def submit_questionnaire(
             user_id=temporary_user_id,
             responses=submission.responses
         )
+        logger.info(f"Successfully saved responses: {responses}")
         return responses
     except Exception as e:
+        logger.error(f"Failed to save responses: {e}")
         raise HTTPException(
-            status_code=400,
+            status_code=500,
             detail=f"Failed to save responses: {str(e)}"
         )
 
