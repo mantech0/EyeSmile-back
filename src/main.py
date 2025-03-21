@@ -28,11 +28,13 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "https://tech0-gen-8-step4-eyesmile.azurewebsites.net",
-        "http://localhost:3000"  # 開発環境用
+        "http://localhost:3000",
+        "*"  # 開発中は一時的に全てのオリジンを許可
     ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
+    expose_headers=["*"]
 )
 
 @app.get("/api/v1/health")
