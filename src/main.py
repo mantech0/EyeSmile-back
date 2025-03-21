@@ -9,6 +9,7 @@ import logging
 # ロギングの設定
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
+logger.info("Starting EyeSmile API server...")
 
 app = FastAPI(
     title="EyeSmile API",
@@ -19,6 +20,7 @@ app = FastAPI(
 # Create database tables
 try:
     Base.metadata.create_all(bind=engine)
+    logger.info("Database tables created successfully")
 except Exception as e:
     logger.error(f"Database initialization error: {e}")
     raise
