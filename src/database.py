@@ -1,56 +1,63 @@
-from sqlalchemy import create_engine
+import os
+import logging
+from sqlalchemy import create_engine, text
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from dotenv import load_dotenv
-import os
-import logging
+import pymysql
 
 # ロギングの設定
+logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-# Load environment variables
+# 環境変数の読み込み
 load_dotenv()
 
-# Database connection configuration
+# データベース接続設定
 DB_HOST = os.getenv("DB_HOST")
 DB_PORT = os.getenv("DB_PORT")
 DB_USER = os.getenv("DB_USER")
 DB_PASSWORD = os.getenv("DB_PASSWORD")
 DB_NAME = os.getenv("DB_NAME")
-DB_SSL_MODE = os.getenv("DB_SSL_MODE", "require")
 
-# Create MySQL URL
-SQLALCHEMY_DATABASE_URL = f"mysql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}?ssl_mode={DB_SSL_MODE}"
+logger.info(f"Database configuration loaded: HOST={DB_HOST}, PORT={DB_PORT}, DB={DB_NAME}, USER={DB_USER}")
 
-logger.info(f"Connecting to database at {DB_HOST}:{DB_PORT}/{DB_NAME}")
+# SQLAlchemy用のデータベースURL
+SQLALCHEMY_DATABASE_URL = f"mysql+pymysql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
 
-# Create SQLAlchemy engine with retry mechanism
+# エンジンの作成
 engine = create_engine(
     SQLALCHEMY_DATABASE_URL,
-    pool_pre_ping=True,
-    pool_size=5,
-    max_overflow=10,
-    pool_recycle=3600,
     connect_args={
         "ssl": {
-            "ssl_mode": DB_SSL_MODE
+            "ssl": True,
+            "ssl_verify_cert": False
         }
     }
 )
 
-# Create SessionLocal class
+# 接続テスト
+try:
+    with engine.connect() as connection:
+        result = connection.execute(text("SELECT 1"))
+        logger.info("Database connection test successful")
+except Exception as e:
+    logger.error(f"Database connection test failed: {str(e)}")
+    raise
+
+# セッションの作成
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
-# Create Base class
+# Baseクラスの作成
 Base = declarative_base()
 
-# Dependency to get database session
+# データベースセッションの取得用の依存関数
 def get_db():
     db = SessionLocal()
     try:
         yield db
     except Exception as e:
-        logger.error(f"Database error: {e}")
+        logger.error(f"Database session error: {str(e)}")
         raise
     finally:
         db.close() 

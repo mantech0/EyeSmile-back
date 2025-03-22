@@ -12,6 +12,7 @@ class UserResponseCreate(UserResponseBase):
 class UserResponse(UserResponseBase):
     id: int
     user_id: int
+    selected_preference_id: int
     created_at: datetime
     updated_at: datetime
 
