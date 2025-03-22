@@ -36,10 +36,15 @@ jobs:
           source antenv/bin/activate
           python -m pip install --upgrade pip
           pip install wheel setuptools
+          pip install pymysql==1.1.0
           pip install -r requirements.txt
           pip install gunicorn uvicorn
           deactivate
         
+      - name: Create startup command
+        run: |
+          echo "gunicorn src.main:app --workers 2 --worker-class uvicorn.workers.UvicornWorker --bind=0.0.0.0:8000 --timeout 120 --access-logfile - --error-logfile - --log-level info" > startup.txt
+
       - name: Zip artifact for deployment
         run: |
           echo "Current directory before zip:"

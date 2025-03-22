@@ -1,27 +1,18 @@
-annotated-types==0.7.0
-anyio==4.8.0
-click==8.1.8
-fastapi==0.115.11
-h11==0.14.0
-idna==3.10
-pydantic==2.10.6
-pydantic_core==2.27.2
-python-dotenv==1.0.1
-python-multipart==0.0.20
-sniffio==1.3.1
-starlette==0.46.1
-typing_extensions==4.12.2
-uvicorn==0.34.0
-gunicorn==21.2.0
-
-# Database
+# Database dependencies
+pymysql==1.1.0
 sqlalchemy==2.0.27
 alembic==1.13.1
 mysql-connector-python==8.3.0
 mysqlclient==2.2.4
-psycopg2-binary==2.9.9
-azure-identity==1.15.0
-azure-mgmt-rdbms==10.1.0
+
+# FastAPI dependencies
+fastapi==0.115.11
+uvicorn==0.34.0
+gunicorn==21.2.0
+python-dotenv==1.0.1
+python-multipart==0.0.20
+starlette==0.46.1
+typing_extensions==4.12.2
 
 # Image Processing
 Pillow==10.2.0
@@ -34,6 +25,8 @@ scikit-learn==1.3.0
 # Storage & Authentication
 azure-storage-blob==12.19.0
 python-jose[cryptography]==3.3.0
+azure-identity==1.15.0
+azure-mgmt-rdbms==10.1.0
 
 # CORS
 fastapi-cors==0.0.6
