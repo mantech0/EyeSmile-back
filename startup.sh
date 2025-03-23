@@ -1,15 +1,21 @@
 #!/bin/bash
+
+# 作業ディレクトリの設定
 cd /home/site/wwwroot
+
+# 環境変数の設定
 export PYTHONPATH=/home/site/wwwroot
 export PYTHONUNBUFFERED=1
 export PORT=8000
 
-# 依存関係の確認とインストール
+# 依存関係のインストール
 python -m pip install --upgrade pip
-pip install pymysql==1.1.0
 pip install -r requirements.txt
 
-# Gunicornの起動（タイムアウトを300秒に設定）
+# データベースのマイグレーション
+python -m alembic upgrade head
+
+# Gunicornの起動
 gunicorn src.main:app \
     --workers 2 \
     --worker-class uvicorn.workers.UvicornWorker \

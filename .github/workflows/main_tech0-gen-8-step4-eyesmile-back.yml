@@ -22,13 +22,6 @@ jobs:
         with:
           python-version: '3.9'
 
-      - name: Debug directory
-        run: |
-          echo "Current working directory:"
-          pwd
-          echo "Directory contents:"
-          ls -la
-          
       - name: Create virtual environment
         run: |
           echo "Creating virtual environment..."
@@ -36,21 +29,21 @@ jobs:
           source antenv/bin/activate
           python -m pip install --upgrade pip
           pip install wheel setuptools
-          pip install pymysql==1.1.0
           pip install -r requirements.txt
           pip install gunicorn uvicorn
           deactivate
-        
+
       - name: Create startup command
         run: |
-          echo "gunicorn src.main:app --workers 2 --worker-class uvicorn.workers.UvicornWorker --bind=0.0.0.0:8000 --timeout 120 --access-logfile - --error-logfile - --log-level info" > startup.txt
+          chmod +x startup.sh
+          echo "Running startup.sh" > startup.txt
 
       - name: Zip artifact for deployment
         run: |
           echo "Current directory before zip:"
           pwd
           ls -la
-          zip -r release.zip * antenv/
+          zip -r release.zip * antenv/ .env
 
       - name: Upload artifact for deployment jobs
         uses: actions/upload-artifact@v4
