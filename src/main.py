@@ -42,8 +42,9 @@ app.add_middleware(
     ],
     allow_credentials=True,
     allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS", "HEAD"],
-    allow_headers=["*"],
-    expose_headers=["*"]
+    allow_headers=["Content-Type", "Authorization", "X-XSRF-TOKEN", "Accept", "Origin", "X-Requested-With"],
+    expose_headers=["*"],
+    max_age=3600
 )
 
 @app.get("/api/v1/health")
