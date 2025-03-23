@@ -30,8 +30,8 @@ engine = create_engine(
     SQLALCHEMY_DATABASE_URL,
     connect_args={
         "ssl": {
-            "ssl": True,
-            "ssl_verify_cert": False
+            "ssl_verify_cert": True,
+            "ssl_verify_identity": True
         }
     }
 )
