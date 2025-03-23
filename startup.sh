@@ -8,6 +8,7 @@ cd /home/site/wwwroot
 export PYTHONPATH=/home/site/wwwroot
 export PYTHONUNBUFFERED=1
 export PORT=8000
+export WEB_CONCURRENCY=2
 
 echo "Starting application setup..."
 
@@ -20,18 +21,20 @@ pip install -r requirements.txt
 echo "Running database migrations..."
 python -m alembic upgrade head || true
 
-# Gunicornの起動（設定最適化）
+# Gunicornの起動（メモリ最適化設定）
 echo "Starting Gunicorn..."
 exec gunicorn src.main:app \
     --workers 2 \
     --worker-class uvicorn.workers.UvicornWorker \
     --bind 0.0.0.0:8000 \
-    --timeout 120 \
-    --keep-alive 60 \
+    --timeout 60 \
+    --keep-alive 30 \
     --worker-tmp-dir /dev/shm \
-    --max-requests 1000 \
+    --max-requests 500 \
     --max-requests-jitter 50 \
+    --graceful-timeout 30 \
+    --log-level info \
     --access-logfile - \
     --error-logfile - \
-    --log-level info \
-    --capture-output 
+    --capture-output \
+    --preload 
