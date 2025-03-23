@@ -20,14 +20,17 @@ pip install -r requirements.txt
 echo "Running database migrations..."
 python -m alembic upgrade head || true
 
-# Gunicornの起動
+# Gunicornの起動（設定最適化）
 echo "Starting Gunicorn..."
 exec gunicorn src.main:app \
     --workers 2 \
     --worker-class uvicorn.workers.UvicornWorker \
     --bind 0.0.0.0:8000 \
-    --timeout 300 \
-    --keep-alive 120 \
+    --timeout 120 \
+    --keep-alive 60 \
+    --worker-tmp-dir /dev/shm \
+    --max-requests 1000 \
+    --max-requests-jitter 50 \
     --access-logfile - \
     --error-logfile - \
     --log-level info \
