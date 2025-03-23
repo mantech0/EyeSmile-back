@@ -36,4 +36,8 @@ logs/
 
 # Database
 *.sqlite3
-*.db 
+*.db
+
+# Private data
+data/private/
+*.csv 

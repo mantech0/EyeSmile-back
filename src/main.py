@@ -1,6 +1,13 @@
 from fastapi import FastAPI, Depends, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-// ... existing code ...
+from .database import engine, Base
+from .routers import frame
+import logging
+import traceback
+
+# ロギングの設定
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 app = FastAPI(
     title="EyeSmile API",
@@ -29,10 +36,9 @@ app.add_middleware(
         "http://127.0.0.1:5173"
     ],
     allow_credentials=True,
-    allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS", "HEAD"],
-    allow_headers=["*"],
-    expose_headers=["*"],
-    max_age=3600,
+    allow_methods=["*"],  # すべてのメソッドを許可
+    allow_headers=["*"],  # すべてのヘッダーを許可
 )
 
-// ... existing code ...
+# ルーターの登録
+app.include_router(frame.router)
