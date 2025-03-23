@@ -7,6 +7,7 @@ from typing import List
 import logging
 import traceback
 from datetime import datetime
+from .services.frame_recommendation import FrameRecommendationService
 
 # ロギングの設定
 logging.basicConfig(level=logging.INFO)
@@ -33,18 +34,16 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "https://tech0-gen-8-step4-eyesmile.azurewebsites.net",
-        "https://tech0-gen-8-step4-eyesmile-back.azurewebsites.net",
         "http://localhost:3000",
         "http://localhost:5173",
         "http://127.0.0.1:3000",
-        "http://127.0.0.1:5173",
-        "http://localhost:8080"
+        "http://127.0.0.1:5173"
     ],
     allow_credentials=True,
     allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS", "HEAD"],
     allow_headers=["Content-Type", "Authorization", "X-XSRF-TOKEN", "Accept", "Origin", "X-Requested-With"],
     expose_headers=["*"],
-    max_age=3600
+    max_age=3600,
 )
 
 @app.get("/api/v1/health")
@@ -289,4 +288,54 @@ async def get_latest_face_measurement(
     measurement = crud.face_measurement.get_latest_face_measurement(db=db, user_id=user_id)
     if not measurement:
         raise HTTPException(status_code=404, detail=f"No face measurements found for user {user_id}")
-    return measurement 
+    return measurement
+
+@app.get("/api/v1/frame-recommendations", response_model=List[schemas.FrameRecommendationResponse])
+async def get_frame_recommendations(
+    user_id: int,
+    limit: int = 10,
+    db: Session = Depends(get_db)
+):
+    try:
+        # ユーザーの存在確認
+        user = db.query(models.User).filter(models.User.id == user_id).first()
+        if not user:
+            raise HTTPException(status_code=404, detail=f"User {user_id} not found")
+
+        # 最新の顔測定データを取得
+        face_measurement = crud.face_measurement.get_latest_face_measurement(db, user_id)
+        if not face_measurement:
+            raise HTTPException(status_code=404, detail="Face measurement data not found")
+
+        # ユーザーの好みを取得
+        user_preferences = crud.questionnaire.get_user_responses(db, user_id)
+        if not user_preferences:
+            raise HTTPException(status_code=404, detail="User preferences not found")
+
+        # フレームの候補を取得
+        frames = crud.frame.get_frames(
+            db=db,
+            limit=50  # より多くのフレームから選択するため、多めに取得
+        )
+
+        # 各フレームのスコアを計算
+        recommendations = []
+        for frame in frames:
+            recommendation = FrameRecommendationService.calculate_total_score(
+                frame=frame,
+                face_measurement=face_measurement,
+                user_preferences=user_preferences
+            )
+            recommendations.append(recommendation)
+
+        # スコアの高い順にソートして上位N件を返す
+        recommendations.sort(key=lambda x: x.total_score, reverse=True)
+        return recommendations[:limit]
+
+    except Exception as e:
+        logger.error(f"Error in frame recommendations: {str(e)}")
+        logger.error(traceback.format_exc())
+        raise HTTPException(
+            status_code=500,
+            detail=f"Failed to get frame recommendations: {str(e)}"
+        ) 

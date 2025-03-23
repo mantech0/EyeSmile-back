@@ -27,14 +27,18 @@ exec gunicorn src.main:app \
     --workers 2 \
     --worker-class uvicorn.workers.UvicornWorker \
     --bind 0.0.0.0:8000 \
-    --timeout 60 \
-    --keep-alive 30 \
+    --timeout 120 \
+    --keep-alive 5 \
     --worker-tmp-dir /dev/shm \
-    --max-requests 500 \
-    --max-requests-jitter 50 \
-    --graceful-timeout 30 \
+    --max-requests 250 \
+    --max-requests-jitter 25 \
+    --graceful-timeout 60 \
     --log-level info \
     --access-logfile - \
     --error-logfile - \
     --capture-output \
-    --preload 
+    --worker-connections 250 \
+    --backlog 100 \
+    --limit-request-line 4094 \
+    --limit-request-fields 100 \
+    --limit-request-field_size 8190 

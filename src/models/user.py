@@ -82,3 +82,48 @@ class FaceMeasurement(Base):
 
     # リレーションシップ
     user = relationship("User", back_populates="face_measurements")
+
+class Frame(Base):
+    __tablename__ = "frames"
+
+    id = Column(Integer, primary_key=True, index=True)
+    name = Column(String(255), nullable=False)
+    brand = Column(String(255), nullable=False)
+    price = Column(Integer, nullable=False)
+    style = Column(String(50), nullable=False)
+    shape = Column(String(50), nullable=False)
+    material = Column(String(50), nullable=False)
+    color = Column(String(50), nullable=False)
+    
+    # サイズ情報
+    frame_width = Column(Float, nullable=False)       # フレーム全体の幅
+    lens_width = Column(Float, nullable=False)        # レンズの幅
+    bridge_width = Column(Float, nullable=False)      # ブリッジの幅
+    temple_length = Column(Float, nullable=False)     # テンプルの長さ
+    lens_height = Column(Float, nullable=False)       # レンズの高さ
+    weight = Column(Float, nullable=False)            # 重さ（グラム）
+
+    # 推奨情報
+    recommended_face_width_min = Column(Float)        # 推奨される顔の幅（最小）
+    recommended_face_width_max = Column(Float)        # 推奨される顔の幅（最大）
+    recommended_nose_height_min = Column(Float)       # 推奨される鼻の高さ（最小）
+    recommended_nose_height_max = Column(Float)       # 推奨される鼻の高さ（最大）
+    
+    # スタイル情報
+    personal_color_season = Column(String(50))        # 似合うパーソナルカラー
+    face_shape_types = Column(JSON)                   # 似合う顔の形状（配列）
+    style_tags = Column(JSON)                        # スタイルタグ（配列）
+    
+    # 画像情報
+    image_urls = Column(JSON)                        # 画像URL（配列）
+    
+    created_at = Column(TIMESTAMP, server_default=text('CURRENT_TIMESTAMP'), nullable=False)
+    updated_at = Column(
+        TIMESTAMP,
+        server_default=text('CURRENT_TIMESTAMP'),
+        server_onupdate=text('CURRENT_TIMESTAMP'),
+        nullable=False
+    )
+
+# モデルの__all__リストにFrameを追加
+__all__ = ['User', 'StyleQuestion', 'Preference', 'UserResponse', 'FaceMeasurement', 'Frame']
