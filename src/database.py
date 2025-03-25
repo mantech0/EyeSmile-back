@@ -25,15 +25,22 @@ logger.info(f"Database configuration loaded: HOST={DB_HOST}, PORT={DB_PORT}, DB=
 # SQLAlchemy用のデータベースURL
 SQLALCHEMY_DATABASE_URL = f"mysql+pymysql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
 
+# SSLの設定
+ssl_args = {
+    "ssl": {
+        "ssl_verify_cert": True,
+        "ssl_verify_identity": True,
+        "ssl": {
+            "verify_mode": "VERIFY_IDENTITY",
+            "check_hostname": True,
+        }
+    }
+}
+
 # エンジンの作成
 engine = create_engine(
     SQLALCHEMY_DATABASE_URL,
-    connect_args={
-        "ssl": {
-            "ssl_verify_cert": True,
-            "ssl_verify_identity": True
-        }
-    }
+    connect_args=ssl_args
 )
 
 # 接続テスト

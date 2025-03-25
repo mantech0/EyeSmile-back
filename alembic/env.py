@@ -22,6 +22,18 @@ config.set_section_option(section, "DB_HOST", os.getenv("DB_HOST"))
 config.set_section_option(section, "DB_PORT", os.getenv("DB_PORT"))
 config.set_section_option(section, "DB_NAME", os.getenv("DB_NAME"))
 
+# SSLの設定
+ssl_args = {
+    "ssl": {
+        "ssl_verify_cert": True,
+        "ssl_verify_identity": True,
+        "ssl": {
+            "verify_mode": "VERIFY_IDENTITY",
+            "check_hostname": True,
+        }
+    }
+}
+
 # Interpret the config file for Python logging.
 if config.config_file_name is not None:
     fileConfig(config.config_file_name)
@@ -42,8 +54,11 @@ def run_migrations_offline() -> None:
         context.run_migrations()
 
 def run_migrations_online() -> None:
+    configuration = config.get_section(config.config_ini_section)
+    configuration["sqlalchemy.connect_args"] = str(ssl_args)
+    
     connectable = engine_from_config(
-        config.get_section(config.config_ini_section),
+        configuration,
         prefix="sqlalchemy.",
         poolclass=pool.NullPool,
     )
