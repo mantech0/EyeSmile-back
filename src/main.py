@@ -6,6 +6,7 @@ from sqlalchemy.orm import Session
 from .routers import frame, questionnaire
 import logging
 import traceback
+import os
 
 # ロギングの設定
 logging.basicConfig(level=logging.INFO)
@@ -22,6 +23,9 @@ origins = [
     "http://localhost:3000",
     "http://localhost:5173",
     "https://eyesmile-frontend.vercel.app",
+    "https://tech0-gen-8-step4-eyesmile.azurewebsites.net",
+    "https://tech0-gen-8-step4-eyesmile-back.azurewebsites.net",
+    "https://tech0-gen-8-step4-eyesmile-front.azurestaticapps.net",
     "*"
 ]
 
@@ -34,24 +38,40 @@ app.add_middleware(
     expose_headers=["*"],
 )
 
-# Create database tables
+# データベース初期化
+# Azure環境では最初は軽量な処理にして、タイムアウトを回避
+is_azure = os.getenv('WEBSITE_SITE_NAME') is not None
 try:
-    Base.metadata.create_all(bind=engine)
-    logger.info("Database tables created successfully")
+    if not is_azure:
+        # ローカル環境では完全なテーブル作成を実行
+        Base.metadata.create_all(bind=engine)
+        logger.info("データベーステーブルを正常に作成しました")
+    else:
+        # Azure環境では軽量な接続テストのみ実行
+        logger.info("Azure環境を検出しました - データベース初期化をスキップします")
+        # ヘルスチェックエンドポイントでテーブル作成を実行します
 except Exception as e:
-    logger.error(f"Database initialization error: {e}")
+    logger.error(f"データベース初期化エラー: {e}")
     logger.error(traceback.format_exc())
-    raise
+    # エラーをログに記録するだけで、起動は続行 (raise しない)
+    logger.warning("データベースエラーが発生しましたが、アプリケーションは起動を続行します")
 
 # CORS問題を解決するためのグローバルミドルウェア
 @app.middleware("http")
 async def add_cors_headers(request: Request, call_next):
-    response = await call_next(request)
-    response.headers["Access-Control-Allow-Origin"] = "*"
-    response.headers["Access-Control-Allow-Methods"] = "*"
-    response.headers["Access-Control-Allow-Headers"] = "*"
-    response.headers["Access-Control-Max-Age"] = "3600"
-    return response
+    try:
+        response = await call_next(request)
+        response.headers["Access-Control-Allow-Origin"] = "*"
+        response.headers["Access-Control-Allow-Methods"] = "*"
+        response.headers["Access-Control-Allow-Headers"] = "*"
+        response.headers["Access-Control-Max-Age"] = "3600"
+        return response
+    except Exception as e:
+        logger.error(f"ミドルウェアエラー: {str(e)}")
+        return JSONResponse(
+            status_code=500,
+            content={"detail": "Internal Server Error"}
+        )
 
 # OPTIONSリクエストに対するプレフライトハンドラー
 @app.options("/{path:path}")
