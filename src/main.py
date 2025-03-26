@@ -7,10 +7,18 @@ from .routers import frame, questionnaire
 import logging
 import traceback
 import os
+import sys
 
 # ロギングの設定
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
+
+# クラッシュした場合のエラーログを収集
+def log_exception(exctype, value, tb):
+    logger.exception("未処理の例外: {0}".format(value))
+    logger.exception(traceback.format_exception(exctype, value, tb))
+
+sys.excepthook = log_exception
 
 app = FastAPI(
     title="EyeSmile API",
@@ -38,23 +46,24 @@ app.add_middleware(
     expose_headers=["*"],
 )
 
-# データベース初期化
-# Azure環境では最初は軽量な処理にして、タイムアウトを回避
+# デプロイ環境の検出
 is_azure = os.getenv('WEBSITE_SITE_NAME') is not None
-try:
-    if not is_azure:
-        # ローカル環境では完全なテーブル作成を実行
+logger.info(f"実行環境: {'Azure' if is_azure else 'ローカル'}")
+
+# Azureの場合、データベース初期化は完全にスキップ
+if not is_azure:
+    try:
+        # ローカル環境でのみテーブル作成を実行
+        logger.info("データベーステーブルを作成しています...")
         Base.metadata.create_all(bind=engine)
         logger.info("データベーステーブルを正常に作成しました")
-    else:
-        # Azure環境では軽量な接続テストのみ実行
-        logger.info("Azure環境を検出しました - データベース初期化をスキップします")
-        # ヘルスチェックエンドポイントでテーブル作成を実行します
-except Exception as e:
-    logger.error(f"データベース初期化エラー: {e}")
-    logger.error(traceback.format_exc())
-    # エラーをログに記録するだけで、起動は続行 (raise しない)
-    logger.warning("データベースエラーが発生しましたが、アプリケーションは起動を続行します")
+    except Exception as e:
+        logger.error(f"データベース初期化エラー: {str(e)}")
+        logger.error(traceback.format_exc())
+        # エラーをログに記録するだけで、起動は続行
+        logger.warning("データベースエラーが発生しましたが、アプリケーションは起動を続行します")
+else:
+    logger.info("Azure環境を検出 - データベース初期化をスキップします")
 
 # CORS問題を解決するためのグローバルミドルウェア
 @app.middleware("http")
@@ -87,15 +96,27 @@ async def options_handler(request: Request, path: str):
         },
     )
 
-# ヘルスチェックエンドポイント
+# 起動確認用の軽量なエンドポイント
+@app.get("/")
+async def root():
+    return {"status": "ok", "message": "EyeSmile API is running"}
+
+# ヘルスチェックエンドポイント - データベース接続なし
+@app.get("/api/health")
+async def api_health():
+    return {"status": "healthy", "database": "not checked"}
+
+# ヘルスチェックエンドポイント - データベース接続あり
 @app.get("/health")
 async def health_check(db: Session = Depends(get_db)):
     try:
         # データベース接続をテスト
+        logger.info("データベース接続テスト実行中...")
         db.execute("SELECT 1")
+        logger.info("データベース接続テスト成功")
         return {"status": "healthy", "database": "connected"}
     except Exception as e:
-        logger.error(f"Database connection error: {e}")
+        logger.error(f"データベース接続エラー: {str(e)}")
         raise HTTPException(status_code=500, detail="Database connection failed")
 
 # 顔測定データ用のエンドポイント
@@ -109,9 +130,12 @@ async def face_measurements_endpoint(
         # データ処理は実際のアプリケーションロジックに合わせて実装
         return {"status": "success", "data": measurements}
     except Exception as e:
-        logger.error(f"顔測定データ処理エラー: {e}")
+        logger.error(f"顔測定データ処理エラー: {str(e)}")
         raise HTTPException(status_code=500, detail=str(e))
 
 # ルーターの登録
 app.include_router(frame.router)
 app.include_router(questionnaire.router)
+
+# 起動時のログ
+logger.info("アプリケーションが正常に起動しました")
