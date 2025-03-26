@@ -9,12 +9,13 @@ class UserResponseBase(BaseModel):
 class UserResponseCreate(UserResponseBase):
     pass
 
-class UserResponse(UserResponseBase):
+class UserResponse(BaseModel):
     id: int
     user_id: int
+    question_id: int
     selected_preference_id: int
     created_at: datetime
-    updated_at: datetime
+    updated_at: datetime = None
 
     class Config:
         from_attributes = True
