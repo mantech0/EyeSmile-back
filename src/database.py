@@ -66,9 +66,16 @@ try:
         }
         logger.info("ローカル環境用のデータベース設定を使用")
     
-    logger.info("データベースエンジンを作成しています...")
-    engine = create_engine(SQLALCHEMY_DATABASE_URL, **engine_params)
+    # 最初に接続テストを行う
+    logger.info("データベース接続テスト中...")
+    test_engine = create_engine(SQLALCHEMY_DATABASE_URL, **engine_params)
+    with test_engine.connect() as conn:
+        conn.execute("SELECT 1")
+    logger.info("データベース接続テスト成功")
     
+    # 実際のエンジン設定
+    logger.info("データベースエンジンを作成しています...")
+    engine = test_engine  # テスト成功したエンジンを使用
     SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
     Base = declarative_base()
     logger.info("データベース設定が完了しました")
@@ -77,13 +84,19 @@ except Exception as e:
     logger.error(f"データベース接続設定エラー: {str(e)}")
     logger.error(f"詳細: {e}", exc_info=True)
     
-    # フォールバック：エラー時でもアプリケーションが起動できるよう、最小限の設定を用意
-    logger.warning("フォールバック設定でデータベース接続を構成します")
+    # フォールバック：エラー時でもアプリケーションが起動できるよう、SQLiteに切り替え
+    logger.warning("フォールバック設定でデータベース接続を構成します - SQLiteを使用")
     SQLALCHEMY_DATABASE_URL = "sqlite:///./test.db"
     engine = create_engine(SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False})
     SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
     Base = declarative_base()
-    logger.warning("フォールバック設定（SQLite）でデータベース接続を構成しました")
+    
+    # SQLiteファイルを作成するためにテーブルを生成
+    try:
+        Base.metadata.create_all(bind=engine)
+        logger.warning("SQLiteデータベースファイルとテーブルを作成しました")
+    except Exception as e:
+        logger.error(f"SQLiteデータベース初期化エラー: {str(e)}")
 
 def get_db():
     db = SessionLocal()
