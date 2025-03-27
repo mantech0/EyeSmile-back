@@ -23,8 +23,9 @@ def submit_questionnaire(
     # CORSヘッダーを追加
     if response:
         response.headers["Access-Control-Allow-Origin"] = "*"
-        response.headers["Access-Control-Allow-Methods"] = "*"
-        response.headers["Access-Control-Allow-Headers"] = "*"
+        response.headers["Access-Control-Allow-Methods"] = "POST, OPTIONS"
+        response.headers["Access-Control-Allow-Headers"] = "Content-Type, Authorization, X-Requested-With"
+        response.headers["Access-Control-Max-Age"] = "3600"
     
     try:
         logger.info(f"受信したデータ: {responses}")
@@ -39,6 +40,7 @@ def submit_questionnaire(
         )
         
         # 簡易なレスポンスを返す
+        logger.info("アンケート回答を正常に保存しました")
         return {"status": "success", "message": "回答が正常に保存されました"}
     except Exception as e:
         logger.error(f"エラーの詳細: {str(e)}", exc_info=True)
@@ -58,8 +60,9 @@ def submit_face_measurements(
     # CORSヘッダーを追加
     if response:
         response.headers["Access-Control-Allow-Origin"] = "*"
-        response.headers["Access-Control-Allow-Methods"] = "*"
-        response.headers["Access-Control-Allow-Headers"] = "*"
+        response.headers["Access-Control-Allow-Methods"] = "POST, OPTIONS"
+        response.headers["Access-Control-Allow-Headers"] = "Content-Type, Authorization, X-Requested-With"
+        response.headers["Access-Control-Max-Age"] = "3600"
     
     try:
         logger.info(f"受信した顔測定データ: {measurements}")
@@ -68,6 +71,7 @@ def submit_face_measurements(
 
         # 顔測定データを保存
         # 本来はcrudモジュールの関数を呼び出すが、簡易実装として成功レスポンスを返す
+        logger.info("顔測定データを処理しました")
         return {
             "id": 1,
             "user_id": temporary_user_id,

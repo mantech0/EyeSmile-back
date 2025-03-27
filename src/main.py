@@ -34,12 +34,13 @@ origins = [
     "https://tech0-gen-8-step4-eyesmile.azurewebsites.net",
     "https://tech0-gen-8-step4-eyesmile-back.azurewebsites.net",
     "https://tech0-gen-8-step4-eyesmile-front.azurestaticapps.net",
+    "https://eyesmile-frontend.vercel.app",
     "*"
 ]
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origins=["*"],  # すべてのオリジンを許可
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -70,10 +71,14 @@ else:
 async def add_cors_headers(request: Request, call_next):
     try:
         response = await call_next(request)
+        # すべてのリクエストに対してCORSヘッダーを追加
         response.headers["Access-Control-Allow-Origin"] = "*"
-        response.headers["Access-Control-Allow-Methods"] = "*"
-        response.headers["Access-Control-Allow-Headers"] = "*"
+        response.headers["Access-Control-Allow-Methods"] = "GET, POST, PUT, DELETE, OPTIONS"
+        response.headers["Access-Control-Allow-Headers"] = "Content-Type, Authorization, X-Requested-With"
         response.headers["Access-Control-Max-Age"] = "3600"
+        
+        # リクエストパスをログに記録
+        logger.info(f"リクエスト処理完了: {request.method} {request.url.path}")
         return response
     except Exception as e:
         logger.error(f"ミドルウェアエラー: {str(e)}")
@@ -92,6 +97,33 @@ async def options_handler(request: Request, path: str):
             "Access-Control-Allow-Origin": "*",
             "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
             "Access-Control-Allow-Headers": "Content-Type, Authorization, X-Requested-With",
+            "Access-Control-Max-Age": "3600",
+        },
+    )
+
+# 特定エンドポイント用のプレフライトハンドラー
+@app.options("/api/v1/questionnaire/submit")
+async def options_questionnaire_submit():
+    logger.info("アンケート送信エンドポイントへのOPTIONSリクエスト受信")
+    return JSONResponse(
+        content={},
+        headers={
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "POST, OPTIONS",
+            "Access-Control-Allow-Headers": "Content-Type, Authorization",
+            "Access-Control-Max-Age": "3600",
+        },
+    )
+
+@app.options("/api/v1/questionnaire/face-measurements/submit")
+async def options_face_measurements_submit():
+    logger.info("顔測定データ送信エンドポイントへのOPTIONSリクエスト受信")
+    return JSONResponse(
+        content={},
+        headers={
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "POST, OPTIONS",
+            "Access-Control-Allow-Headers": "Content-Type, Authorization",
             "Access-Control-Max-Age": "3600",
         },
     )
