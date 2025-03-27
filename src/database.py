@@ -25,8 +25,8 @@ try:
     db_port = os.getenv('DB_PORT')
     db_name = os.getenv('DB_NAME')
     
-    # 完全修飾ユーザー名が設定されていなければ自動的に生成
-    if db_user and db_host and '@' not in db_user and '.mysql.database.azure.com' in db_host:
+    # 完全修飾ユーザー名の確認（@がない場合はホスト名を付加）
+    if db_user and '@' not in db_user and '.mysql.database.azure.com' in db_host:
         server_name = db_host.split('.')[0]
         logger.info(f"完全修飾ユーザー名に変換します: {db_user}@{server_name}")
         db_user = f"{db_user}@{server_name}"
@@ -41,15 +41,19 @@ try:
     
     # Azureでの接続設定
     if is_azure:
-        # Azureでは非常に軽量な設定を使用
+        # Azureでの接続設定（SSL必須）
         engine_params = {
-            "connect_args": {"ssl": True},
+            "connect_args": {
+                "ssl": {
+                    "ssl_ca": None  # Azure MySQL は CA なし設定で接続
+                }
+            },
             "pool_recycle": 280,
-            "pool_size": 1,  # ワーカー数に合わせて最小限に
+            "pool_size": 1,
             "max_overflow": 2,
-            "echo": False  # SQLログを無効化（パフォーマンス向上）
+            "echo": False
         }
-        logger.info("Azure環境用の軽量データベース設定を使用")
+        logger.info("Azure環境用のデータベース設定を使用")
     else:
         # ローカル開発環境での設定
         engine_params = {
@@ -58,7 +62,7 @@ try:
             "max_overflow": 10,
             "pool_timeout": 30,
             "pool_recycle": 1800,
-            "echo": True  # SQLログを出力（デバッグ用）
+            "echo": True
         }
         logger.info("ローカル環境用のデータベース設定を使用")
     

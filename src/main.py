@@ -34,7 +34,6 @@ origins = [
     "https://tech0-gen-8-step4-eyesmile.azurewebsites.net",
     "https://tech0-gen-8-step4-eyesmile-back.azurewebsites.net",
     "https://tech0-gen-8-step4-eyesmile-front.azurestaticapps.net",
-    "https://eyesmile-frontend.vercel.app",
     "*"
 ]
 
