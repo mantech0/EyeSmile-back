@@ -50,11 +50,26 @@ app.add_middleware(
 is_azure = os.getenv('WEBSITE_SITE_NAME') is not None
 logger.info(f"実行環境: {'Azure' if is_azure else 'ローカル'}")
 
-# Azureの場合、データベース初期化は完全にスキップ
-if not is_azure:
+# Azureの場合、環境変数に基づいてマイグレーションを実行
+if is_azure:
+    apply_migrations = os.getenv('APPLY_MIGRATIONS', '').lower() == 'true'
+    if apply_migrations:
+        try:
+            logger.info("Azure環境 - APPLY_MIGRATIONS=true が設定されています。データベースマイグレーションを実行します...")
+            # SQLiteではなくAzure MySQLに対してテーブル作成を実行
+            Base.metadata.create_all(bind=engine)
+            logger.info("Azure環境 - データベーステーブルを正常に作成しました")
+        except Exception as e:
+            logger.error(f"Azure環境 - データベースマイグレーションエラー: {str(e)}")
+            logger.error(traceback.format_exc())
+            # エラーをログに記録するだけで、起動は続行
+            logger.warning("データベースエラーが発生しましたが、アプリケーションは起動を続行します")
+    else:
+        logger.info("Azure環境を検出 - APPLY_MIGRATIONS=true が設定されていないため、データベース初期化をスキップします")
+else:
     try:
         # ローカル環境でのみテーブル作成を実行
-        logger.info("データベーステーブルを作成しています...")
+        logger.info("ローカル環境 - データベーステーブルを作成しています...")
         Base.metadata.create_all(bind=engine)
         logger.info("データベーステーブルを正常に作成しました")
     except Exception as e:
@@ -62,8 +77,6 @@ if not is_azure:
         logger.error(traceback.format_exc())
         # エラーをログに記録するだけで、起動は続行
         logger.warning("データベースエラーが発生しましたが、アプリケーションは起動を続行します")
-else:
-    logger.info("Azure環境を検出 - データベース初期化をスキップします")
 
 # CORS問題を解決するためのグローバルミドルウェア
 @app.middleware("http")

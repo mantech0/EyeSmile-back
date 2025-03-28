@@ -31,7 +31,11 @@ try:
         logger.info(f"完全修飾ユーザー名に変換します: {db_user}@{server_name}")
         db_user = f"{db_user}@{server_name}"
     
-    logger.info(f"データベース接続情報: host={db_host}, port={db_port}, user={db_user}, database={db_name}")
+    # SSL設定（環境変数から取得）
+    db_ssl_mode = os.getenv('DB_SSL_MODE', 'require').lower()
+    logger.info(f"SSL設定: {db_ssl_mode}")
+    
+    logger.info(f"データベース接続情報: host={db_host}, port={db_port}, user={db_user}, database={db_name}, ssl_mode={db_ssl_mode}")
     
     # 接続URL構築
     SQLALCHEMY_DATABASE_URL = (
@@ -41,17 +45,29 @@ try:
     
     # Azureでの接続設定
     if is_azure:
-        # Azureでの接続設定（SSL必須）
+        # SSL設定はDB_SSL_MODEに基づいて構成
+        ssl_config = {}
+        if db_ssl_mode == 'require':
+            ssl_config = {"ssl": {"ca": None}}  # CA検証なし
+        elif db_ssl_mode == 'verify-ca' or db_ssl_mode == 'verify-full':
+            # CAファイルが必要な場合（カスタム実装時に使用）
+            ca_file = os.getenv('DB_SSL_CA_PATH')
+            ssl_config = {"ssl": {"ca": ca_file}} if ca_file else {"ssl": {"ca": None}}
+        elif db_ssl_mode == 'disable':
+            ssl_config = {}  # SSL無効
+        else:
+            # デフォルトは必須（検証なし）
+            ssl_config = {"ssl": {"ca": None}}
+        
+        logger.info(f"Azure環境用SSL設定: {ssl_config}")
+        
+        # Azureでの接続設定（SSL設定を変数から取得）
         engine_params = {
-            "connect_args": {
-                "ssl": {
-                    "ssl_ca": None  # Azure MySQL は CA なし設定で接続
-                }
-            },
+            "connect_args": ssl_config,
             "pool_recycle": 280,
-            "pool_size": 1,
-            "max_overflow": 2,
-            "echo": False
+            "pool_size": 2,
+            "max_overflow": 3,
+            "echo": True  # デバッグ中はSQLログ出力を有効化
         }
         logger.info("Azure環境用のデータベース設定を使用")
     else:
@@ -68,10 +84,16 @@ try:
     
     # 最初に接続テストを行う
     logger.info("データベース接続テスト中...")
-    test_engine = create_engine(SQLALCHEMY_DATABASE_URL, **engine_params)
-    with test_engine.connect() as conn:
-        conn.execute("SELECT 1")
-    logger.info("データベース接続テスト成功")
+    try:
+        test_engine = create_engine(SQLALCHEMY_DATABASE_URL, **engine_params)
+        with test_engine.connect() as conn:
+            result = conn.execute("SELECT 1")
+            logger.info(f"データベース接続テスト成功: {result.fetchone()}")
+    except Exception as e:
+        logger.error(f"データベース接続テスト失敗: {str(e)}")
+        logger.error(f"接続URL: {SQLALCHEMY_DATABASE_URL}")
+        logger.error(f"接続パラメータ: {engine_params}")
+        raise  # 再スロー
     
     # 実際のエンジン設定
     logger.info("データベースエンジンを作成しています...")
