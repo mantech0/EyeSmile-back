@@ -76,30 +76,21 @@ def submit_face_measurements(
     
     try:
         logger.info(f"受信した顔測定データ: {measurements}")
-        # 仮のユーザーID（本来はログインユーザーのIDを使用）
-        temporary_user_id = 1
-
         try:
             # 顔測定データを保存
-            # 本来はcrudモジュールの関数を呼び出すが、簡易実装として成功レスポンスを返す
-            logger.info("顔測定データを処理しました")
-            return {
-                "id": 1,
-                "user_id": temporary_user_id,
-                "face_width": measurements.face_width,
-                "eye_distance": measurements.eye_distance,
-                "cheek_area": measurements.cheek_area,
-                "nose_height": measurements.nose_height,
-                "temple_position": measurements.temple_position,
-                "created_at": "2023-01-01T00:00:00"
-            }
+            db_measurement = crud.face_measurement.create_face_measurement(
+                db=db,
+                face_measurement=measurements
+            )
+            logger.info(f"顔測定データをデータベースに保存しました: ID={db_measurement.id}")
+            return db_measurement
         except Exception as db_error:
             # データベースエラーの場合でも処理を続行
             logger.error(f"データベースエラー: {str(db_error)}", exc_info=True)
             # デモモードのレスポンスを返す
             return {
                 "id": 1,
-                "user_id": temporary_user_id,
+                "user_id": measurements.user_id,
                 "face_width": measurements.face_width,
                 "eye_distance": measurements.eye_distance,
                 "cheek_area": measurements.cheek_area,
