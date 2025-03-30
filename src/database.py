@@ -3,48 +3,52 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from dotenv import load_dotenv
 import os
+import tempfile
 import logging
 
 # ロギングの設定
 logger = logging.getLogger(__name__)
+logging.basicConfig(level=logging.INFO)
 
-# Load environment variables
+# 環境変数をロード
 load_dotenv()
 
-# Database connection configuration
+# データベース接続情報
 DB_HOST = os.getenv("DB_HOST")
 DB_PORT = os.getenv("DB_PORT")
 DB_USER = os.getenv("DB_USER")
 DB_PASSWORD = os.getenv("DB_PASSWORD")
 DB_NAME = os.getenv("DB_NAME")
-DB_SSL_MODE = os.getenv("DB_SSL_MODE", "require")
+DB_SSL_CA = os.getenv("DB_SSL_CA")  # 改行付き証明書（\n含む）
 
-# Create MySQL URL
-SQLALCHEMY_DATABASE_URL = f"mysql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}?ssl_mode={DB_SSL_MODE}"
+# MySQL接続用URL
+SQLALCHEMY_DATABASE_URL = f"mysql+mysqlconnector://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
 
-logger.info(f"Connecting to database at {DB_HOST}:{DB_PORT}/{DB_NAME}")
+# PEM形式の証明書を一時ファイルに保存
+temp_cert_path = None
+if DB_SSL_CA:
+    with tempfile.NamedTemporaryFile(delete=False, suffix=".pem", mode="w") as cert_file:
+        cert_file.write(DB_SSL_CA.replace("\\n", "\n"))  # \n → 改行に変換
+        temp_cert_path = cert_file.name
+        logger.info(f"SSL CA certificate written to temp file: {temp_cert_path}")
+else:
+    logger.warning("DB_SSL_CA not found in .env")
 
-# Create SQLAlchemy engine with retry mechanism
+# エンジン作成
+connect_args = {}
+if temp_cert_path:
+    connect_args["ssl_ca"] = temp_cert_path
+    connect_args["ssl_verify_cert"] = True
+
 engine = create_engine(
     SQLALCHEMY_DATABASE_URL,
-    pool_pre_ping=True,
-    pool_size=5,
-    max_overflow=10,
-    pool_recycle=3600,
-    connect_args={
-        "ssl": {
-            "ssl_mode": DB_SSL_MODE
-        }
-    }
 )
 
-# Create SessionLocal class
+# セッションとベースクラス
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
-
-# Create Base class
 Base = declarative_base()
 
-# Dependency to get database session
+# DBセッションを取得する依存関係
 def get_db():
     db = SessionLocal()
     try:
@@ -53,4 +57,4 @@ def get_db():
         logger.error(f"Database error: {e}")
         raise
     finally:
-        db.close() 
+        db.close()
