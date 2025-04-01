@@ -1,0 +1,34 @@
+[
+  {
+    "name": "JINS クラシック オーバル",
+    "brand": "JINS",
+    "price": 10000,
+    "style": "クラシック",
+    "shape": "オーバル",
+    "material": "アセテート",
+    "color": "ブラック",
+    "frame_width": 138.0,
+    "lens_width": 45.3,
+    "bridge_width": 17.5,
+    "temple_length": 145.9,
+    "lens_height": 38.2,
+    "weight": 15.1,
+    "recommended_face_width_min": 124.2,
+    "recommended_face_width_max": 151.8,
+    "recommended_nose_height_min": 13.7,
+    "recommended_nose_height_max": 22.9,
+    "personal_color_season": "夏",
+    "face_shape_types": [
+      "ハート型",
+      "卵型",
+      "逆三角形"
+    ],
+    "style_tags": [
+      "ミニマル"
+    ],
+    "image_urls": [
+      "https://example.com/frames/1/front.jpg",
+      "https://example.com/frames/1/side.jpg",
+      "https://example.com/frames/1/angle.jpg"
+    ],
+    "created_at": 

@@ -1,0 +1,3602 @@
+[
+  {
+    "name": "JINS クラシック オーバル",
+    "brand": "JINS",
+    "price": 10000,
+    "style": "クラシック",
+    "shape": "オーバル",
+    "material": "アセテート",
+    "color": "ブラック",
+    "frame_width": 138.0,
+    "lens_width": 45.3,
+    "bridge_width": 17.5,
+    "temple_length": 145.9,
+    "lens_height": 38.2,
+    "weight": 15.1,
+    "recommended_face_width_min": 124.2,
+    "recommended_face_width_max": 151.8,
+    "recommended_nose_height_min": 13.7,
+    "recommended_nose_height_max": 22.9,
+    "personal_color_season": "夏",
+    "face_shape_types": [
+      "ハート型",
+      "卵型",
+      "逆三角形"
+    ],
+    "style_tags": [
+      "ミニマル"
+    ],
+    "image_urls": [
+      "https://example.com/frames/1/front.jpg",
+      "https://example.com/frames/1/side.jpg",
+      "https://example.com/frames/1/angle.jpg"
+    ],
+    "id": 1,
+    "created_at": "2025-04-01T02:36:19.117687",
+    "updated_at": "2025-04-01T02:36:19.117687"
+  },
+  {
+    "name": "JINS レトロ ラウンド",
+    "brand": "JINS",
+    "price": 7000,
+    "style": "レトロ",
+    "shape": "ラウンド",
+    "material": "メタル",
+    "color": "ブラウン",
+    "frame_width": 135.2,
+    "lens_width": 51.9,
+    "bridge_width": 22.0,
+    "temple_length": 143.0,
+    "lens_height": 45.6,
+    "weight": 25.5,
+    "recommended_face_width_min": 121.7,
+    "recommended_face_width_max": 148.7,
+    "recommended_nose_height_min": 11.2,
+    "recommended_nose_height_max": 20.6,
+    "personal_color_season": "春",
+    "face_shape_types": [
+      "ハート型",
+      "逆三角形",
+      "丸型"
+    ],
+    "style_tags": [
+      "クラシック"
+    ],
+    "image_urls": [
+      "https://example.com/frames/2/front.jpg",
+      "https://example.com/frames/2/side.jpg",
+      "https://example.com/frames/2/angle.jpg"
+    ],
+    "id": 2,
+    "created_at": "2025-04-01T02:36:19.118164",
+    "updated_at": "2025-04-01T02:36:19.118164"
+  },
+  {
+    "name": "Oakley カジュアル ウェリントン",
+    "brand": "Oakley",
+    "price": 24000,
+    "style": "カジュアル",
+    "shape": "ウェリントン",
+    "material": "チタン",
+    "color": "グリーン",
+    "frame_width": 136.5,
+    "lens_width": 47.3,
+    "bridge_width": 16.6,
+    "temple_length": 149.2,
+    "lens_height": 43.9,
+    "weight": 20.6,
+    "recommended_face_width_min": 122.9,
+    "recommended_face_width_max": 150.2,
+    "recommended_nose_height_min": 12.4,
+    "recommended_nose_height_max": 24.2,
+    "personal_color_season": "夏",
+    "face_shape_types": [
+      "逆三角形",
+      "四角型"
+    ],
+    "style_tags": [
+      "クラシック",
+      "カジュアル"
+    ],
+    "image_urls": [
+      "https://example.com/frames/3/front.jpg",
+      "https://example.com/frames/3/side.jpg",
+      "https://example.com/frames/3/angle.jpg"
+    ],
+    "id": 3,
+    "created_at": "2025-04-01T02:36:19.118459",
+    "updated_at": "2025-04-01T02:36:19.118459"
+  },
+  {
+    "name": "JINS クラシック ウェリントン",
+    "brand": "JINS",
+    "price": 16000,
+    "style": "クラシック",
+    "shape": "ウェリントン",
+    "material": "アセテート",
+    "color": "ブルー",
+    "frame_width": 125.9,
+    "lens_width": 50.8,
+    "bridge_width": 21.8,
+    "temple_length": 146.2,
+    "lens_height": 47.2,
+    "weight": 27.1,
+    "recommended_face_width_min": 113.3,
+    "recommended_face_width_max": 138.5,
+    "recommended_nose_height_min": 12.5,
+    "recommended_nose_height_max": 22.0,
+    "personal_color_season": "秋",
+    "face_shape_types": [
+      "卵型",
+      "逆三角形",
+      "丸型"
+    ],
+    "style_tags": [
+      "カジュアル",
+      "モダン"
+    ],
+    "image_urls": [
+      "https://example.com/frames/4/front.jpg",
+      "https://example.com/frames/4/side.jpg",
+      "https://example.com/frames/4/angle.jpg"
+    ],
+    "id": 4,
+    "created_at": "2025-04-01T02:36:19.118672",
+    "updated_at": "2025-04-01T02:36:19.118672"
+  },
+  {
+    "name": "Ray-Ban ミニマル ティアドロップ",
+    "brand": "Ray-Ban",
+    "price": 24000,
+    "style": "ミニマル",
+    "shape": "ティアドロップ",
+    "material": "コンビネーション",
+    "color": "レッド",
+    "frame_width": 128.3,
+    "lens_width": 45.7,
+    "bridge_width": 21.8,
+    "temple_length": 142.3,
+    "lens_height": 37.4,
+    "weight": 27.7,
+    "recommended_face_width_min": 115.5,
+    "recommended_face_width_max": 141.1,
+    "recommended_nose_height_min": 13.8,
+    "recommended_nose_height_max": 23.1,
+    "personal_color_season": "夏",
+    "face_shape_types": [
+      "逆三角形",
+      "卵型",
+      "丸型"
+    ],
+    "style_tags": [
+      "レトロ",
+      "ビジネス",
+      "クラシック"
+    ],
+    "image_urls": [
+      "https://example.com/frames/5/front.jpg",
+      "https://example.com/frames/5/side.jpg",
+      "https://example.com/frames/5/angle.jpg"
+    ],
+    "id": 5,
+    "created_at": "2025-04-01T02:36:19.120641",
+    "updated_at": "2025-04-01T02:36:19.120641"
+  },
+  {
+    "name": "Gucci スポーティ キャットアイ",
+    "brand": "Gucci",
+    "price": 20000,
+    "style": "スポーティ",
+    "shape": "キャットアイ",
+    "material": "コンビネーション",
+    "color": "シルバー",
+    "frame_width": 125.2,
+    "lens_width": 46.4,
+    "bridge_width": 19.9,
+    "temple_length": 139.3,
+    "lens_height": 38.6,
+    "weight": 25.6,
+    "recommended_face_width_min": 112.7,
+    "recommended_face_width_max": 137.7,
+    "recommended_nose_height_min": 12.0,
+    "recommended_nose_height_max": 21.6,
+    "personal_color_season": "秋",
+    "face_shape_types": [
+      "長方形",
+      "四角型",
+      "ハート型"
+    ],
+    "style_tags": [
+      "ミニマル"
+    ],
+    "image_urls": [
+      "https://example.com/frames/6/front.jpg",
+      "https://example.com/frames/6/side.jpg",
+      "https://example.com/frames/6/angle.jpg"
+    ],
+    "id": 6,
+    "created_at": "2025-04-01T02:36:19.120941",
+    "updated_at": "2025-04-01T02:36:19.120941"
+  },
+  {
+    "name": "Persol ビジネス ティアドロップ",
+    "brand": "Persol",
+    "price": 30000,
+    "style": "ビジネス",
+    "shape": "ティアドロップ",
+    "material": "チタン",
+    "color": "ブルー",
+    "frame_width": 133.6,
+    "lens_width": 50.7,
+    "bridge_width": 19.8,
+    "temple_length": 142.2,
+    "lens_height": 39.0,
+    "weight": 29.4,
+    "recommended_face_width_min": 120.2,
+    "recommended_face_width_max": 147.0,
+    "recommended_nose_height_min": 14.0,
+    "recommended_nose_height_max": 20.2,
+    "personal_color_season": "夏",
+    "face_shape_types": [
+      "ハート型"
+    ],
+    "style_tags": [
+      "モダン",
+      "レトロ"
+    ],
+    "image_urls": [
+      "https://example.com/frames/7/front.jpg",
+      "https://example.com/frames/7/side.jpg",
+      "https://example.com/frames/7/angle.jpg"
+    ],
+    "id": 7,
+    "created_at": "2025-04-01T02:36:19.121200",
+    "updated_at": "2025-04-01T02:36:19.121200"
+  },
+  {
+    "name": "Oliver Peoples カジュアル キャットアイ",
+    "brand": "Oliver Peoples",
+    "price": 12000,
+    "style": "カジュアル",
+    "shape": "キャットアイ",
+    "material": "アセテート",
+    "color": "ブラウン",
+    "frame_width": 141.9,
+    "lens_width": 47.4,
+    "bridge_width": 16.9,
+    "temple_length": 138.1,
+    "lens_height": 45.9,
+    "weight": 26.7,
+    "recommended_face_width_min": 127.7,
+    "recommended_face_width_max": 156.1,
+    "recommended_nose_height_min": 13.4,
+    "recommended_nose_height_max": 23.5,
+    "personal_color_season": "春",
+    "face_shape_types": [
+      "長方形"
+    ],
+    "style_tags": [
+      "カジュアル",
+      "モダン",
+      "クラシック"
+    ],
+    "image_urls": [
+      "https://example.com/frames/8/front.jpg",
+      "https://example.com/frames/8/side.jpg",
+      "https://example.com/frames/8/angle.jpg"
+    ],
+    "id": 8,
+    "created_at": "2025-04-01T02:36:19.121441",
+    "updated_at": "2025-04-01T02:36:19.121441"
+  },
+  {
+    "name": "Zoff スポーティ ラウンド",
+    "brand": "Zoff",
+    "price": 28000,
+    "style": "スポーティ",
+    "shape": "ラウンド",
+    "material": "チタン",
+    "color": "クリア",
+    "frame_width": 139.8,
+    "lens_width": 48.0,
+    "bridge_width": 15.9,
+    "temple_length": 145.1,
+    "lens_height": 46.1,
+    "weight": 15.4,
+    "recommended_face_width_min": 125.8,
+    "recommended_face_width_max": 153.8,
+    "recommended_nose_height_min": 13.5,
+    "recommended_nose_height_max": 24.4,
+    "personal_color_season": "冬",
+    "face_shape_types": [
+      "ハート型"
+    ],
+    "style_tags": [
+      "モダン",
+      "クラシック"
+    ],
+    "image_urls": [
+      "https://example.com/frames/9/front.jpg",
+      "https://example.com/frames/9/side.jpg",
+      "https://example.com/frames/9/angle.jpg"
+    ],
+    "id": 9,
+    "created_at": "2025-04-01T02:36:19.121712",
+    "updated_at": "2025-04-01T02:36:19.121712"
+  },
+  {
+    "name": "Gucci スポーティ キャットアイ",
+    "brand": "Gucci",
+    "price": 24000,
+    "style": "スポーティ",
+    "shape": "キャットアイ",
+    "material": "チタン",
+    "color": "ブルー",
+    "frame_width": 135.0,
+    "lens_width": 54.1,
+    "bridge_width": 21.0,
+    "temple_length": 146.2,
+    "lens_height": 41.1,
+    "weight": 27.7,
+    "recommended_face_width_min": 121.5,
+    "recommended_face_width_max": 148.5,
+    "recommended_nose_height_min": 11.1,
+    "recommended_nose_height_max": 22.1,
+    "personal_color_season": "冬",
+    "face_shape_types": [
+      "四角型",
+      "卵型"
+    ],
+    "style_tags": [
+      "スポーティ",
+      "モダン"
+    ],
+    "image_urls": [
+      "https://example.com/frames/10/front.jpg",
+      "https://example.com/frames/10/side.jpg",
+      "https://example.com/frames/10/angle.jpg"
+    ],
+    "id": 10,
+    "created_at": "2025-04-01T02:36:19.121967",
+    "updated_at": "2025-04-01T02:36:19.121967"
+  },
+  {
+    "name": "Tom Ford スポーティ ラウンド",
+    "brand": "Tom Ford",
+    "price": 27000,
+    "style": "スポーティ",
+    "shape": "ラウンド",
+    "material": "プラスチック",
+    "color": "クリア",
+    "frame_width": 131.3,
+    "lens_width": 46.1,
+    "bridge_width": 21.1,
+    "temple_length": 135.4,
+    "lens_height": 46.5,
+    "weight": 22.8,
+    "recommended_face_width_min": 118.2,
+    "recommended_face_width_max": 144.4,
+    "recommended_nose_height_min": 10.7,
+    "recommended_nose_height_max": 24.5,
+    "personal_color_season": "夏",
+    "face_shape_types": [
+      "長方形"
+    ],
+    "style_tags": [
+      "スポーティ",
+      "ビジネス"
+    ],
+    "image_urls": [
+      "https://example.com/frames/11/front.jpg",
+      "https://example.com/frames/11/side.jpg",
+      "https://example.com/frames/11/angle.jpg"
+    ],
+    "id": 11,
+    "created_at": "2025-04-01T02:36:19.145717",
+    "updated_at": "2025-04-01T02:36:19.145717"
+  },
+  {
+    "name": "Oakley レトロ ラウンド",
+    "brand": "Oakley",
+    "price": 12000,
+    "style": "レトロ",
+    "shape": "ラウンド",
+    "material": "アセテート",
+    "color": "シルバー",
+    "frame_width": 127.7,
+    "lens_width": 54.8,
+    "bridge_width": 17.8,
+    "temple_length": 140.2,
+    "lens_height": 45.1,
+    "weight": 29.3,
+    "recommended_face_width_min": 114.9,
+    "recommended_face_width_max": 140.5,
+    "recommended_nose_height_min": 11.5,
+    "recommended_nose_height_max": 22.1,
+    "personal_color_season": "秋",
+    "face_shape_types": [
+      "卵型",
+      "四角型"
+    ],
+    "style_tags": [
+      "レトロ"
+    ],
+    "image_urls": [
+      "https://example.com/frames/12/front.jpg",
+      "https://example.com/frames/12/side.jpg",
+      "https://example.com/frames/12/angle.jpg"
+    ],
+    "id": 12,
+    "created_at": "2025-04-01T02:36:19.146473",
+    "updated_at": "2025-04-01T02:36:19.146473"
+  },
+  {
+    "name": "JINS ビジネス キャットアイ",
+    "brand": "JINS",
+    "price": 13000,
+    "style": "ビジネス",
+    "shape": "キャットアイ",
+    "material": "メタル",
+    "color": "ブラック",
+    "frame_width": 138.9,
+    "lens_width": 52.7,
+    "bridge_width": 15.7,
+    "temple_length": 143.2,
+    "lens_height": 35.3,
+    "weight": 22.5,
+    "recommended_face_width_min": 125.0,
+    "recommended_face_width_max": 152.8,
+    "recommended_nose_height_min": 12.3,
+    "recommended_nose_height_max": 24.4,
+    "personal_color_season": "秋",
+    "face_shape_types": [
+      "長方形",
+      "ハート型"
+    ],
+    "style_tags": [
+      "カジュアル"
+    ],
+    "image_urls": [
+      "https://example.com/frames/13/front.jpg",
+      "https://example.com/frames/13/side.jpg",
+      "https://example.com/frames/13/angle.jpg"
+    ],
+    "id": 13,
+    "created_at": "2025-04-01T02:36:19.147817",
+    "updated_at": "2025-04-01T02:36:19.147817"
+  },
+  {
+    "name": "Tom Ford レトロ スクエア",
+    "brand": "Tom Ford",
+    "price": 18000,
+    "style": "レトロ",
+    "shape": "スクエア",
+    "material": "チタン",
+    "color": "クリア",
+    "frame_width": 140.0,
+    "lens_width": 53.4,
+    "bridge_width": 17.9,
+    "temple_length": 149.1,
+    "lens_height": 48.2,
+    "weight": 25.2,
+    "recommended_face_width_min": 126.0,
+    "recommended_face_width_max": 154.0,
+    "recommended_nose_height_min": 11.4,
+    "recommended_nose_height_max": 20.7,
+    "personal_color_season": "夏",
+    "face_shape_types": [
+      "逆三角形"
+    ],
+    "style_tags": [
+      "クラシック"
+    ],
+    "image_urls": [
+      "https://example.com/frames/14/front.jpg",
+      "https://example.com/frames/14/side.jpg",
+      "https://example.com/frames/14/angle.jpg"
+    ],
+    "id": 14,
+    "created_at": "2025-04-01T02:36:19.148067",
+    "updated_at": "2025-04-01T02:36:19.148067"
+  },
+  {
+    "name": "Gucci ビジネス ブロー",
+    "brand": "Gucci",
+    "price": 7000,
+    "style": "ビジネス",
+    "shape": "ブロー",
+    "material": "アセテート",
+    "color": "シルバー",
+    "frame_width": 139.1,
+    "lens_width": 47.2,
+    "bridge_width": 18.0,
+    "temple_length": 142.1,
+    "lens_height": 47.2,
+    "weight": 26.1,
+    "recommended_face_width_min": 125.2,
+    "recommended_face_width_max": 153.0,
+    "recommended_nose_height_min": 14.9,
+    "recommended_nose_height_max": 24.8,
+    "personal_color_season": "冬",
+    "face_shape_types": [
+      "ハート型"
+    ],
+    "style_tags": [
+      "モダン",
+      "カジュアル",
+      "ビジネス"
+    ],
+    "image_urls": [
+      "https://example.com/frames/15/front.jpg",
+      "https://example.com/frames/15/side.jpg",
+      "https://example.com/frames/15/angle.jpg"
+    ],
+    "id": 15,
+    "created_at": "2025-04-01T02:36:19.148262",
+    "updated_at": "2025-04-01T02:36:19.148262"
+  },
+  {
+    "name": "Gucci ミニマル スクエア",
+    "brand": "Gucci",
+    "price": 21000,
+    "style": "ミニマル",
+    "shape": "スクエア",
+    "material": "コンビネーション",
+    "color": "クリア",
+    "frame_width": 133.3,
+    "lens_width": 46.5,
+    "bridge_width": 17.9,
+    "temple_length": 136.6,
+    "lens_height": 46.8,
+    "weight": 26.5,
+    "recommended_face_width_min": 120.0,
+    "recommended_face_width_max": 146.6,
+    "recommended_nose_height_min": 10.3,
+    "recommended_nose_height_max": 21.5,
+    "personal_color_season": "秋",
+    "face_shape_types": [
+      "丸型",
+      "逆三角形",
+      "長方形"
+    ],
+    "style_tags": [
+      "スポーティ",
+      "ミニマル"
+    ],
+    "image_urls": [
+      "https://example.com/frames/16/front.jpg",
+      "https://example.com/frames/16/side.jpg",
+      "https://example.com/frames/16/angle.jpg"
+    ],
+    "id": 16,
+    "created_at": "2025-04-01T02:36:19.148445",
+    "updated_at": "2025-04-01T02:36:19.148445"
+  },
+  {
+    "name": "Persol カジュアル ウェリントン",
+    "brand": "Persol",
+    "price": 29000,
+    "style": "カジュアル",
+    "shape": "ウェリントン",
+    "material": "メタル",
+    "color": "レッド",
+    "frame_width": 137.5,
+    "lens_width": 54.2,
+    "bridge_width": 19.6,
+    "temple_length": 143.7,
+    "lens_height": 38.5,
+    "weight": 15.9,
+    "recommended_face_width_min": 123.8,
+    "recommended_face_width_max": 151.2,
+    "recommended_nose_height_min": 12.7,
+    "recommended_nose_height_max": 24.6,
+    "personal_color_season": "秋",
+    "face_shape_types": [
+      "四角型",
+      "長方形",
+      "逆三角形"
+    ],
+    "style_tags": [
+      "レトロ"
+    ],
+    "image_urls": [
+      "https://example.com/frames/17/front.jpg",
+      "https://example.com/frames/17/side.jpg",
+      "https://example.com/frames/17/angle.jpg"
+    ],
+    "id": 17,
+    "created_at": "2025-04-01T02:36:19.148636",
+    "updated_at": "2025-04-01T02:36:19.148636"
+  },
+  {
+    "name": "Zoff ミニマル オーバル",
+    "brand": "Zoff",
+    "price": 12000,
+    "style": "ミニマル",
+    "shape": "オーバル",
+    "material": "コンビネーション",
+    "color": "トータス",
+    "frame_width": 136.2,
+    "lens_width": 50.1,
+    "bridge_width": 16.1,
+    "temple_length": 137.2,
+    "lens_height": 45.7,
+    "weight": 16.5,
+    "recommended_face_width_min": 122.6,
+    "recommended_face_width_max": 149.8,
+    "recommended_nose_height_min": 14.7,
+    "recommended_nose_height_max": 22.6,
+    "personal_color_season": "春",
+    "face_shape_types": [
+      "ハート型"
+    ],
+    "style_tags": [
+      "カジュアル"
+    ],
+    "image_urls": [
+      "https://example.com/frames/18/front.jpg",
+      "https://example.com/frames/18/side.jpg",
+      "https://example.com/frames/18/angle.jpg"
+    ],
+    "id": 18,
+    "created_at": "2025-04-01T02:36:19.148823",
+    "updated_at": "2025-04-01T02:36:19.148823"
+  },
+  {
+    "name": "Oliver Peoples レトロ ボストン",
+    "brand": "Oliver Peoples",
+    "price": 11000,
+    "style": "レトロ",
+    "shape": "ボストン",
+    "material": "プラスチック",
+    "color": "ブラウン",
+    "frame_width": 140.8,
+    "lens_width": 54.8,
+    "bridge_width": 19.3,
+    "temple_length": 136.0,
+    "lens_height": 46.4,
+    "weight": 27.2,
+    "recommended_face_width_min": 126.7,
+    "recommended_face_width_max": 154.9,
+    "recommended_nose_height_min": 12.0,
+    "recommended_nose_height_max": 24.1,
+    "personal_color_season": "夏",
+    "face_shape_types": [
+      "ハート型",
+      "長方形",
+      "卵型"
+    ],
+    "style_tags": [
+      "ビジネス",
+      "カジュアル",
+      "ミニマル"
+    ],
+    "image_urls": [
+      "https://example.com/frames/19/front.jpg",
+      "https://example.com/frames/19/side.jpg",
+      "https://example.com/frames/19/angle.jpg"
+    ],
+    "id": 19,
+    "created_at": "2025-04-01T02:36:19.149006",
+    "updated_at": "2025-04-01T02:36:19.149006"
+  },
+  {
+    "name": "Oliver Peoples ミニマル ボストン",
+    "brand": "Oliver Peoples",
+    "price": 19000,
+    "style": "ミニマル",
+    "shape": "ボストン",
+    "material": "コンビネーション",
+    "color": "ブラック",
+    "frame_width": 131.4,
+    "lens_width": 45.8,
+    "bridge_width": 19.4,
+    "temple_length": 141.6,
+    "lens_height": 45.6,
+    "weight": 29.4,
+    "recommended_face_width_min": 118.3,
+    "recommended_face_width_max": 144.5,
+    "recommended_nose_height_min": 13.8,
+    "recommended_nose_height_max": 24.0,
+    "personal_color_season": "冬",
+    "face_shape_types": [
+      "卵型",
+      "丸型",
+      "四角型"
+    ],
+    "style_tags": [
+      "クラシック",
+      "ビジネス",
+      "ミニマル"
+    ],
+    "image_urls": [
+      "https://example.com/frames/20/front.jpg",
+      "https://example.com/frames/20/side.jpg",
+      "https://example.com/frames/20/angle.jpg"
+    ],
+    "id": 20,
+    "created_at": "2025-04-01T02:36:19.149206",
+    "updated_at": "2025-04-01T02:36:19.149206"
+  },
+  {
+    "name": "Tom Ford カジュアル ティアドロップ",
+    "brand": "Tom Ford",
+    "price": 15000,
+    "style": "カジュアル",
+    "shape": "ティアドロップ",
+    "material": "コンビネーション",
+    "color": "ゴールド",
+    "frame_width": 130.1,
+    "lens_width": 53.8,
+    "bridge_width": 16.4,
+    "temple_length": 148.6,
+    "lens_height": 38.3,
+    "weight": 16.8,
+    "recommended_face_width_min": 117.1,
+    "recommended_face_width_max": 143.1,
+    "recommended_nose_height_min": 15.0,
+    "recommended_nose_height_max": 21.5,
+    "personal_color_season": "夏",
+    "face_shape_types": [
+      "丸型",
+      "ハート型",
+      "卵型"
+    ],
+    "style_tags": [
+      "ビジネス",
+      "モダン"
+    ],
+    "image_urls": [
+      "https://example.com/frames/21/front.jpg",
+      "https://example.com/frames/21/side.jpg",
+      "https://example.com/frames/21/angle.jpg"
+    ],
+    "id": 21,
+    "created_at": "2025-04-01T02:36:19.159149",
+    "updated_at": "2025-04-01T02:36:19.159149"
+  },
+  {
+    "name": "Ray-Ban ビジネス キャットアイ",
+    "brand": "Ray-Ban",
+    "price": 26000,
+    "style": "ビジネス",
+    "shape": "キャットアイ",
+    "material": "コンビネーション",
+    "color": "ブルー",
+    "frame_width": 139.1,
+    "lens_width": 50.1,
+    "bridge_width": 15.4,
+    "temple_length": 137.9,
+    "lens_height": 48.7,
+    "weight": 15.9,
+    "recommended_face_width_min": 125.2,
+    "recommended_face_width_max": 153.0,
+    "recommended_nose_height_min": 14.5,
+    "recommended_nose_height_max": 22.7,
+    "personal_color_season": "冬",
+    "face_shape_types": [
+      "卵型",
+      "丸型",
+      "ハート型"
+    ],
+    "style_tags": [
+      "モダン",
+      "クラシック"
+    ],
+    "image_urls": [
+      "https://example.com/frames/22/front.jpg",
+      "https://example.com/frames/22/side.jpg",
+      "https://example.com/frames/22/angle.jpg"
+    ],
+    "id": 22,
+    "created_at": "2025-04-01T02:36:19.159583",
+    "updated_at": "2025-04-01T02:36:19.159583"
+  },
+  {
+    "name": "Oliver Peoples ミニマル ウェリントン",
+    "brand": "Oliver Peoples",
+    "price": 21000,
+    "style": "ミニマル",
+    "shape": "ウェリントン",
+    "material": "アセテート",
+    "color": "グリーン",
+    "frame_width": 138.9,
+    "lens_width": 52.7,
+    "bridge_width": 17.7,
+    "temple_length": 137.2,
+    "lens_height": 40.2,
+    "weight": 26.6,
+    "recommended_face_width_min": 125.0,
+    "recommended_face_width_max": 152.8,
+    "recommended_nose_height_min": 14.3,
+    "recommended_nose_height_max": 22.7,
+    "personal_color_season": "春",
+    "face_shape_types": [
+      "丸型"
+    ],
+    "style_tags": [
+      "クラシック",
+      "ミニマル"
+    ],
+    "image_urls": [
+      "https://example.com/frames/23/front.jpg",
+      "https://example.com/frames/23/side.jpg",
+      "https://example.com/frames/23/angle.jpg"
+    ],
+    "id": 23,
+    "created_at": "2025-04-01T02:36:19.160722",
+    "updated_at": "2025-04-01T02:36:19.160722"
+  },
+  {
+    "name": "Oakley ビジネス スクエア",
+    "brand": "Oakley",
+    "price": 30000,
+    "style": "ビジネス",
+    "shape": "スクエア",
+    "material": "メタル",
+    "color": "ゴールド",
+    "frame_width": 139.8,
+    "lens_width": 46.1,
+    "bridge_width": 18.1,
+    "temple_length": 137.0,
+    "lens_height": 40.7,
+    "weight": 24.1,
+    "recommended_face_width_min": 125.8,
+    "recommended_face_width_max": 153.8,
+    "recommended_nose_height_min": 14.0,
+    "recommended_nose_height_max": 20.6,
+    "personal_color_season": "秋",
+    "face_shape_types": [
+      "四角型",
+      "ハート型",
+      "丸型"
+    ],
+    "style_tags": [
+      "クラシック",
+      "ビジネス",
+      "モダン"
+    ],
+    "image_urls": [
+      "https://example.com/frames/24/front.jpg",
+      "https://example.com/frames/24/side.jpg",
+      "https://example.com/frames/24/angle.jpg"
+    ],
+    "id": 24,
+    "created_at": "2025-04-01T02:36:19.161139",
+    "updated_at": "2025-04-01T02:36:19.161139"
+  },
+  {
+    "name": "Zoff クラシック ティアドロップ",
+    "brand": "Zoff",
+    "price": 14000,
+    "style": "クラシック",
+    "shape": "ティアドロップ",
+    "material": "メタル",
+    "color": "レッド",
+    "frame_width": 137.5,
+    "lens_width": 49.5,
+    "bridge_width": 19.9,
+    "temple_length": 141.9,
+    "lens_height": 40.1,
+    "weight": 29.9,
+    "recommended_face_width_min": 123.8,
+    "recommended_face_width_max": 151.2,
+    "recommended_nose_height_min": 12.6,
+    "recommended_nose_height_max": 22.8,
+    "personal_color_season": "冬",
+    "face_shape_types": [
+      "長方形",
+      "四角型"
+    ],
+    "style_tags": [
+      "スポーティ",
+      "ミニマル",
+      "カジュアル"
+    ],
+    "image_urls": [
+      "https://example.com/frames/25/front.jpg",
+      "https://example.com/frames/25/side.jpg",
+      "https://example.com/frames/25/angle.jpg"
+    ],
+    "id": 25,
+    "created_at": "2025-04-01T02:36:19.161471",
+    "updated_at": "2025-04-01T02:36:19.161471"
+  },
+  {
+    "name": "Oliver Peoples クラシック ラウンド",
+    "brand": "Oliver Peoples",
+    "price": 22000,
+    "style": "クラシック",
+    "shape": "ラウンド",
+    "material": "チタン",
+    "color": "ブラック",
+    "frame_width": 144.8,
+    "lens_width": 46.0,
+    "bridge_width": 18.5,
+    "temple_length": 137.2,
+    "lens_height": 40.1,
+    "weight": 26.0,
+    "recommended_face_width_min": 130.3,
+    "recommended_face_width_max": 159.3,
+    "recommended_nose_height_min": 12.4,
+    "recommended_nose_height_max": 24.9,
+    "personal_color_season": "秋",
+    "face_shape_types": [
+      "長方形",
+      "丸型"
+    ],
+    "style_tags": [
+      "クラシック",
+      "ミニマル"
+    ],
+    "image_urls": [
+      "https://example.com/frames/26/front.jpg",
+      "https://example.com/frames/26/side.jpg",
+      "https://example.com/frames/26/angle.jpg"
+    ],
+    "id": 26,
+    "created_at": "2025-04-01T02:36:19.162396",
+    "updated_at": "2025-04-01T02:36:19.162396"
+  },
+  {
+    "name": "Zoff クラシック ティアドロップ",
+    "brand": "Zoff",
+    "price": 28000,
+    "style": "クラシック",
+    "shape": "ティアドロップ",
+    "material": "アセテート",
+    "color": "ゴールド",
+    "frame_width": 142.2,
+    "lens_width": 54.4,
+    "bridge_width": 20.8,
+    "temple_length": 141.3,
+    "lens_height": 48.5,
+    "weight": 24.5,
+    "recommended_face_width_min": 128.0,
+    "recommended_face_width_max": 156.4,
+    "recommended_nose_height_min": 10.2,
+    "recommended_nose_height_max": 23.7,
+    "personal_color_season": "秋",
+    "face_shape_types": [
+      "長方形",
+      "卵型",
+      "ハート型"
+    ],
+    "style_tags": [
+      "カジュアル"
+    ],
+    "image_urls": [
+      "https://example.com/frames/27/front.jpg",
+      "https://example.com/frames/27/side.jpg",
+      "https://example.com/frames/27/angle.jpg"
+    ],
+    "id": 27,
+    "created_at": "2025-04-01T02:36:19.162656",
+    "updated_at": "2025-04-01T02:36:19.162656"
+  },
+  {
+    "name": "Ray-Ban カジュアル キャットアイ",
+    "brand": "Ray-Ban",
+    "price": 26000,
+    "style": "カジュアル",
+    "shape": "キャットアイ",
+    "material": "プラスチック",
+    "color": "ブルー",
+    "frame_width": 135.1,
+    "lens_width": 50.0,
+    "bridge_width": 16.6,
+    "temple_length": 137.4,
+    "lens_height": 36.4,
+    "weight": 22.4,
+    "recommended_face_width_min": 121.6,
+    "recommended_face_width_max": 148.6,
+    "recommended_nose_height_min": 10.9,
+    "recommended_nose_height_max": 24.0,
+    "personal_color_season": "春",
+    "face_shape_types": [
+      "卵型",
+      "長方形",
+      "逆三角形"
+    ],
+    "style_tags": [
+      "ビジネス",
+      "カジュアル",
+      "レトロ"
+    ],
+    "image_urls": [
+      "https://example.com/frames/28/front.jpg",
+      "https://example.com/frames/28/side.jpg",
+      "https://example.com/frames/28/angle.jpg"
+    ],
+    "id": 28,
+    "created_at": "2025-04-01T02:36:19.162933",
+    "updated_at": "2025-04-01T02:36:19.162933"
+  },
+  {
+    "name": "Ray-Ban クラシック オーバル",
+    "brand": "Ray-Ban",
+    "price": 19000,
+    "style": "クラシック",
+    "shape": "オーバル",
+    "material": "アセテート",
+    "color": "グリーン",
+    "frame_width": 135.1,
+    "lens_width": 50.5,
+    "bridge_width": 18.4,
+    "temple_length": 144.0,
+    "lens_height": 38.7,
+    "weight": 24.4,
+    "recommended_face_width_min": 121.6,
+    "recommended_face_width_max": 148.6,
+    "recommended_nose_height_min": 13.0,
+    "recommended_nose_height_max": 22.8,
+    "personal_color_season": "夏",
+    "face_shape_types": [
+      "ハート型",
+      "長方形"
+    ],
+    "style_tags": [
+      "カジュアル",
+      "レトロ"
+    ],
+    "image_urls": [
+      "https://example.com/frames/29/front.jpg",
+      "https://example.com/frames/29/side.jpg",
+      "https://example.com/frames/29/angle.jpg"
+    ],
+    "id": 29,
+    "created_at": "2025-04-01T02:36:19.163250",
+    "updated_at": "2025-04-01T02:36:19.163250"
+  },
+  {
+    "name": "Ray-Ban クラシック オーバル",
+    "brand": "Ray-Ban",
+    "price": 27000,
+    "style": "クラシック",
+    "shape": "オーバル",
+    "material": "チタン",
+    "color": "レッド",
+    "frame_width": 132.8,
+    "lens_width": 48.5,
+    "bridge_width": 16.2,
+    "temple_length": 142.4,
+    "lens_height": 37.5,
+    "weight": 27.9,
+    "recommended_face_width_min": 119.5,
+    "recommended_face_width_max": 146.1,
+    "recommended_nose_height_min": 13.4,
+    "recommended_nose_height_max": 22.1,
+    "personal_color_season": "夏",
+    "face_shape_types": [
+      "卵型",
+      "ハート型",
+      "丸型"
+    ],
+    "style_tags": [
+      "ミニマル"
+    ],
+    "image_urls": [
+      "https://example.com/frames/30/front.jpg",
+      "https://example.com/frames/30/side.jpg",
+      "https://example.com/frames/30/angle.jpg"
+    ],
+    "id": 30,
+    "created_at": "2025-04-01T02:36:19.163505",
+    "updated_at": "2025-04-01T02:36:19.163505"
+  },
+  {
+    "name": "Ray-Ban モダン オーバル",
+    "brand": "Ray-Ban",
+    "price": 25000,
+    "style": "モダン",
+    "shape": "オーバル",
+    "material": "チタン",
+    "color": "ブルー",
+    "frame_width": 142.0,
+    "lens_width": 49.7,
+    "bridge_width": 21.1,
+    "temple_length": 138.8,
+    "lens_height": 37.0,
+    "weight": 19.9,
+    "recommended_face_width_min": 127.8,
+    "recommended_face_width_max": 156.2,
+    "recommended_nose_height_min": 14.6,
+    "recommended_nose_height_max": 23.8,
+    "personal_color_season": "秋",
+    "face_shape_types": [
+      "長方形",
+      "四角型",
+      "丸型"
+    ],
+    "style_tags": [
+      "レトロ",
+      "ビジネス"
+    ],
+    "image_urls": [
+      "https://example.com/frames/31/front.jpg",
+      "https://example.com/frames/31/side.jpg",
+      "https://example.com/frames/31/angle.jpg"
+    ],
+    "id": 31,
+    "created_at": "2025-04-01T02:36:19.172904",
+    "updated_at": "2025-04-01T02:36:19.172904"
+  },
+  {
+    "name": "Oliver Peoples モダン スクエア",
+    "brand": "Oliver Peoples",
+    "price": 21000,
+    "style": "モダン",
+    "shape": "スクエア",
+    "material": "メタル",
+    "color": "トータス",
+    "frame_width": 132.8,
+    "lens_width": 45.8,
+    "bridge_width": 15.1,
+    "temple_length": 139.4,
+    "lens_height": 47.0,
+    "weight": 28.2,
+    "recommended_face_width_min": 119.5,
+    "recommended_face_width_max": 146.1,
+    "recommended_nose_height_min": 12.1,
+    "recommended_nose_height_max": 23.8,
+    "personal_color_season": "夏",
+    "face_shape_types": [
+      "長方形"
+    ],
+    "style_tags": [
+      "カジュアル",
+      "ミニマル",
+      "レトロ"
+    ],
+    "image_urls": [
+      "https://example.com/frames/32/front.jpg",
+      "https://example.com/frames/32/side.jpg",
+      "https://example.com/frames/32/angle.jpg"
+    ],
+    "id": 32,
+    "created_at": "2025-04-01T02:36:19.173255",
+    "updated_at": "2025-04-01T02:36:19.173255"
+  },
+  {
+    "name": "Oliver Peoples モダン スクエア",
+    "brand": "Oliver Peoples",
+    "price": 30000,
+    "style": "モダン",
+    "shape": "スクエア",
+    "material": "メタル",
+    "color": "ブラウン",
+    "frame_width": 135.0,
+    "lens_width": 49.9,
+    "bridge_width": 17.1,
+    "temple_length": 140.0,
+    "lens_height": 36.3,
+    "weight": 22.0,
+    "recommended_face_width_min": 121.5,
+    "recommended_face_width_max": 148.5,
+    "recommended_nose_height_min": 10.6,
+    "recommended_nose_height_max": 20.3,
+    "personal_color_season": "冬",
+    "face_shape_types": [
+      "丸型",
+      "逆三角形",
+      "四角型"
+    ],
+    "style_tags": [
+      "クラシック",
+      "スポーティ",
+      "レトロ"
+    ],
+    "image_urls": [
+      "https://example.com/frames/33/front.jpg",
+      "https://example.com/frames/33/side.jpg",
+      "https://example.com/frames/33/angle.jpg"
+    ],
+    "id": 33,
+    "created_at": "2025-04-01T02:36:19.173460",
+    "updated_at": "2025-04-01T02:36:19.173460"
+  },
+  {
+    "name": "Zoff モダン ウェリントン",
+    "brand": "Zoff",
+    "price": 10000,
+    "style": "モダン",
+    "shape": "ウェリントン",
+    "material": "メタル",
+    "color": "ブルー",
+    "frame_width": 136.9,
+    "lens_width": 52.3,
+    "bridge_width": 20.3,
+    "temple_length": 149.1,
+    "lens_height": 37.5,
+    "weight": 24.0,
+    "recommended_face_width_min": 123.2,
+    "recommended_face_width_max": 150.6,
+    "recommended_nose_height_min": 10.3,
+    "recommended_nose_height_max": 21.1,
+    "personal_color_season": "春",
+    "face_shape_types": [
+      "長方形",
+      "卵型",
+      "丸型"
+    ],
+    "style_tags": [
+      "ビジネス"
+    ],
+    "image_urls": [
+      "https://example.com/frames/34/front.jpg",
+      "https://example.com/frames/34/side.jpg",
+      "https://example.com/frames/34/angle.jpg"
+    ],
+    "id": 34,
+    "created_at": "2025-04-01T02:36:19.173655",
+    "updated_at": "2025-04-01T02:36:19.173655"
+  },
+  {
+    "name": "Oakley カジュアル ブロー",
+    "brand": "Oakley",
+    "price": 25000,
+    "style": "カジュアル",
+    "shape": "ブロー",
+    "material": "プラスチック",
+    "color": "ブルー",
+    "frame_width": 127.3,
+    "lens_width": 54.0,
+    "bridge_width": 15.2,
+    "temple_length": 139.4,
+    "lens_height": 43.5,
+    "weight": 25.9,
+    "recommended_face_width_min": 114.6,
+    "recommended_face_width_max": 140.0,
+    "recommended_nose_height_min": 13.8,
+    "recommended_nose_height_max": 24.2,
+    "personal_color_season": "秋",
+    "face_shape_types": [
+      "四角型",
+      "逆三角形",
+      "ハート型"
+    ],
+    "style_tags": [
+      "スポーティ"
+    ],
+    "image_urls": [
+      "https://example.com/frames/35/front.jpg",
+      "https://example.com/frames/35/side.jpg",
+      "https://example.com/frames/35/angle.jpg"
+    ],
+    "id": 35,
+    "created_at": "2025-04-01T02:36:19.173922",
+    "updated_at": "2025-04-01T02:36:19.173922"
+  },
+  {
+    "name": "Ray-Ban レトロ スクエア",
+    "brand": "Ray-Ban",
+    "price": 17000,
+    "style": "レトロ",
+    "shape": "スクエア",
+    "material": "アセテート",
+    "color": "シルバー",
+    "frame_width": 134.6,
+    "lens_width": 51.2,
+    "bridge_width": 17.9,
+    "temple_length": 141.6,
+    "lens_height": 39.6,
+    "weight": 26.2,
+    "recommended_face_width_min": 121.1,
+    "recommended_face_width_max": 148.1,
+    "recommended_nose_height_min": 12.1,
+    "recommended_nose_height_max": 23.3,
+    "personal_color_season": "春",
+    "face_shape_types": [
+      "ハート型",
+      "四角型",
+      "逆三角形"
+    ],
+    "style_tags": [
+      "ミニマル"
+    ],
+    "image_urls": [
+      "https://example.com/frames/36/front.jpg",
+      "https://example.com/frames/36/side.jpg",
+      "https://example.com/frames/36/angle.jpg"
+    ],
+    "id": 36,
+    "created_at": "2025-04-01T02:36:19.178996",
+    "updated_at": "2025-04-01T02:36:19.178996"
+  },
+  {
+    "name": "Persol カジュアル キャットアイ",
+    "brand": "Persol",
+    "price": 30000,
+    "style": "カジュアル",
+    "shape": "キャットアイ",
+    "material": "コンビネーション",
+    "color": "レッド",
+    "frame_width": 136.2,
+    "lens_width": 49.0,
+    "bridge_width": 20.9,
+    "temple_length": 146.7,
+    "lens_height": 39.2,
+    "weight": 16.8,
+    "recommended_face_width_min": 122.6,
+    "recommended_face_width_max": 149.8,
+    "recommended_nose_height_min": 14.5,
+    "recommended_nose_height_max": 21.8,
+    "personal_color_season": "秋",
+    "face_shape_types": [
+      "長方形"
+    ],
+    "style_tags": [
+      "ビジネス",
+      "カジュアル"
+    ],
+    "image_urls": [
+      "https://example.com/frames/37/front.jpg",
+      "https://example.com/frames/37/side.jpg",
+      "https://example.com/frames/37/angle.jpg"
+    ],
+    "id": 37,
+    "created_at": "2025-04-01T02:36:19.179267",
+    "updated_at": "2025-04-01T02:36:19.179267"
+  },
+  {
+    "name": "JINS ビジネス ティアドロップ",
+    "brand": "JINS",
+    "price": 27000,
+    "style": "ビジネス",
+    "shape": "ティアドロップ",
+    "material": "コンビネーション",
+    "color": "ゴールド",
+    "frame_width": 132.9,
+    "lens_width": 53.1,
+    "bridge_width": 21.7,
+    "temple_length": 139.1,
+    "lens_height": 45.5,
+    "weight": 22.7,
+    "recommended_face_width_min": 119.6,
+    "recommended_face_width_max": 146.2,
+    "recommended_nose_height_min": 10.7,
+    "recommended_nose_height_max": 22.4,
+    "personal_color_season": "冬",
+    "face_shape_types": [
+      "長方形",
+      "卵型"
+    ],
+    "style_tags": [
+      "クラシック",
+      "モダン",
+      "ビジネス"
+    ],
+    "image_urls": [
+      "https://example.com/frames/38/front.jpg",
+      "https://example.com/frames/38/side.jpg",
+      "https://example.com/frames/38/angle.jpg"
+    ],
+    "id": 38,
+    "created_at": "2025-04-01T02:36:19.179687",
+    "updated_at": "2025-04-01T02:36:19.179687"
+  },
+  {
+    "name": "JINS クラシック ボストン",
+    "brand": "JINS",
+    "price": 18000,
+    "style": "クラシック",
+    "shape": "ボストン",
+    "material": "チタン",
+    "color": "ブルー",
+    "frame_width": 130.3,
+    "lens_width": 45.5,
+    "bridge_width": 20.8,
+    "temple_length": 147.8,
+    "lens_height": 41.3,
+    "weight": 20.5,
+    "recommended_face_width_min": 117.3,
+    "recommended_face_width_max": 143.3,
+    "recommended_nose_height_min": 14.5,
+    "recommended_nose_height_max": 24.2,
+    "personal_color_season": "夏",
+    "face_shape_types": [
+      "卵型",
+      "丸型"
+    ],
+    "style_tags": [
+      "スポーティ"
+    ],
+    "image_urls": [
+      "https://example.com/frames/39/front.jpg",
+      "https://example.com/frames/39/side.jpg",
+      "https://example.com/frames/39/angle.jpg"
+    ],
+    "id": 39,
+    "created_at": "2025-04-01T02:36:19.180034",
+    "updated_at": "2025-04-01T02:36:19.180034"
+  },
+  {
+    "name": "Tom Ford ミニマル ボストン",
+    "brand": "Tom Ford",
+    "price": 15000,
+    "style": "ミニマル",
+    "shape": "ボストン",
+    "material": "チタン",
+    "color": "ブラック",
+    "frame_width": 137.1,
+    "lens_width": 52.9,
+    "bridge_width": 16.9,
+    "temple_length": 140.3,
+    "lens_height": 39.8,
+    "weight": 29.4,
+    "recommended_face_width_min": 123.4,
+    "recommended_face_width_max": 150.8,
+    "recommended_nose_height_min": 10.8,
+    "recommended_nose_height_max": 20.7,
+    "personal_color_season": "夏",
+    "face_shape_types": [
+      "長方形",
+      "丸型",
+      "四角型"
+    ],
+    "style_tags": [
+      "クラシック",
+      "ミニマル",
+      "モダン"
+    ],
+    "image_urls": [
+      "https://example.com/frames/40/front.jpg",
+      "https://example.com/frames/40/side.jpg",
+      "https://example.com/frames/40/angle.jpg"
+    ],
+    "id": 40,
+    "created_at": "2025-04-01T02:36:19.180321",
+    "updated_at": "2025-04-01T02:36:19.180321"
+  },
+  {
+    "name": "Gucci カジュアル オーバル",
+    "brand": "Gucci",
+    "price": 24000,
+    "style": "カジュアル",
+    "shape": "オーバル",
+    "material": "アセテート",
+    "color": "ブルー",
+    "frame_width": 130.0,
+    "lens_width": 48.2,
+    "bridge_width": 18.8,
+    "temple_length": 146.8,
+    "lens_height": 46.1,
+    "weight": 27.2,
+    "recommended_face_width_min": 117.0,
+    "recommended_face_width_max": 143.0,
+    "recommended_nose_height_min": 13.6,
+    "recommended_nose_height_max": 24.4,
+    "personal_color_season": "春",
+    "face_shape_types": [
+      "丸型"
+    ],
+    "style_tags": [
+      "ビジネス"
+    ],
+    "image_urls": [
+      "https://example.com/frames/41/front.jpg",
+      "https://example.com/frames/41/side.jpg",
+      "https://example.com/frames/41/angle.jpg"
+    ],
+    "id": 41,
+    "created_at": "2025-04-01T02:36:19.195839",
+    "updated_at": "2025-04-01T02:36:19.195839"
+  },
+  {
+    "name": "Oakley スポーティ キャットアイ",
+    "brand": "Oakley",
+    "price": 14000,
+    "style": "スポーティ",
+    "shape": "キャットアイ",
+    "material": "プラスチック",
+    "color": "クリア",
+    "frame_width": 133.5,
+    "lens_width": 49.2,
+    "bridge_width": 18.1,
+    "temple_length": 136.3,
+    "lens_height": 45.8,
+    "weight": 25.6,
+    "recommended_face_width_min": 120.2,
+    "recommended_face_width_max": 146.9,
+    "recommended_nose_height_min": 13.7,
+    "recommended_nose_height_max": 20.0,
+    "personal_color_season": "夏",
+    "face_shape_types": [
+      "卵型",
+      "四角型",
+      "長方形"
+    ],
+    "style_tags": [
+      "モダン"
+    ],
+    "image_urls": [
+      "https://example.com/frames/42/front.jpg",
+      "https://example.com/frames/42/side.jpg",
+      "https://example.com/frames/42/angle.jpg"
+    ],
+    "id": 42,
+    "created_at": "2025-04-01T02:36:19.196128",
+    "updated_at": "2025-04-01T02:36:19.196128"
+  },
+  {
+    "name": "Ray-Ban モダン キャットアイ",
+    "brand": "Ray-Ban",
+    "price": 21000,
+    "style": "モダン",
+    "shape": "キャットアイ",
+    "material": "チタン",
+    "color": "グリーン",
+    "frame_width": 134.4,
+    "lens_width": 51.8,
+    "bridge_width": 16.5,
+    "temple_length": 146.4,
+    "lens_height": 48.1,
+    "weight": 25.8,
+    "recommended_face_width_min": 121.0,
+    "recommended_face_width_max": 147.8,
+    "recommended_nose_height_min": 13.2,
+    "recommended_nose_height_max": 21.5,
+    "personal_color_season": "春",
+    "face_shape_types": [
+      "ハート型",
+      "長方形",
+      "丸型"
+    ],
+    "style_tags": [
+      "ビジネス",
+      "レトロ",
+      "クラシック"
+    ],
+    "image_urls": [
+      "https://example.com/frames/43/front.jpg",
+      "https://example.com/frames/43/side.jpg",
+      "https://example.com/frames/43/angle.jpg"
+    ],
+    "id": 43,
+    "created_at": "2025-04-01T02:36:19.196328",
+    "updated_at": "2025-04-01T02:36:19.196328"
+  },
+  {
+    "name": "Oakley クラシック オーバル",
+    "brand": "Oakley",
+    "price": 15000,
+    "style": "クラシック",
+    "shape": "オーバル",
+    "material": "アセテート",
+    "color": "クリア",
+    "frame_width": 132.0,
+    "lens_width": 45.3,
+    "bridge_width": 16.7,
+    "temple_length": 142.0,
+    "lens_height": 38.3,
+    "weight": 18.1,
+    "recommended_face_width_min": 118.8,
+    "recommended_face_width_max": 145.2,
+    "recommended_nose_height_min": 10.1,
+    "recommended_nose_height_max": 24.5,
+    "personal_color_season": "秋",
+    "face_shape_types": [
+      "長方形"
+    ],
+    "style_tags": [
+      "ミニマル",
+      "カジュアル",
+      "モダン"
+    ],
+    "image_urls": [
+      "https://example.com/frames/44/front.jpg",
+      "https://example.com/frames/44/side.jpg",
+      "https://example.com/frames/44/angle.jpg"
+    ],
+    "id": 44,
+    "created_at": "2025-04-01T02:36:19.196511",
+    "updated_at": "2025-04-01T02:36:19.196511"
+  },
+  {
+    "name": "Gucci ビジネス オーバル",
+    "brand": "Gucci",
+    "price": 14000,
+    "style": "ビジネス",
+    "shape": "オーバル",
+    "material": "アセテート",
+    "color": "ブルー",
+    "frame_width": 138.2,
+    "lens_width": 55.0,
+    "bridge_width": 16.7,
+    "temple_length": 140.8,
+    "lens_height": 41.4,
+    "weight": 22.2,
+    "recommended_face_width_min": 124.4,
+    "recommended_face_width_max": 152.0,
+    "recommended_nose_height_min": 10.5,
+    "recommended_nose_height_max": 24.2,
+    "personal_color_season": "冬",
+    "face_shape_types": [
+      "卵型"
+    ],
+    "style_tags": [
+      "レトロ",
+      "ミニマル",
+      "モダン"
+    ],
+    "image_urls": [
+      "https://example.com/frames/45/front.jpg",
+      "https://example.com/frames/45/side.jpg",
+      "https://example.com/frames/45/angle.jpg"
+    ],
+    "id": 45,
+    "created_at": "2025-04-01T02:36:19.196692",
+    "updated_at": "2025-04-01T02:36:19.196692"
+  },
+  {
+    "name": "Ray-Ban レトロ ボストン",
+    "brand": "Ray-Ban",
+    "price": 22000,
+    "style": "レトロ",
+    "shape": "ボストン",
+    "material": "チタン",
+    "color": "ブルー",
+    "frame_width": 130.5,
+    "lens_width": 54.6,
+    "bridge_width": 21.6,
+    "temple_length": 136.5,
+    "lens_height": 41.8,
+    "weight": 17.8,
+    "recommended_face_width_min": 117.5,
+    "recommended_face_width_max": 143.6,
+    "recommended_nose_height_min": 11.5,
+    "recommended_nose_height_max": 20.1,
+    "personal_color_season": "春",
+    "face_shape_types": [
+      "長方形",
+      "丸型",
+      "逆三角形"
+    ],
+    "style_tags": [
+      "クラシック",
+      "カジュアル"
+    ],
+    "image_urls": [
+      "https://example.com/frames/46/front.jpg",
+      "https://example.com/frames/46/side.jpg",
+      "https://example.com/frames/46/angle.jpg"
+    ],
+    "id": 46,
+    "created_at": "2025-04-01T02:36:19.196870",
+    "updated_at": "2025-04-01T02:36:19.196870"
+  },
+  {
+    "name": "Zoff レトロ ラウンド",
+    "brand": "Zoff",
+    "price": 17000,
+    "style": "レトロ",
+    "shape": "ラウンド",
+    "material": "コンビネーション",
+    "color": "グリーン",
+    "frame_width": 144.9,
+    "lens_width": 48.4,
+    "bridge_width": 16.8,
+    "temple_length": 136.4,
+    "lens_height": 39.0,
+    "weight": 19.3,
+    "recommended_face_width_min": 130.4,
+    "recommended_face_width_max": 159.4,
+    "recommended_nose_height_min": 12.5,
+    "recommended_nose_height_max": 22.6,
+    "personal_color_season": "冬",
+    "face_shape_types": [
+      "逆三角形",
+      "長方形"
+    ],
+    "style_tags": [
+      "ミニマル",
+      "モダン",
+      "ビジネス"
+    ],
+    "image_urls": [
+      "https://example.com/frames/47/front.jpg",
+      "https://example.com/frames/47/side.jpg",
+      "https://example.com/frames/47/angle.jpg"
+    ],
+    "id": 47,
+    "created_at": "2025-04-01T02:36:19.197075",
+    "updated_at": "2025-04-01T02:36:19.197075"
+  },
+  {
+    "name": "Persol レトロ ラウンド",
+    "brand": "Persol",
+    "price": 11000,
+    "style": "レトロ",
+    "shape": "ラウンド",
+    "material": "コンビネーション",
+    "color": "ゴールド",
+    "frame_width": 141.1,
+    "lens_width": 46.9,
+    "bridge_width": 15.8,
+    "temple_length": 140.2,
+    "lens_height": 44.3,
+    "weight": 22.6,
+    "recommended_face_width_min": 127.0,
+    "recommended_face_width_max": 155.2,
+    "recommended_nose_height_min": 12.8,
+    "recommended_nose_height_max": 22.2,
+    "personal_color_season": "冬",
+    "face_shape_types": [
+      "卵型"
+    ],
+    "style_tags": [
+      "スポーティ"
+    ],
+    "image_urls": [
+      "https://example.com/frames/48/front.jpg",
+      "https://example.com/frames/48/side.jpg",
+      "https://example.com/frames/48/angle.jpg"
+    ],
+    "id": 48,
+    "created_at": "2025-04-01T02:36:19.197252",
+    "updated_at": "2025-04-01T02:36:19.197252"
+  },
+  {
+    "name": "Ray-Ban モダン ティアドロップ",
+    "brand": "Ray-Ban",
+    "price": 17000,
+    "style": "モダン",
+    "shape": "ティアドロップ",
+    "material": "プラスチック",
+    "color": "トータス",
+    "frame_width": 128.6,
+    "lens_width": 51.5,
+    "bridge_width": 18.0,
+    "temple_length": 139.6,
+    "lens_height": 39.8,
+    "weight": 29.8,
+    "recommended_face_width_min": 115.7,
+    "recommended_face_width_max": 141.5,
+    "recommended_nose_height_min": 12.8,
+    "recommended_nose_height_max": 23.5,
+    "personal_color_season": "秋",
+    "face_shape_types": [
+      "ハート型"
+    ],
+    "style_tags": [
+      "モダン",
+      "レトロ",
+      "クラシック"
+    ],
+    "image_urls": [
+      "https://example.com/frames/49/front.jpg",
+      "https://example.com/frames/49/side.jpg",
+      "https://example.com/frames/49/angle.jpg"
+    ],
+    "id": 49,
+    "created_at": "2025-04-01T02:36:19.197431",
+    "updated_at": "2025-04-01T02:36:19.197431"
+  },
+  {
+    "name": "Zoff スポーティ オーバル",
+    "brand": "Zoff",
+    "price": 15000,
+    "style": "スポーティ",
+    "shape": "オーバル",
+    "material": "アセテート",
+    "color": "クリア",
+    "frame_width": 134.5,
+    "lens_width": 53.0,
+    "bridge_width": 18.3,
+    "temple_length": 139.9,
+    "lens_height": 49.9,
+    "weight": 26.7,
+    "recommended_face_width_min": 121.0,
+    "recommended_face_width_max": 148.0,
+    "recommended_nose_height_min": 14.1,
+    "recommended_nose_height_max": 20.9,
+    "personal_color_season": "春",
+    "face_shape_types": [
+      "四角型",
+      "逆三角形"
+    ],
+    "style_tags": [
+      "モダン",
+      "ミニマル",
+      "カジュアル"
+    ],
+    "image_urls": [
+      "https://example.com/frames/50/front.jpg",
+      "https://example.com/frames/50/side.jpg",
+      "https://example.com/frames/50/angle.jpg"
+    ],
+    "id": 50,
+    "created_at": "2025-04-01T02:36:19.197617",
+    "updated_at": "2025-04-01T02:36:19.197617"
+  },
+  {
+    "name": "Gucci レトロ スクエア",
+    "brand": "Gucci",
+    "price": 22000,
+    "style": "レトロ",
+    "shape": "スクエア",
+    "material": "プラスチック",
+    "color": "グリーン",
+    "frame_width": 128.7,
+    "lens_width": 50.4,
+    "bridge_width": 15.0,
+    "temple_length": 148.2,
+    "lens_height": 35.9,
+    "weight": 17.2,
+    "recommended_face_width_min": 115.8,
+    "recommended_face_width_max": 141.6,
+    "recommended_nose_height_min": 12.1,
+    "recommended_nose_height_max": 23.3,
+    "personal_color_season": "夏",
+    "face_shape_types": [
+      "ハート型",
+      "四角型",
+      "卵型"
+    ],
+    "style_tags": [
+      "スポーティ",
+      "ミニマル"
+    ],
+    "image_urls": [
+      "https://example.com/frames/51/front.jpg",
+      "https://example.com/frames/51/side.jpg",
+      "https://example.com/frames/51/angle.jpg"
+    ],
+    "id": 51,
+    "created_at": "2025-04-01T02:36:19.203292",
+    "updated_at": "2025-04-01T02:36:19.203292"
+  },
+  {
+    "name": "Tom Ford クラシック ブロー",
+    "brand": "Tom Ford",
+    "price": 22000,
+    "style": "クラシック",
+    "shape": "ブロー",
+    "material": "アセテート",
+    "color": "ブルー",
+    "frame_width": 142.5,
+    "lens_width": 46.5,
+    "bridge_width": 19.6,
+    "temple_length": 144.4,
+    "lens_height": 41.6,
+    "weight": 29.1,
+    "recommended_face_width_min": 128.2,
+    "recommended_face_width_max": 156.8,
+    "recommended_nose_height_min": 12.6,
+    "recommended_nose_height_max": 25.0,
+    "personal_color_season": "夏",
+    "face_shape_types": [
+      "ハート型"
+    ],
+    "style_tags": [
+      "クラシック",
+      "ビジネス",
+      "スポーティ"
+    ],
+    "image_urls": [
+      "https://example.com/frames/52/front.jpg",
+      "https://example.com/frames/52/side.jpg",
+      "https://example.com/frames/52/angle.jpg"
+    ],
+    "id": 52,
+    "created_at": "2025-04-01T02:36:19.203574",
+    "updated_at": "2025-04-01T02:36:19.203574"
+  },
+  {
+    "name": "Oliver Peoples ビジネス キャットアイ",
+    "brand": "Oliver Peoples",
+    "price": 7000,
+    "style": "ビジネス",
+    "shape": "キャットアイ",
+    "material": "チタン",
+    "color": "グリーン",
+    "frame_width": 136.6,
+    "lens_width": 51.0,
+    "bridge_width": 21.8,
+    "temple_length": 149.4,
+    "lens_height": 42.4,
+    "weight": 17.9,
+    "recommended_face_width_min": 122.9,
+    "recommended_face_width_max": 150.3,
+    "recommended_nose_height_min": 11.4,
+    "recommended_nose_height_max": 20.7,
+    "personal_color_season": "冬",
+    "face_shape_types": [
+      "丸型"
+    ],
+    "style_tags": [
+      "クラシック",
+      "ビジネス"
+    ],
+    "image_urls": [
+      "https://example.com/frames/53/front.jpg",
+      "https://example.com/frames/53/side.jpg",
+      "https://example.com/frames/53/angle.jpg"
+    ],
+    "id": 53,
+    "created_at": "2025-04-01T02:36:19.203761",
+    "updated_at": "2025-04-01T02:36:19.203761"
+  },
+  {
+    "name": "Oliver Peoples モダン ボストン",
+    "brand": "Oliver Peoples",
+    "price": 29000,
+    "style": "モダン",
+    "shape": "ボストン",
+    "material": "コンビネーション",
+    "color": "ゴールド",
+    "frame_width": 132.3,
+    "lens_width": 49.3,
+    "bridge_width": 21.7,
+    "temple_length": 139.8,
+    "lens_height": 36.5,
+    "weight": 19.0,
+    "recommended_face_width_min": 119.1,
+    "recommended_face_width_max": 145.5,
+    "recommended_nose_height_min": 11.9,
+    "recommended_nose_height_max": 24.8,
+    "personal_color_season": "秋",
+    "face_shape_types": [
+      "丸型"
+    ],
+    "style_tags": [
+      "ミニマル",
+      "レトロ"
+    ],
+    "image_urls": [
+      "https://example.com/frames/54/front.jpg",
+      "https://example.com/frames/54/side.jpg",
+      "https://example.com/frames/54/angle.jpg"
+    ],
+    "id": 54,
+    "created_at": "2025-04-01T02:36:19.203938",
+    "updated_at": "2025-04-01T02:36:19.203938"
+  },
+  {
+    "name": "Gucci モダン オーバル",
+    "brand": "Gucci",
+    "price": 18000,
+    "style": "モダン",
+    "shape": "オーバル",
+    "material": "アセテート",
+    "color": "ブラック",
+    "frame_width": 126.5,
+    "lens_width": 50.9,
+    "bridge_width": 18.9,
+    "temple_length": 147.1,
+    "lens_height": 44.1,
+    "weight": 25.1,
+    "recommended_face_width_min": 113.9,
+    "recommended_face_width_max": 139.2,
+    "recommended_nose_height_min": 13.6,
+    "recommended_nose_height_max": 23.7,
+    "personal_color_season": "秋",
+    "face_shape_types": [
+      "ハート型",
+      "逆三角形",
+      "四角型"
+    ],
+    "style_tags": [
+      "モダン"
+    ],
+    "image_urls": [
+      "https://example.com/frames/55/front.jpg",
+      "https://example.com/frames/55/side.jpg",
+      "https://example.com/frames/55/angle.jpg"
+    ],
+    "id": 55,
+    "created_at": "2025-04-01T02:36:19.204902",
+    "updated_at": "2025-04-01T02:36:19.204902"
+  },
+  {
+    "name": "Gucci ミニマル ウェリントン",
+    "brand": "Gucci",
+    "price": 24000,
+    "style": "ミニマル",
+    "shape": "ウェリントン",
+    "material": "チタン",
+    "color": "トータス",
+    "frame_width": 142.9,
+    "lens_width": 45.3,
+    "bridge_width": 16.8,
+    "temple_length": 144.6,
+    "lens_height": 44.3,
+    "weight": 24.9,
+    "recommended_face_width_min": 128.6,
+    "recommended_face_width_max": 157.2,
+    "recommended_nose_height_min": 10.5,
+    "recommended_nose_height_max": 23.0,
+    "personal_color_season": "夏",
+    "face_shape_types": [
+      "逆三角形",
+      "卵型"
+    ],
+    "style_tags": [
+      "カジュアル"
+    ],
+    "image_urls": [
+      "https://example.com/frames/56/front.jpg",
+      "https://example.com/frames/56/side.jpg",
+      "https://example.com/frames/56/angle.jpg"
+    ],
+    "id": 56,
+    "created_at": "2025-04-01T02:36:19.205130",
+    "updated_at": "2025-04-01T02:36:19.205130"
+  },
+  {
+    "name": "Zoff レトロ ブロー",
+    "brand": "Zoff",
+    "price": 16000,
+    "style": "レトロ",
+    "shape": "ブロー",
+    "material": "アセテート",
+    "color": "ブラウン",
+    "frame_width": 130.3,
+    "lens_width": 45.1,
+    "bridge_width": 15.7,
+    "temple_length": 144.0,
+    "lens_height": 43.2,
+    "weight": 23.6,
+    "recommended_face_width_min": 117.3,
+    "recommended_face_width_max": 143.3,
+    "recommended_nose_height_min": 12.7,
+    "recommended_nose_height_max": 22.6,
+    "personal_color_season": "春",
+    "face_shape_types": [
+      "逆三角形",
+      "四角型",
+      "卵型"
+    ],
+    "style_tags": [
+      "モダン"
+    ],
+    "image_urls": [
+      "https://example.com/frames/57/front.jpg",
+      "https://example.com/frames/57/side.jpg",
+      "https://example.com/frames/57/angle.jpg"
+    ],
+    "id": 57,
+    "created_at": "2025-04-01T02:36:19.205315",
+    "updated_at": "2025-04-01T02:36:19.205315"
+  },
+  {
+    "name": "Zoff クラシック ブロー",
+    "brand": "Zoff",
+    "price": 12000,
+    "style": "クラシック",
+    "shape": "ブロー",
+    "material": "プラスチック",
+    "color": "トータス",
+    "frame_width": 133.6,
+    "lens_width": 46.5,
+    "bridge_width": 17.2,
+    "temple_length": 141.8,
+    "lens_height": 41.5,
+    "weight": 15.5,
+    "recommended_face_width_min": 120.2,
+    "recommended_face_width_max": 147.0,
+    "recommended_nose_height_min": 14.5,
+    "recommended_nose_height_max": 24.9,
+    "personal_color_season": "冬",
+    "face_shape_types": [
+      "長方形",
+      "逆三角形"
+    ],
+    "style_tags": [
+      "クラシック",
+      "ミニマル"
+    ],
+    "image_urls": [
+      "https://example.com/frames/58/front.jpg",
+      "https://example.com/frames/58/side.jpg",
+      "https://example.com/frames/58/angle.jpg"
+    ],
+    "id": 58,
+    "created_at": "2025-04-01T02:36:19.205494",
+    "updated_at": "2025-04-01T02:36:19.205494"
+  },
+  {
+    "name": "Persol クラシック キャットアイ",
+    "brand": "Persol",
+    "price": 17000,
+    "style": "クラシック",
+    "shape": "キャットアイ",
+    "material": "プラスチック",
+    "color": "グリーン",
+    "frame_width": 140.9,
+    "lens_width": 47.5,
+    "bridge_width": 21.7,
+    "temple_length": 144.0,
+    "lens_height": 43.1,
+    "weight": 20.8,
+    "recommended_face_width_min": 126.8,
+    "recommended_face_width_max": 155.0,
+    "recommended_nose_height_min": 12.2,
+    "recommended_nose_height_max": 23.2,
+    "personal_color_season": "冬",
+    "face_shape_types": [
+      "ハート型"
+    ],
+    "style_tags": [
+      "スポーティ",
+      "ミニマル",
+      "ビジネス"
+    ],
+    "image_urls": [
+      "https://example.com/frames/59/front.jpg",
+      "https://example.com/frames/59/side.jpg",
+      "https://example.com/frames/59/angle.jpg"
+    ],
+    "id": 59,
+    "created_at": "2025-04-01T02:36:19.205673",
+    "updated_at": "2025-04-01T02:36:19.205673"
+  },
+  {
+    "name": "Persol スポーティ スクエア",
+    "brand": "Persol",
+    "price": 21000,
+    "style": "スポーティ",
+    "shape": "スクエア",
+    "material": "アセテート",
+    "color": "ブラック",
+    "frame_width": 130.2,
+    "lens_width": 47.2,
+    "bridge_width": 20.8,
+    "temple_length": 146.7,
+    "lens_height": 45.1,
+    "weight": 29.0,
+    "recommended_face_width_min": 117.2,
+    "recommended_face_width_max": 143.2,
+    "recommended_nose_height_min": 12.1,
+    "recommended_nose_height_max": 21.5,
+    "personal_color_season": "春",
+    "face_shape_types": [
+      "四角型",
+      "丸型",
+      "逆三角形"
+    ],
+    "style_tags": [
+      "ビジネス"
+    ],
+    "image_urls": [
+      "https://example.com/frames/60/front.jpg",
+      "https://example.com/frames/60/side.jpg",
+      "https://example.com/frames/60/angle.jpg"
+    ],
+    "id": 60,
+    "created_at": "2025-04-01T02:36:19.205850",
+    "updated_at": "2025-04-01T02:36:19.205850"
+  },
+  {
+    "name": "Ray-Ban クラシック オーバル",
+    "brand": "Ray-Ban",
+    "price": 11000,
+    "style": "クラシック",
+    "shape": "オーバル",
+    "material": "コンビネーション",
+    "color": "トータス",
+    "frame_width": 142.4,
+    "lens_width": 53.6,
+    "bridge_width": 15.5,
+    "temple_length": 147.7,
+    "lens_height": 47.7,
+    "weight": 23.0,
+    "recommended_face_width_min": 128.2,
+    "recommended_face_width_max": 156.6,
+    "recommended_nose_height_min": 13.6,
+    "recommended_nose_height_max": 22.7,
+    "personal_color_season": "夏",
+    "face_shape_types": [
+      "ハート型",
+      "逆三角形",
+      "四角型"
+    ],
+    "style_tags": [
+      "スポーティ"
+    ],
+    "image_urls": [
+      "https://example.com/frames/61/front.jpg",
+      "https://example.com/frames/61/side.jpg",
+      "https://example.com/frames/61/angle.jpg"
+    ],
+    "id": 61,
+    "created_at": "2025-04-01T02:36:19.219362",
+    "updated_at": "2025-04-01T02:36:19.219362"
+  },
+  {
+    "name": "Persol ミニマル ティアドロップ",
+    "brand": "Persol",
+    "price": 12000,
+    "style": "ミニマル",
+    "shape": "ティアドロップ",
+    "material": "コンビネーション",
+    "color": "グリーン",
+    "frame_width": 135.9,
+    "lens_width": 47.5,
+    "bridge_width": 17.9,
+    "temple_length": 146.6,
+    "lens_height": 44.6,
+    "weight": 26.3,
+    "recommended_face_width_min": 122.3,
+    "recommended_face_width_max": 149.5,
+    "recommended_nose_height_min": 13.8,
+    "recommended_nose_height_max": 23.5,
+    "personal_color_season": "夏",
+    "face_shape_types": [
+      "逆三角形",
+      "丸型",
+      "卵型"
+    ],
+    "style_tags": [
+      "ビジネス"
+    ],
+    "image_urls": [
+      "https://example.com/frames/62/front.jpg",
+      "https://example.com/frames/62/side.jpg",
+      "https://example.com/frames/62/angle.jpg"
+    ],
+    "id": 62,
+    "created_at": "2025-04-01T02:36:19.219668",
+    "updated_at": "2025-04-01T02:36:19.219668"
+  },
+  {
+    "name": "Ray-Ban ビジネス ウェリントン",
+    "brand": "Ray-Ban",
+    "price": 13000,
+    "style": "ビジネス",
+    "shape": "ウェリントン",
+    "material": "アセテート",
+    "color": "ブルー",
+    "frame_width": 135.1,
+    "lens_width": 48.6,
+    "bridge_width": 15.9,
+    "temple_length": 140.7,
+    "lens_height": 37.7,
+    "weight": 15.3,
+    "recommended_face_width_min": 121.6,
+    "recommended_face_width_max": 148.6,
+    "recommended_nose_height_min": 11.1,
+    "recommended_nose_height_max": 21.0,
+    "personal_color_season": "夏",
+    "face_shape_types": [
+      "卵型",
+      "ハート型"
+    ],
+    "style_tags": [
+      "ビジネス"
+    ],
+    "image_urls": [
+      "https://example.com/frames/63/front.jpg",
+      "https://example.com/frames/63/side.jpg",
+      "https://example.com/frames/63/angle.jpg"
+    ],
+    "id": 63,
+    "created_at": "2025-04-01T02:36:19.219889",
+    "updated_at": "2025-04-01T02:36:19.219889"
+  },
+  {
+    "name": "Gucci レトロ ボストン",
+    "brand": "Gucci",
+    "price": 19000,
+    "style": "レトロ",
+    "shape": "ボストン",
+    "material": "チタン",
+    "color": "ゴールド",
+    "frame_width": 138.8,
+    "lens_width": 50.0,
+    "bridge_width": 16.2,
+    "temple_length": 146.1,
+    "lens_height": 36.2,
+    "weight": 24.1,
+    "recommended_face_width_min": 124.9,
+    "recommended_face_width_max": 152.7,
+    "recommended_nose_height_min": 12.6,
+    "recommended_nose_height_max": 23.7,
+    "personal_color_season": "夏",
+    "face_shape_types": [
+      "丸型",
+      "四角型"
+    ],
+    "style_tags": [
+      "カジュアル"
+    ],
+    "image_urls": [
+      "https://example.com/frames/64/front.jpg",
+      "https://example.com/frames/64/side.jpg",
+      "https://example.com/frames/64/angle.jpg"
+    ],
+    "id": 64,
+    "created_at": "2025-04-01T02:36:19.220080",
+    "updated_at": "2025-04-01T02:36:19.220080"
+  },
+  {
+    "name": "Tom Ford ビジネス ラウンド",
+    "brand": "Tom Ford",
+    "price": 18000,
+    "style": "ビジネス",
+    "shape": "ラウンド",
+    "material": "メタル",
+    "color": "シルバー",
+    "frame_width": 141.8,
+    "lens_width": 48.1,
+    "bridge_width": 18.7,
+    "temple_length": 149.6,
+    "lens_height": 47.5,
+    "weight": 23.7,
+    "recommended_face_width_min": 127.6,
+    "recommended_face_width_max": 156.0,
+    "recommended_nose_height_min": 12.1,
+    "recommended_nose_height_max": 21.6,
+    "personal_color_season": "冬",
+    "face_shape_types": [
+      "丸型"
+    ],
+    "style_tags": [
+      "クラシック",
+      "ミニマル"
+    ],
+    "image_urls": [
+      "https://example.com/frames/65/front.jpg",
+      "https://example.com/frames/65/side.jpg",
+      "https://example.com/frames/65/angle.jpg"
+    ],
+    "id": 65,
+    "created_at": "2025-04-01T02:36:19.220270",
+    "updated_at": "2025-04-01T02:36:19.220270"
+  },
+  {
+    "name": "Persol モダン キャットアイ",
+    "brand": "Persol",
+    "price": 28000,
+    "style": "モダン",
+    "shape": "キャットアイ",
+    "material": "メタル",
+    "color": "レッド",
+    "frame_width": 129.3,
+    "lens_width": 52.1,
+    "bridge_width": 15.2,
+    "temple_length": 149.1,
+    "lens_height": 38.2,
+    "weight": 18.2,
+    "recommended_face_width_min": 116.4,
+    "recommended_face_width_max": 142.2,
+    "recommended_nose_height_min": 10.9,
+    "recommended_nose_height_max": 22.6,
+    "personal_color_season": "春",
+    "face_shape_types": [
+      "ハート型"
+    ],
+    "style_tags": [
+      "スポーティ"
+    ],
+    "image_urls": [
+      "https://example.com/frames/66/front.jpg",
+      "https://example.com/frames/66/side.jpg",
+      "https://example.com/frames/66/angle.jpg"
+    ],
+    "id": 66,
+    "created_at": "2025-04-01T02:36:19.220485",
+    "updated_at": "2025-04-01T02:36:19.220485"
+  },
+  {
+    "name": "Oakley カジュアル ティアドロップ",
+    "brand": "Oakley",
+    "price": 8000,
+    "style": "カジュアル",
+    "shape": "ティアドロップ",
+    "material": "アセテート",
+    "color": "ブルー",
+    "frame_width": 130.2,
+    "lens_width": 53.0,
+    "bridge_width": 19.2,
+    "temple_length": 140.0,
+    "lens_height": 39.5,
+    "weight": 28.5,
+    "recommended_face_width_min": 117.2,
+    "recommended_face_width_max": 143.2,
+    "recommended_nose_height_min": 14.3,
+    "recommended_nose_height_max": 24.3,
+    "personal_color_season": "秋",
+    "face_shape_types": [
+      "長方形"
+    ],
+    "style_tags": [
+      "クラシック",
+      "スポーティ",
+      "ミニマル"
+    ],
+    "image_urls": [
+      "https://example.com/frames/67/front.jpg",
+      "https://example.com/frames/67/side.jpg",
+      "https://example.com/frames/67/angle.jpg"
+    ],
+    "id": 67,
+    "created_at": "2025-04-01T02:36:19.220665",
+    "updated_at": "2025-04-01T02:36:19.220665"
+  },
+  {
+    "name": "Ray-Ban カジュアル キャットアイ",
+    "brand": "Ray-Ban",
+    "price": 22000,
+    "style": "カジュアル",
+    "shape": "キャットアイ",
+    "material": "アセテート",
+    "color": "クリア",
+    "frame_width": 131.5,
+    "lens_width": 50.5,
+    "bridge_width": 15.4,
+    "temple_length": 145.9,
+    "lens_height": 39.0,
+    "weight": 24.4,
+    "recommended_face_width_min": 118.4,
+    "recommended_face_width_max": 144.7,
+    "recommended_nose_height_min": 12.1,
+    "recommended_nose_height_max": 20.1,
+    "personal_color_season": "春",
+    "face_shape_types": [
+      "卵型",
+      "長方形",
+      "ハート型"
+    ],
+    "style_tags": [
+      "ビジネス"
+    ],
+    "image_urls": [
+      "https://example.com/frames/68/front.jpg",
+      "https://example.com/frames/68/side.jpg",
+      "https://example.com/frames/68/angle.jpg"
+    ],
+    "id": 68,
+    "created_at": "2025-04-01T02:36:19.220841",
+    "updated_at": "2025-04-01T02:36:19.220841"
+  },
+  {
+    "name": "Oakley ミニマル ティアドロップ",
+    "brand": "Oakley",
+    "price": 24000,
+    "style": "ミニマル",
+    "shape": "ティアドロップ",
+    "material": "アセテート",
+    "color": "レッド",
+    "frame_width": 140.3,
+    "lens_width": 46.9,
+    "bridge_width": 15.8,
+    "temple_length": 146.7,
+    "lens_height": 47.6,
+    "weight": 19.7,
+    "recommended_face_width_min": 126.3,
+    "recommended_face_width_max": 154.3,
+    "recommended_nose_height_min": 13.1,
+    "recommended_nose_height_max": 21.0,
+    "personal_color_season": "冬",
+    "face_shape_types": [
+      "卵型"
+    ],
+    "style_tags": [
+      "ミニマル"
+    ],
+    "image_urls": [
+      "https://example.com/frames/69/front.jpg",
+      "https://example.com/frames/69/side.jpg",
+      "https://example.com/frames/69/angle.jpg"
+    ],
+    "id": 69,
+    "created_at": "2025-04-01T02:36:19.221128",
+    "updated_at": "2025-04-01T02:36:19.221128"
+  },
+  {
+    "name": "Oliver Peoples レトロ ラウンド",
+    "brand": "Oliver Peoples",
+    "price": 9000,
+    "style": "レトロ",
+    "shape": "ラウンド",
+    "material": "プラスチック",
+    "color": "トータス",
+    "frame_width": 143.9,
+    "lens_width": 47.2,
+    "bridge_width": 17.8,
+    "temple_length": 148.5,
+    "lens_height": 47.9,
+    "weight": 25.3,
+    "recommended_face_width_min": 129.5,
+    "recommended_face_width_max": 158.3,
+    "recommended_nose_height_min": 11.1,
+    "recommended_nose_height_max": 22.8,
+    "personal_color_season": "春",
+    "face_shape_types": [
+      "ハート型",
+      "丸型"
+    ],
+    "style_tags": [
+      "クラシック"
+    ],
+    "image_urls": [
+      "https://example.com/frames/70/front.jpg",
+      "https://example.com/frames/70/side.jpg",
+      "https://example.com/frames/70/angle.jpg"
+    ],
+    "id": 70,
+    "created_at": "2025-04-01T02:36:19.221315",
+    "updated_at": "2025-04-01T02:36:19.221315"
+  },
+  {
+    "name": "Zoff クラシック ラウンド",
+    "brand": "Zoff",
+    "price": 18000,
+    "style": "クラシック",
+    "shape": "ラウンド",
+    "material": "メタル",
+    "color": "クリア",
+    "frame_width": 126.2,
+    "lens_width": 54.3,
+    "bridge_width": 15.3,
+    "temple_length": 140.3,
+    "lens_height": 47.9,
+    "weight": 29.2,
+    "recommended_face_width_min": 113.6,
+    "recommended_face_width_max": 138.8,
+    "recommended_nose_height_min": 10.2,
+    "recommended_nose_height_max": 21.5,
+    "personal_color_season": "夏",
+    "face_shape_types": [
+      "丸型",
+      "ハート型"
+    ],
+    "style_tags": [
+      "ミニマル",
+      "モダン",
+      "クラシック"
+    ],
+    "image_urls": [
+      "https://example.com/frames/71/front.jpg",
+      "https://example.com/frames/71/side.jpg",
+      "https://example.com/frames/71/angle.jpg"
+    ],
+    "id": 71,
+    "created_at": "2025-04-01T02:36:19.239118",
+    "updated_at": "2025-04-01T02:36:19.239118"
+  },
+  {
+    "name": "Persol スポーティ ラウンド",
+    "brand": "Persol",
+    "price": 29000,
+    "style": "スポーティ",
+    "shape": "ラウンド",
+    "material": "チタン",
+    "color": "レッド",
+    "frame_width": 133.5,
+    "lens_width": 47.5,
+    "bridge_width": 15.5,
+    "temple_length": 145.7,
+    "lens_height": 35.1,
+    "weight": 30.0,
+    "recommended_face_width_min": 120.2,
+    "recommended_face_width_max": 146.9,
+    "recommended_nose_height_min": 10.2,
+    "recommended_nose_height_max": 22.8,
+    "personal_color_season": "春",
+    "face_shape_types": [
+      "卵型",
+      "逆三角形",
+      "四角型"
+    ],
+    "style_tags": [
+      "スポーティ"
+    ],
+    "image_urls": [
+      "https://example.com/frames/72/front.jpg",
+      "https://example.com/frames/72/side.jpg",
+      "https://example.com/frames/72/angle.jpg"
+    ],
+    "id": 72,
+    "created_at": "2025-04-01T02:36:19.239329",
+    "updated_at": "2025-04-01T02:36:19.239329"
+  },
+  {
+    "name": "JINS クラシック ティアドロップ",
+    "brand": "JINS",
+    "price": 14000,
+    "style": "クラシック",
+    "shape": "ティアドロップ",
+    "material": "アセテート",
+    "color": "クリア",
+    "frame_width": 144.3,
+    "lens_width": 45.3,
+    "bridge_width": 15.6,
+    "temple_length": 147.2,
+    "lens_height": 46.0,
+    "weight": 24.1,
+    "recommended_face_width_min": 129.9,
+    "recommended_face_width_max": 158.7,
+    "recommended_nose_height_min": 10.5,
+    "recommended_nose_height_max": 20.0,
+    "personal_color_season": "冬",
+    "face_shape_types": [
+      "四角型",
+      "卵型",
+      "逆三角形"
+    ],
+    "style_tags": [
+      "ビジネス",
+      "ミニマル"
+    ],
+    "image_urls": [
+      "https://example.com/frames/73/front.jpg",
+      "https://example.com/frames/73/side.jpg",
+      "https://example.com/frames/73/angle.jpg"
+    ],
+    "id": 73,
+    "created_at": "2025-04-01T02:36:19.239450",
+    "updated_at": "2025-04-01T02:36:19.239450"
+  },
+  {
+    "name": "Oliver Peoples ビジネス ボストン",
+    "brand": "Oliver Peoples",
+    "price": 28000,
+    "style": "ビジネス",
+    "shape": "ボストン",
+    "material": "プラスチック",
+    "color": "シルバー",
+    "frame_width": 142.6,
+    "lens_width": 48.5,
+    "bridge_width": 16.9,
+    "temple_length": 136.6,
+    "lens_height": 39.9,
+    "weight": 25.1,
+    "recommended_face_width_min": 128.3,
+    "recommended_face_width_max": 156.9,
+    "recommended_nose_height_min": 14.8,
+    "recommended_nose_height_max": 25.0,
+    "personal_color_season": "冬",
+    "face_shape_types": [
+      "長方形",
+      "四角型"
+    ],
+    "style_tags": [
+      "ミニマル",
+      "ビジネス",
+      "モダン"
+    ],
+    "image_urls": [
+      "https://example.com/frames/74/front.jpg",
+      "https://example.com/frames/74/side.jpg",
+      "https://example.com/frames/74/angle.jpg"
+    ],
+    "id": 74,
+    "created_at": "2025-04-01T02:36:19.239582",
+    "updated_at": "2025-04-01T02:36:19.239582"
+  },
+  {
+    "name": "Gucci ビジネス ブロー",
+    "brand": "Gucci",
+    "price": 21000,
+    "style": "ビジネス",
+    "shape": "ブロー",
+    "material": "プラスチック",
+    "color": "ブラウン",
+    "frame_width": 133.7,
+    "lens_width": 54.4,
+    "bridge_width": 17.9,
+    "temple_length": 138.9,
+    "lens_height": 49.1,
+    "weight": 25.2,
+    "recommended_face_width_min": 120.3,
+    "recommended_face_width_max": 147.1,
+    "recommended_nose_height_min": 13.6,
+    "recommended_nose_height_max": 22.1,
+    "personal_color_season": "春",
+    "face_shape_types": [
+      "逆三角形"
+    ],
+    "style_tags": [
+      "ビジネス",
+      "レトロ"
+    ],
+    "image_urls": [
+      "https://example.com/frames/75/front.jpg",
+      "https://example.com/frames/75/side.jpg",
+      "https://example.com/frames/75/angle.jpg"
+    ],
+    "id": 75,
+    "created_at": "2025-04-01T02:36:19.239700",
+    "updated_at": "2025-04-01T02:36:19.239700"
+  },
+  {
+    "name": "Oakley モダン ウェリントン",
+    "brand": "Oakley",
+    "price": 16000,
+    "style": "モダン",
+    "shape": "ウェリントン",
+    "material": "プラスチック",
+    "color": "ブラウン",
+    "frame_width": 129.3,
+    "lens_width": 45.1,
+    "bridge_width": 15.6,
+    "temple_length": 140.8,
+    "lens_height": 37.1,
+    "weight": 29.3,
+    "recommended_face_width_min": 116.4,
+    "recommended_face_width_max": 142.2,
+    "recommended_nose_height_min": 10.2,
+    "recommended_nose_height_max": 22.2,
+    "personal_color_season": "夏",
+    "face_shape_types": [
+      "四角型"
+    ],
+    "style_tags": [
+      "レトロ"
+    ],
+    "image_urls": [
+      "https://example.com/frames/76/front.jpg",
+      "https://example.com/frames/76/side.jpg",
+      "https://example.com/frames/76/angle.jpg"
+    ],
+    "id": 76,
+    "created_at": "2025-04-01T02:36:19.239801",
+    "updated_at": "2025-04-01T02:36:19.239801"
+  },
+  {
+    "name": "Ray-Ban クラシック スクエア",
+    "brand": "Ray-Ban",
+    "price": 19000,
+    "style": "クラシック",
+    "shape": "スクエア",
+    "material": "コンビネーション",
+    "color": "トータス",
+    "frame_width": 136.1,
+    "lens_width": 53.0,
+    "bridge_width": 19.4,
+    "temple_length": 143.0,
+    "lens_height": 46.2,
+    "weight": 24.7,
+    "recommended_face_width_min": 122.5,
+    "recommended_face_width_max": 149.7,
+    "recommended_nose_height_min": 14.9,
+    "recommended_nose_height_max": 24.6,
+    "personal_color_season": "冬",
+    "face_shape_types": [
+      "卵型",
+      "四角型"
+    ],
+    "style_tags": [
+      "ビジネス"
+    ],
+    "image_urls": [
+      "https://example.com/frames/77/front.jpg",
+      "https://example.com/frames/77/side.jpg",
+      "https://example.com/frames/77/angle.jpg"
+    ],
+    "id": 77,
+    "created_at": "2025-04-01T02:36:19.239901",
+    "updated_at": "2025-04-01T02:36:19.239901"
+  },
+  {
+    "name": "Oliver Peoples モダン スクエア",
+    "brand": "Oliver Peoples",
+    "price": 30000,
+    "style": "モダン",
+    "shape": "スクエア",
+    "material": "チタン",
+    "color": "グリーン",
+    "frame_width": 130.0,
+    "lens_width": 47.1,
+    "bridge_width": 20.0,
+    "temple_length": 147.7,
+    "lens_height": 36.6,
+    "weight": 16.6,
+    "recommended_face_width_min": 117.0,
+    "recommended_face_width_max": 143.0,
+    "recommended_nose_height_min": 12.0,
+    "recommended_nose_height_max": 21.5,
+    "personal_color_season": "秋",
+    "face_shape_types": [
+      "ハート型",
+      "四角型",
+      "逆三角形"
+    ],
+    "style_tags": [
+      "ビジネス",
+      "レトロ",
+      "ミニマル"
+    ],
+    "image_urls": [
+      "https://example.com/frames/78/front.jpg",
+      "https://example.com/frames/78/side.jpg",
+      "https://example.com/frames/78/angle.jpg"
+    ],
+    "id": 78,
+    "created_at": "2025-04-01T02:36:19.240002",
+    "updated_at": "2025-04-01T02:36:19.240002"
+  },
+  {
+    "name": "Oliver Peoples ミニマル ブロー",
+    "brand": "Oliver Peoples",
+    "price": 19000,
+    "style": "ミニマル",
+    "shape": "ブロー",
+    "material": "チタン",
+    "color": "シルバー",
+    "frame_width": 133.3,
+    "lens_width": 53.1,
+    "bridge_width": 20.4,
+    "temple_length": 141.0,
+    "lens_height": 41.9,
+    "weight": 22.8,
+    "recommended_face_width_min": 120.0,
+    "recommended_face_width_max": 146.6,
+    "recommended_nose_height_min": 10.6,
+    "recommended_nose_height_max": 24.5,
+    "personal_color_season": "秋",
+    "face_shape_types": [
+      "ハート型",
+      "長方形",
+      "四角型"
+    ],
+    "style_tags": [
+      "クラシック",
+      "ビジネス",
+      "スポーティ"
+    ],
+    "image_urls": [
+      "https://example.com/frames/79/front.jpg",
+      "https://example.com/frames/79/side.jpg",
+      "https://example.com/frames/79/angle.jpg"
+    ],
+    "id": 79,
+    "created_at": "2025-04-01T02:36:19.240101",
+    "updated_at": "2025-04-01T02:36:19.240101"
+  },
+  {
+    "name": "Persol ミニマル ボストン",
+    "brand": "Persol",
+    "price": 29000,
+    "style": "ミニマル",
+    "shape": "ボストン",
+    "material": "コンビネーション",
+    "color": "ゴールド",
+    "frame_width": 138.8,
+    "lens_width": 54.3,
+    "bridge_width": 20.0,
+    "temple_length": 139.9,
+    "lens_height": 41.7,
+    "weight": 28.7,
+    "recommended_face_width_min": 124.9,
+    "recommended_face_width_max": 152.7,
+    "recommended_nose_height_min": 14.8,
+    "recommended_nose_height_max": 24.3,
+    "personal_color_season": "春",
+    "face_shape_types": [
+      "長方形"
+    ],
+    "style_tags": [
+      "モダン",
+      "レトロ",
+      "ミニマル"
+    ],
+    "image_urls": [
+      "https://example.com/frames/80/front.jpg",
+      "https://example.com/frames/80/side.jpg",
+      "https://example.com/frames/80/angle.jpg"
+    ],
+    "id": 80,
+    "created_at": "2025-04-01T02:36:19.240207",
+    "updated_at": "2025-04-01T02:36:19.240207"
+  },
+  {
+    "name": "Gucci クラシック ウェリントン",
+    "brand": "Gucci",
+    "price": 18000,
+    "style": "クラシック",
+    "shape": "ウェリントン",
+    "material": "プラスチック",
+    "color": "ブラウン",
+    "frame_width": 136.4,
+    "lens_width": 51.1,
+    "bridge_width": 17.3,
+    "temple_length": 138.6,
+    "lens_height": 37.5,
+    "weight": 29.4,
+    "recommended_face_width_min": 122.8,
+    "recommended_face_width_max": 150.0,
+    "recommended_nose_height_min": 10.6,
+    "recommended_nose_height_max": 25.0,
+    "personal_color_season": "春",
+    "face_shape_types": [
+      "ハート型",
+      "逆三角形",
+      "卵型"
+    ],
+    "style_tags": [
+      "カジュアル",
+      "モダン"
+    ],
+    "image_urls": [
+      "https://example.com/frames/81/front.jpg",
+      "https://example.com/frames/81/side.jpg",
+      "https://example.com/frames/81/angle.jpg"
+    ],
+    "id": 81,
+    "created_at": "2025-04-01T02:36:19.251049",
+    "updated_at": "2025-04-01T02:36:19.251049"
+  },
+  {
+    "name": "Persol カジュアル オーバル",
+    "brand": "Persol",
+    "price": 22000,
+    "style": "カジュアル",
+    "shape": "オーバル",
+    "material": "プラスチック",
+    "color": "レッド",
+    "frame_width": 130.4,
+    "lens_width": 52.9,
+    "bridge_width": 21.0,
+    "temple_length": 148.4,
+    "lens_height": 44.4,
+    "weight": 21.7,
+    "recommended_face_width_min": 117.4,
+    "recommended_face_width_max": 143.4,
+    "recommended_nose_height_min": 12.6,
+    "recommended_nose_height_max": 24.1,
+    "personal_color_season": "春",
+    "face_shape_types": [
+      "四角型",
+      "丸型"
+    ],
+    "style_tags": [
+      "レトロ",
+      "ミニマル",
+      "ビジネス"
+    ],
+    "image_urls": [
+      "https://example.com/frames/82/front.jpg",
+      "https://example.com/frames/82/side.jpg",
+      "https://example.com/frames/82/angle.jpg"
+    ],
+    "id": 82,
+    "created_at": "2025-04-01T02:36:19.251344",
+    "updated_at": "2025-04-01T02:36:19.251344"
+  },
+  {
+    "name": "Gucci ビジネス スクエア",
+    "brand": "Gucci",
+    "price": 10000,
+    "style": "ビジネス",
+    "shape": "スクエア",
+    "material": "チタン",
+    "color": "レッド",
+    "frame_width": 141.7,
+    "lens_width": 50.6,
+    "bridge_width": 15.5,
+    "temple_length": 147.3,
+    "lens_height": 47.7,
+    "weight": 22.2,
+    "recommended_face_width_min": 127.5,
+    "recommended_face_width_max": 155.9,
+    "recommended_nose_height_min": 14.8,
+    "recommended_nose_height_max": 20.8,
+    "personal_color_season": "秋",
+    "face_shape_types": [
+      "丸型",
+      "逆三角形"
+    ],
+    "style_tags": [
+      "スポーティ"
+    ],
+    "image_urls": [
+      "https://example.com/frames/83/front.jpg",
+      "https://example.com/frames/83/side.jpg",
+      "https://example.com/frames/83/angle.jpg"
+    ],
+    "id": 83,
+    "created_at": "2025-04-01T02:36:19.251551",
+    "updated_at": "2025-04-01T02:36:19.251551"
+  },
+  {
+    "name": "Tom Ford スポーティ オーバル",
+    "brand": "Tom Ford",
+    "price": 14000,
+    "style": "スポーティ",
+    "shape": "オーバル",
+    "material": "チタン",
+    "color": "ブラウン",
+    "frame_width": 135.3,
+    "lens_width": 48.9,
+    "bridge_width": 18.3,
+    "temple_length": 142.4,
+    "lens_height": 36.9,
+    "weight": 23.8,
+    "recommended_face_width_min": 121.8,
+    "recommended_face_width_max": 148.8,
+    "recommended_nose_height_min": 13.1,
+    "recommended_nose_height_max": 20.9,
+    "personal_color_season": "秋",
+    "face_shape_types": [
+      "長方形",
+      "卵型"
+    ],
+    "style_tags": [
+      "モダン",
+      "カジュアル",
+      "レトロ"
+    ],
+    "image_urls": [
+      "https://example.com/frames/84/front.jpg",
+      "https://example.com/frames/84/side.jpg",
+      "https://example.com/frames/84/angle.jpg"
+    ],
+    "id": 84,
+    "created_at": "2025-04-01T02:36:19.251744",
+    "updated_at": "2025-04-01T02:36:19.251744"
+  },
+  {
+    "name": "Persol モダン ウェリントン",
+    "brand": "Persol",
+    "price": 16000,
+    "style": "モダン",
+    "shape": "ウェリントン",
+    "material": "チタン",
+    "color": "グリーン",
+    "frame_width": 139.8,
+    "lens_width": 45.6,
+    "bridge_width": 18.9,
+    "temple_length": 141.2,
+    "lens_height": 40.7,
+    "weight": 21.0,
+    "recommended_face_width_min": 125.8,
+    "recommended_face_width_max": 153.8,
+    "recommended_nose_height_min": 12.5,
+    "recommended_nose_height_max": 22.9,
+    "personal_color_season": "冬",
+    "face_shape_types": [
+      "逆三角形"
+    ],
+    "style_tags": [
+      "モダン",
+      "レトロ"
+    ],
+    "image_urls": [
+      "https://example.com/frames/85/front.jpg",
+      "https://example.com/frames/85/side.jpg",
+      "https://example.com/frames/85/angle.jpg"
+    ],
+    "id": 85,
+    "created_at": "2025-04-01T02:36:19.251929",
+    "updated_at": "2025-04-01T02:36:19.251929"
+  },
+  {
+    "name": "Gucci クラシック キャットアイ",
+    "brand": "Gucci",
+    "price": 30000,
+    "style": "クラシック",
+    "shape": "キャットアイ",
+    "material": "アセテート",
+    "color": "レッド",
+    "frame_width": 128.7,
+    "lens_width": 49.0,
+    "bridge_width": 16.6,
+    "temple_length": 143.1,
+    "lens_height": 46.2,
+    "weight": 22.0,
+    "recommended_face_width_min": 115.8,
+    "recommended_face_width_max": 141.6,
+    "recommended_nose_height_min": 13.9,
+    "recommended_nose_height_max": 24.7,
+    "personal_color_season": "冬",
+    "face_shape_types": [
+      "四角型",
+      "丸型"
+    ],
+    "style_tags": [
+      "ビジネス",
+      "ミニマル",
+      "クラシック"
+    ],
+    "image_urls": [
+      "https://example.com/frames/86/front.jpg",
+      "https://example.com/frames/86/side.jpg",
+      "https://example.com/frames/86/angle.jpg"
+    ],
+    "id": 86,
+    "created_at": "2025-04-01T02:36:19.252131",
+    "updated_at": "2025-04-01T02:36:19.252131"
+  },
+  {
+    "name": "Oakley ビジネス ラウンド",
+    "brand": "Oakley",
+    "price": 26000,
+    "style": "ビジネス",
+    "shape": "ラウンド",
+    "material": "アセテート",
+    "color": "ブラック",
+    "frame_width": 139.4,
+    "lens_width": 49.3,
+    "bridge_width": 18.2,
+    "temple_length": 140.6,
+    "lens_height": 38.4,
+    "weight": 22.0,
+    "recommended_face_width_min": 125.5,
+    "recommended_face_width_max": 153.3,
+    "recommended_nose_height_min": 14.7,
+    "recommended_nose_height_max": 21.3,
+    "personal_color_season": "春",
+    "face_shape_types": [
+      "四角型"
+    ],
+    "style_tags": [
+      "ビジネス"
+    ],
+    "image_urls": [
+      "https://example.com/frames/87/front.jpg",
+      "https://example.com/frames/87/side.jpg",
+      "https://example.com/frames/87/angle.jpg"
+    ],
+    "id": 87,
+    "created_at": "2025-04-01T02:36:19.252322",
+    "updated_at": "2025-04-01T02:36:19.252322"
+  },
+  {
+    "name": "Oakley カジュアル ウェリントン",
+    "brand": "Oakley",
+    "price": 30000,
+    "style": "カジュアル",
+    "shape": "ウェリントン",
+    "material": "アセテート",
+    "color": "レッド",
+    "frame_width": 129.2,
+    "lens_width": 47.8,
+    "bridge_width": 16.1,
+    "temple_length": 139.5,
+    "lens_height": 43.9,
+    "weight": 26.3,
+    "recommended_face_width_min": 116.3,
+    "recommended_face_width_max": 142.1,
+    "recommended_nose_height_min": 12.4,
+    "recommended_nose_height_max": 23.8,
+    "personal_color_season": "春",
+    "face_shape_types": [
+      "ハート型",
+      "長方形",
+      "逆三角形"
+    ],
+    "style_tags": [
+      "ミニマル",
+      "クラシック"
+    ],
+    "image_urls": [
+      "https://example.com/frames/88/front.jpg",
+      "https://example.com/frames/88/side.jpg",
+      "https://example.com/frames/88/angle.jpg"
+    ],
+    "id": 88,
+    "created_at": "2025-04-01T02:36:19.252514",
+    "updated_at": "2025-04-01T02:36:19.252514"
+  },
+  {
+    "name": "JINS クラシック ウェリントン",
+    "brand": "JINS",
+    "price": 30000,
+    "style": "クラシック",
+    "shape": "ウェリントン",
+    "material": "アセテート",
+    "color": "レッド",
+    "frame_width": 137.5,
+    "lens_width": 53.4,
+    "bridge_width": 21.2,
+    "temple_length": 143.6,
+    "lens_height": 46.7,
+    "weight": 18.2,
+    "recommended_face_width_min": 123.8,
+    "recommended_face_width_max": 151.2,
+    "recommended_nose_height_min": 14.2,
+    "recommended_nose_height_max": 22.0,
+    "personal_color_season": "冬",
+    "face_shape_types": [
+      "丸型",
+      "逆三角形",
+      "長方形"
+    ],
+    "style_tags": [
+      "モダン"
+    ],
+    "image_urls": [
+      "https://example.com/frames/89/front.jpg",
+      "https://example.com/frames/89/side.jpg",
+      "https://example.com/frames/89/angle.jpg"
+    ],
+    "id": 89,
+    "created_at": "2025-04-01T02:36:19.252706",
+    "updated_at": "2025-04-01T02:36:19.252706"
+  },
+  {
+    "name": "JINS モダン キャットアイ",
+    "brand": "JINS",
+    "price": 11000,
+    "style": "モダン",
+    "shape": "キャットアイ",
+    "material": "コンビネーション",
+    "color": "トータス",
+    "frame_width": 141.3,
+    "lens_width": 54.8,
+    "bridge_width": 15.3,
+    "temple_length": 141.2,
+    "lens_height": 46.8,
+    "weight": 19.1,
+    "recommended_face_width_min": 127.2,
+    "recommended_face_width_max": 155.4,
+    "recommended_nose_height_min": 13.3,
+    "recommended_nose_height_max": 23.6,
+    "personal_color_season": "春",
+    "face_shape_types": [
+      "ハート型"
+    ],
+    "style_tags": [
+      "レトロ",
+      "ビジネス",
+      "カジュアル"
+    ],
+    "image_urls": [
+      "https://example.com/frames/90/front.jpg",
+      "https://example.com/frames/90/side.jpg",
+      "https://example.com/frames/90/angle.jpg"
+    ],
+    "id": 90,
+    "created_at": "2025-04-01T02:36:19.252898",
+    "updated_at": "2025-04-01T02:36:19.252898"
+  },
+  {
+    "name": "Persol スポーティ オーバル",
+    "brand": "Persol",
+    "price": 13000,
+    "style": "スポーティ",
+    "shape": "オーバル",
+    "material": "プラスチック",
+    "color": "レッド",
+    "frame_width": 131.4,
+    "lens_width": 52.4,
+    "bridge_width": 21.6,
+    "temple_length": 145.7,
+    "lens_height": 48.8,
+    "weight": 16.7,
+    "recommended_face_width_min": 118.3,
+    "recommended_face_width_max": 144.5,
+    "recommended_nose_height_min": 10.6,
+    "recommended_nose_height_max": 21.0,
+    "personal_color_season": "夏",
+    "face_shape_types": [
+      "四角型",
+      "丸型",
+      "逆三角形"
+    ],
+    "style_tags": [
+      "ミニマル"
+    ],
+    "image_urls": [
+      "https://example.com/frames/91/front.jpg",
+      "https://example.com/frames/91/side.jpg",
+      "https://example.com/frames/91/angle.jpg"
+    ],
+    "id": 91,
+    "created_at": "2025-04-01T02:36:19.268475",
+    "updated_at": "2025-04-01T02:36:19.268475"
+  },
+  {
+    "name": "Zoff レトロ ブロー",
+    "brand": "Zoff",
+    "price": 7000,
+    "style": "レトロ",
+    "shape": "ブロー",
+    "material": "アセテート",
+    "color": "シルバー",
+    "frame_width": 128.9,
+    "lens_width": 54.2,
+    "bridge_width": 21.1,
+    "temple_length": 140.6,
+    "lens_height": 41.7,
+    "weight": 29.6,
+    "recommended_face_width_min": 116.0,
+    "recommended_face_width_max": 141.8,
+    "recommended_nose_height_min": 14.4,
+    "recommended_nose_height_max": 23.9,
+    "personal_color_season": "冬",
+    "face_shape_types": [
+      "ハート型"
+    ],
+    "style_tags": [
+      "モダン",
+      "ミニマル"
+    ],
+    "image_urls": [
+      "https://example.com/frames/92/front.jpg",
+      "https://example.com/frames/92/side.jpg",
+      "https://example.com/frames/92/angle.jpg"
+    ],
+    "id": 92,
+    "created_at": "2025-04-01T02:36:19.268864",
+    "updated_at": "2025-04-01T02:36:19.268864"
+  },
+  {
+    "name": "JINS ビジネス キャットアイ",
+    "brand": "JINS",
+    "price": 9000,
+    "style": "ビジネス",
+    "shape": "キャットアイ",
+    "material": "プラスチック",
+    "color": "ブラウン",
+    "frame_width": 144.5,
+    "lens_width": 49.0,
+    "bridge_width": 15.4,
+    "temple_length": 147.4,
+    "lens_height": 43.6,
+    "weight": 21.6,
+    "recommended_face_width_min": 130.1,
+    "recommended_face_width_max": 159.0,
+    "recommended_nose_height_min": 14.7,
+    "recommended_nose_height_max": 21.0,
+    "personal_color_season": "冬",
+    "face_shape_types": [
+      "四角型",
+      "卵型",
+      "長方形"
+    ],
+    "style_tags": [
+      "モダン"
+    ],
+    "image_urls": [
+      "https://example.com/frames/93/front.jpg",
+      "https://example.com/frames/93/side.jpg",
+      "https://example.com/frames/93/angle.jpg"
+    ],
+    "id": 93,
+    "created_at": "2025-04-01T02:36:19.269095",
+    "updated_at": "2025-04-01T02:36:19.269095"
+  },
+  {
+    "name": "Tom Ford カジュアル キャットアイ",
+    "brand": "Tom Ford",
+    "price": 28000,
+    "style": "カジュアル",
+    "shape": "キャットアイ",
+    "material": "チタン",
+    "color": "シルバー",
+    "frame_width": 131.8,
+    "lens_width": 50.7,
+    "bridge_width": 21.9,
+    "temple_length": 138.5,
+    "lens_height": 38.9,
+    "weight": 22.8,
+    "recommended_face_width_min": 118.6,
+    "recommended_face_width_max": 145.0,
+    "recommended_nose_height_min": 12.3,
+    "recommended_nose_height_max": 21.4,
+    "personal_color_season": "夏",
+    "face_shape_types": [
+      "ハート型",
+      "四角型",
+      "逆三角形"
+    ],
+    "style_tags": [
+      "カジュアル",
+      "モダン",
+      "クラシック"
+    ],
+    "image_urls": [
+      "https://example.com/frames/94/front.jpg",
+      "https://example.com/frames/94/side.jpg",
+      "https://example.com/frames/94/angle.jpg"
+    ],
+    "id": 94,
+    "created_at": "2025-04-01T02:36:19.269312",
+    "updated_at": "2025-04-01T02:36:19.269312"
+  },
+  {
+    "name": "Oakley ビジネス ラウンド",
+    "brand": "Oakley",
+    "price": 18000,
+    "style": "ビジネス",
+    "shape": "ラウンド",
+    "material": "プラスチック",
+    "color": "ブラウン",
+    "frame_width": 133.6,
+    "lens_width": 49.1,
+    "bridge_width": 19.0,
+    "temple_length": 135.1,
+    "lens_height": 38.9,
+    "weight": 19.9,
+    "recommended_face_width_min": 120.2,
+    "recommended_face_width_max": 147.0,
+    "recommended_nose_height_min": 13.0,
+    "recommended_nose_height_max": 20.5,
+    "personal_color_season": "冬",
+    "face_shape_types": [
+      "長方形"
+    ],
+    "style_tags": [
+      "ミニマル"
+    ],
+    "image_urls": [
+      "https://example.com/frames/95/front.jpg",
+      "https://example.com/frames/95/side.jpg",
+      "https://example.com/frames/95/angle.jpg"
+    ],
+    "id": 95,
+    "created_at": "2025-04-01T02:36:19.269502",
+    "updated_at": "2025-04-01T02:36:19.269502"
+  },
+  {
+    "name": "JINS カジュアル スクエア",
+    "brand": "JINS",
+    "price": 26000,
+    "style": "カジュアル",
+    "shape": "スクエア",
+    "material": "チタン",
+    "color": "グリーン",
+    "frame_width": 137.7,
+    "lens_width": 48.1,
+    "bridge_width": 18.5,
+    "temple_length": 145.0,
+    "lens_height": 46.1,
+    "weight": 28.0,
+    "recommended_face_width_min": 123.9,
+    "recommended_face_width_max": 151.5,
+    "recommended_nose_height_min": 10.5,
+    "recommended_nose_height_max": 22.6,
+    "personal_color_season": "秋",
+    "face_shape_types": [
+      "丸型",
+      "長方形"
+    ],
+    "style_tags": [
+      "モダン"
+    ],
+    "image_urls": [
+      "https://example.com/frames/96/front.jpg",
+      "https://example.com/frames/96/side.jpg",
+      "https://example.com/frames/96/angle.jpg"
+    ],
+    "id": 96,
+    "created_at": "2025-04-01T02:36:19.269675",
+    "updated_at": "2025-04-01T02:36:19.269675"
+  },
+  {
+    "name": "Persol スポーティ キャットアイ",
+    "brand": "Persol",
+    "price": 10000,
+    "style": "スポーティ",
+    "shape": "キャットアイ",
+    "material": "メタル",
+    "color": "シルバー",
+    "frame_width": 136.1,
+    "lens_width": 46.9,
+    "bridge_width": 19.9,
+    "temple_length": 145.9,
+    "lens_height": 39.0,
+    "weight": 16.6,
+    "recommended_face_width_min": 122.5,
+    "recommended_face_width_max": 149.7,
+    "recommended_nose_height_min": 13.7,
+    "recommended_nose_height_max": 21.6,
+    "personal_color_season": "夏",
+    "face_shape_types": [
+      "卵型"
+    ],
+    "style_tags": [
+      "カジュアル",
+      "スポーティ"
+    ],
+    "image_urls": [
+      "https://example.com/frames/97/front.jpg",
+      "https://example.com/frames/97/side.jpg",
+      "https://example.com/frames/97/angle.jpg"
+    ],
+    "id": 97,
+    "created_at": "2025-04-01T02:36:19.269861",
+    "updated_at": "2025-04-01T02:36:19.269861"
+  },
+  {
+    "name": "Persol カジュアル ボストン",
+    "brand": "Persol",
+    "price": 12000,
+    "style": "カジュアル",
+    "shape": "ボストン",
+    "material": "コンビネーション",
+    "color": "ゴールド",
+    "frame_width": 136.6,
+    "lens_width": 53.4,
+    "bridge_width": 16.6,
+    "temple_length": 143.3,
+    "lens_height": 42.0,
+    "weight": 23.9,
+    "recommended_face_width_min": 122.9,
+    "recommended_face_width_max": 150.3,
+    "recommended_nose_height_min": 11.2,
+    "recommended_nose_height_max": 23.2,
+    "personal_color_season": "春",
+    "face_shape_types": [
+      "丸型"
+    ],
+    "style_tags": [
+      "レトロ",
+      "ビジネス",
+      "モダン"
+    ],
+    "image_urls": [
+      "https://example.com/frames/98/front.jpg",
+      "https://example.com/frames/98/side.jpg",
+      "https://example.com/frames/98/angle.jpg"
+    ],
+    "id": 98,
+    "created_at": "2025-04-01T02:36:19.270075",
+    "updated_at": "2025-04-01T02:36:19.270075"
+  },
+  {
+    "name": "Tom Ford スポーティ キャットアイ",
+    "brand": "Tom Ford",
+    "price": 16000,
+    "style": "スポーティ",
+    "shape": "キャットアイ",
+    "material": "アセテート",
+    "color": "グリーン",
+    "frame_width": 138.6,
+    "lens_width": 45.5,
+    "bridge_width": 17.2,
+    "temple_length": 143.4,
+    "lens_height": 49.3,
+    "weight": 18.4,
+    "recommended_face_width_min": 124.7,
+    "recommended_face_width_max": 152.5,
+    "recommended_nose_height_min": 12.7,
+    "recommended_nose_height_max": 25.0,
+    "personal_color_season": "秋",
+    "face_shape_types": [
+      "四角型"
+    ],
+    "style_tags": [
+      "カジュアル",
+      "モダン"
+    ],
+    "image_urls": [
+      "https://example.com/frames/99/front.jpg",
+      "https://example.com/frames/99/side.jpg",
+      "https://example.com/frames/99/angle.jpg"
+    ],
+    "id": 99,
+    "created_at": "2025-04-01T02:36:19.270266",
+    "updated_at": "2025-04-01T02:36:19.270266"
+  },
+  {
+    "name": "Zoff スポーティ スクエア",
+    "brand": "Zoff",
+    "price": 20000,
+    "style": "スポーティ",
+    "shape": "スクエア",
+    "material": "コンビネーション",
+    "color": "ブラウン",
+    "frame_width": 142.3,
+    "lens_width": 49.6,
+    "bridge_width": 19.2,
+    "temple_length": 140.3,
+    "lens_height": 36.2,
+    "weight": 19.4,
+    "recommended_face_width_min": 128.1,
+    "recommended_face_width_max": 156.5,
+    "recommended_nose_height_min": 12.1,
+    "recommended_nose_height_max": 21.2,
+    "personal_color_season": "秋",
+    "face_shape_types": [
+      "逆三角形"
+    ],
+    "style_tags": [
+      "カジュアル",
+      "レトロ",
+      "ビジネス"
+    ],
+    "image_urls": [
+      "https://example.com/frames/100/front.jpg",
+      "https://example.com/frames/100/side.jpg",
+      "https://example.com/frames/100/angle.jpg"
+    ],
+    "id": 100,
+    "created_at": "2025-04-01T02:36:19.270382",
+    "updated_at": "2025-04-01T02:36:19.270382"
+  }
+]
