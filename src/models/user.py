@@ -5,6 +5,7 @@ from ..database import Base
 
 class User(Base):
     __tablename__ = "users"
+    __table_args__ = {'extend_existing': True}
 
     id = Column(Integer, primary_key=True, index=True)
     email = Column(String(255), unique=True, nullable=False)
@@ -24,6 +25,7 @@ class User(Base):
 
 class StyleQuestion(Base):
     __tablename__ = "style_questions"
+    __table_args__ = {'extend_existing': True}
 
     id = Column(Integer, primary_key=True, index=True)
     question_type = Column(String(50), nullable=False)
@@ -37,6 +39,7 @@ class StyleQuestion(Base):
 
 class Preference(Base):
     __tablename__ = "preferences"
+    __table_args__ = {'extend_existing': True}
 
     id = Column(Integer, primary_key=True, index=True)
     category = Column(String(50), nullable=False)
@@ -50,6 +53,7 @@ class Preference(Base):
 
 class UserResponse(Base):
     __tablename__ = "user_responses"
+    __table_args__ = {'extend_existing': True}
 
     id = Column(Integer, primary_key=True, index=True)
     user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
@@ -70,6 +74,7 @@ class UserResponse(Base):
 
 class FaceMeasurement(Base):
     __tablename__ = "face_measurements"
+    __table_args__ = {'extend_existing': True}
 
     id = Column(Integer, primary_key=True, index=True)
     user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
@@ -85,6 +90,7 @@ class FaceMeasurement(Base):
 
 class Frame(Base):
     __tablename__ = "frames"
+    __table_args__ = {'extend_existing': True}
 
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String(255), nullable=False)

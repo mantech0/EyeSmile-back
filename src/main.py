@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from .database import engine, Base, get_db
 from sqlalchemy.orm import Session
-from .routers import frame, questionnaire
+from .routers import frame, questionnaire, recommendation, ai_explanation
 import logging
 import traceback
 import os
@@ -180,6 +180,8 @@ async def face_measurements_endpoint(
 # ルーターの登録
 app.include_router(frame.router)
 app.include_router(questionnaire.router)
+app.include_router(recommendation.router)
+app.include_router(ai_explanation.router)
 
 # 起動時のログ
 logger.info("アプリケーションが正常に起動しました")
