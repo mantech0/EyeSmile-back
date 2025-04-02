@@ -158,4 +158,17 @@ def recommend_glasses(
         
     except Exception as e:
         logger.error(f"メガネフレーム推薦処理エラー: {str(e)}", exc_info=True)
-        raise HTTPException(status_code=500, detail=f"推薦の処理中にエラーが発生しました: {str(e)}") 
+        raise HTTPException(status_code=500, detail=f"推薦の処理中にエラーが発生しました: {str(e)}")
+
+# OPTIONSメソッドのハンドラを追加
+@router.options("/glasses")
+def options_glasses_recommendation():
+    """メガネ推薦エンドポイントのOPTIONSリクエストハンドラー"""
+    logger.info("メガネ推薦エンドポイントへのOPTIONSリクエスト受信")
+    return {
+        "Allow": "POST, OPTIONS",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "POST, OPTIONS",
+        "Access-Control-Allow-Headers": "Content-Type, Authorization, X-Requested-With",
+        "Access-Control-Max-Age": "3600"
+    }

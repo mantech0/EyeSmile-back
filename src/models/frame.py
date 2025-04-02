@@ -1,9 +1,10 @@
-from sqlalchemy import Column, Integer, String, Float, DateTime, JSON
+from sqlalchemy import Column, Integer, String, Float, DateTime, JSON, Table
 from sqlalchemy.sql import func
 from ..database import Base
 
 class Frame(Base):
     __tablename__ = "frames"
+    __table_args__ = {'extend_existing': True}
 
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String(255), nullable=False)

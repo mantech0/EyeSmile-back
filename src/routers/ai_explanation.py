@@ -105,4 +105,4 @@ def generate_explanation(request: ExplanationRequest = Body(...)):
         
     except Exception as e:
         logger.error(f"説明生成処理エラー: {str(e)}", exc_info=True)
-        raise HTTPException(status_code=500, detail=f"説明の生成中にエラーが発生しました: {str(e)}") 
+        raise HTTPException(status_code=500, detail=f"説明の生成中にエラーが発生しました: {str(e)}")
