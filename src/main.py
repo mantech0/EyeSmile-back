@@ -4,11 +4,12 @@ from fastapi.responses import JSONResponse
 from fastapi.staticfiles import StaticFiles
 from .database import engine, Base, get_db
 from sqlalchemy.orm import Session
-from .routers import frame, questionnaire, recommendation, ai_explanation
+from .routers import frame, questionnaire
 import logging
 import traceback
 import os
 import sys
+from .routers import recommendation, ai_explanation
 
 # ロギングの設定
 logging.basicConfig(level=logging.INFO)
