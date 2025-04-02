@@ -1,9 +1,10 @@
-from fastapi import APIRouter, Depends, HTTPException, Response
+from fastapi import APIRouter, Depends, HTTPException, Body
 from sqlalchemy.orm import Session
-import logging
-from typing import List
+from typing import List, Optional
 from ..database import get_db
-from .. import crud, schemas
+from .. import models, schemas, crud
+from ..services.frame_recommendation import FrameRecommendationService
+import logging
 
 # ロガーの設定
 logger = logging.getLogger(__name__)
@@ -13,123 +14,161 @@ router = APIRouter(
     tags=["recommendations"]
 )
 
-@router.post("/glasses", response_model=schemas.recommendation.RecommendationResponse)
+# 推薦リクエストのスキーマ
+class RecommendationRequest(schemas.BaseModel):
+    face_data: schemas.FaceMeasurement
+    style_preference: Optional[schemas.StylePreference] = None
+
+# 顔データに基づいてメガネフレームを推薦するエンドポイント
+@router.post("/glasses", response_model=schemas.RecommendationResponse)
 def recommend_glasses(
-    request: schemas.recommendation.RecommendationRequest,
-    db: Session = Depends(get_db),
-    response: Response = None
+    request: RecommendationRequest = Body(...),
+    db: Session = Depends(get_db)
 ):
-    """顔の測定データとスタイル好みに基づいてメガネを推薦します"""
-    # CORSヘッダーを追加
-    if response:
-        response.headers["Access-Control-Allow-Origin"] = "*"
-        response.headers["Access-Control-Allow-Methods"] = "POST, OPTIONS"
-        response.headers["Access-Control-Allow-Headers"] = "Content-Type, Authorization, X-Requested-With"
-        response.headers["Access-Control-Max-Age"] = "3600"
-    
+    """顔の測定データとスタイル好みに基づいてメガネフレームを推薦します"""
     try:
-        logger.info(f"メガネ推薦リクエスト受信: {request}")
+        logger.info(f"メガネフレーム推薦リクエスト受信: {request}")
         
-        # 推薦ロジック実行
-        recommendations = crud.recommendation.get_frame_recommendations(
+        # 顔測定データを取得
+        face_data = request.face_data
+        style_preference = request.style_preference
+
+        # データベースからフレームを取得
+        frames = crud.frame.get_recommended_frames(
             db=db,
-            request=request,
-            limit=5  # 代替推薦の数
+            face_width=face_data.face_width,
+            nose_height=face_data.nose_height,
+            personal_color=style_preference.personal_color if style_preference else None,
+            style_preferences=style_preference.preferred_styles if style_preference else [],
+            limit=10
         )
         
-        logger.info("メガネ推薦が正常に生成されました")
-        return recommendations
+        if not frames:
+            # フレームがない場合は全てのフレームから選択
+            logger.warning("条件に合うフレームが見つからないため、全てのフレームから選択します")
+            frames = crud.frame.get_frames(db=db, limit=10)
+            
+        if not frames:
+            raise HTTPException(status_code=404, detail="推薦可能なフレームが見つかりませんでした")
+            
+        # ユーザーの好みのデータを作成（スタイル設定から）
+        user_preferences = []
+        if style_preference:
+            # スタイル好みからユーザー設定を構築
+            for style in style_preference.preferred_styles:
+                user_preferences.append(models.UserResponse(
+                    preference=models.Preference(
+                        preference_type="style",
+                        preference_value=style
+                    ),
+                    response_value=1  # 好き
+                ))
+            
+            for shape in style_preference.preferred_shapes:
+                user_preferences.append(models.UserResponse(
+                    preference=models.Preference(
+                        preference_type="shape",
+                        preference_value=shape
+                    ),
+                    response_value=1  # 好き
+                ))
+                
+            for material in style_preference.preferred_materials:
+                user_preferences.append(models.UserResponse(
+                    preference=models.Preference(
+                        preference_type="material",
+                        preference_value=material
+                    ),
+                    response_value=1  # 好き
+                ))
+        
+        # サービスを使用してフレームをランク付け
+        ranked_frames = []
+        face_measurement = models.FaceMeasurement(
+            face_width=face_data.face_width,
+            eye_distance=face_data.eye_distance,
+            cheek_area=face_data.cheek_area,
+            nose_height=face_data.nose_height,
+            temple_position=face_data.temple_position
+        )
+        
+        for frame in frames:
+            recommendation = FrameRecommendationService.calculate_total_score(
+                frame=frame,
+                face_measurement=face_measurement,
+                user_preferences=user_preferences
+            )
+            ranked_frames.append(recommendation)
+        
+        # スコアで降順ソート
+        ranked_frames.sort(key=lambda x: x.total_score, reverse=True)
+        
+        # 最もスコアの高いフレームを主要推薦として選択
+        primary_recommendation = ranked_frames[0] if ranked_frames else None
+        
+        # 残りのフレームを代替推薦として選択
+        alternative_recommendations = ranked_frames[1:5] if len(ranked_frames) > 1 else []
+        
+        # 顔の形状を決定
+        face_shape = "楕円型"  # デフォルト値
+        if face_data.face_width > 140:
+            face_shape = "丸型"
+        elif face_data.face_width < 130:
+            face_shape = "細長型"
+            
+        # スタイルカテゴリを決定
+        style_category = style_preference.preferred_styles[0] if style_preference and style_preference.preferred_styles else "クラシック"
+        
+        # フィット説明を生成
+        fit_explanation = f"あなたの顔幅({face_data.face_width}mm)と鼻の高さ({face_data.nose_height}mm)に適したフレームを選びました。"
+        
+        # スタイル説明を生成
+        style_explanation = "お好みのスタイルに合わせたデザインを選びました。"
+        if style_preference and style_preference.preferred_styles:
+            style_tags = ", ".join(style_preference.preferred_styles)
+            style_explanation = f"あなたの好みの{style_tags}スタイルに合ったデザインを選びました。"
+        
+        # 特徴ハイライトを生成
+        feature_highlights = [
+            f"{primary_recommendation.frame.material}素材",
+            f"{primary_recommendation.frame.shape}シェイプ",
+            f"{primary_recommendation.frame.color}カラー"
+        ]
+        
+        # レスポンスを作成
+        response = schemas.RecommendationResponse(
+            primary_recommendation=primary_recommendation,
+            alternative_recommendations=alternative_recommendations,
+            face_analysis=schemas.FaceAnalysis(
+                face_shape=face_shape,
+                style_category=style_category,
+                demo_mode=False
+            ),
+            recommendation_details=schemas.RecommendationDetails(
+                fit_explanation=fit_explanation,
+                style_explanation=style_explanation,
+                feature_highlights=feature_highlights
+            )
+        )
+        
+        logger.info(f"メガネフレーム推薦レスポンス生成完了: 主要推薦={response.primary_recommendation.frame.name}, "
+                   f"代替推薦数={len(response.alternative_recommendations)}")
+        
+        return response
         
     except Exception as e:
-        logger.error(f"メガネ推薦中にエラーが発生しました: {str(e)}", exc_info=True)
-        
-        # デモモードの場合のフォールバック
-        try:
-            # データベースエラーの場合でもデモデータを返す
-            logger.info("デモモードでの推薦データを生成します")
-            
-            # ダミーのフレームデータ
-            dummy_frame = {
-                "id": 1,
-                "name": "クラシックラウンド",
-                "brand": "EyeSmile",
-                "price": 15000,
-                "style": "クラシック",
-                "shape": "ラウンド",
-                "material": "チタン",
-                "color": "ゴールド",
-                "frame_width": 140.0,
-                "lens_width": 50.0,
-                "bridge_width": 20.0,
-                "temple_length": 145.0,
-                "lens_height": 45.0,
-                "weight": 15.0,
-                "recommended_face_width_min": 130.0,
-                "recommended_face_width_max": 150.0,
-                "recommended_nose_height_min": 40.0,
-                "recommended_nose_height_max": 60.0,
-                "personal_color_season": "Autumn",
-                "face_shape_types": ["楕円", "卵型"],
-                "style_tags": ["クラシック", "ビジネス", "カジュアル"],
-                "image_urls": ["https://example.com/glasses1.jpg"],
-                "created_at": "2023-01-01T00:00:00",
-                "updated_at": "2023-01-01T00:00:00"
-            }
-            
-            # 顔の形状を分析
-            face_shape = "楕円顔"  # デモ用デフォルト値
-            
-            # 推薦詳細
-            recommendation_details = schemas.recommendation.RecommendationDetail(
-                fit_explanation="あなたの楕円形の顔には、このクラシックなラウンドフレームが調和します。顔の輪郭を引き立て、自然な印象を与えます。",
-                style_explanation="クラシックで知的な印象を与えるデザインです。様々なシーンで活躍します。",
-                feature_highlights=["軽量チタン素材", "クラシックデザイン", "調整可能なノーズパッド"]
-            )
-            
-            # プライマリ推薦
-            primary_recommendation = schemas.FrameRecommendationResponse(
-                frame=dummy_frame,
-                fit_score=85.0,
-                style_score=90.0,
-                total_score=87.0,
-                recommendation_reason="このフレームはあなたの顔の形状に適しており、クラシックスタイルを引き立てます。"
-            )
-            
-            # 代替推薦（デモのため簡略化）
-            alternative_recommendations = [primary_recommendation]
-            
-            # 顔分析
-            face_analysis = {
-                "face_shape": face_shape,
-                "style_category": "クラシック",
-                "demo_mode": True
-            }
-            
-            # デモレスポンス
-            return schemas.recommendation.RecommendationResponse(
-                primary_recommendation=primary_recommendation,
-                alternative_recommendations=alternative_recommendations,
-                face_analysis=face_analysis,
-                recommendation_details=recommendation_details
-            )
-            
-        except Exception as demo_error:
-            logger.error(f"デモデータ生成中にエラーが発生しました: {str(demo_error)}", exc_info=True)
-            raise HTTPException(
-                status_code=500,
-                detail=f"メガネ推薦の処理中にエラーが発生しました: {str(e)}"
-            )
+        logger.error(f"メガネフレーム推薦処理エラー: {str(e)}", exc_info=True)
+        raise HTTPException(status_code=500, detail=f"推薦の処理中にエラーが発生しました: {str(e)}")
 
+# OPTIONSメソッドのハンドラを追加
 @router.options("/glasses")
 def options_glasses_recommendation():
     """メガネ推薦エンドポイントのOPTIONSリクエストハンドラー"""
     logger.info("メガネ推薦エンドポイントへのOPTIONSリクエスト受信")
-    return Response(
-        content="",
-        headers={
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Methods": "POST, OPTIONS",
-            "Access-Control-Allow-Headers": "Content-Type, Authorization, X-Requested-With",
-            "Access-Control-Max-Age": "3600",
-        },
-    ) 
+    return {
+        "Allow": "POST, OPTIONS",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "POST, OPTIONS",
+        "Access-Control-Allow-Headers": "Content-Type, Authorization, X-Requested-With",
+        "Access-Control-Max-Age": "3600"
+    }

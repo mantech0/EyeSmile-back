@@ -1,38 +1,31 @@
 from pydantic import BaseModel
 from typing import List, Optional
-from datetime import datetime
-from .frame import Frame, FrameRecommendationResponse
+from .frame import FrameRecommendationResponse
+from .face_measurement import FaceMeasurement
 
-class FaceData(BaseModel):
-    """顔の測定データ"""
-    face_width: float
-    eye_distance: float
-    cheek_area: float
-    nose_height: float
-    temple_position: float
-    
 class StylePreference(BaseModel):
-    """スタイル設定"""
-    personal_color: Optional[str] = None  # Spring, Summer, Autumn, Winter
-    preferred_styles: List[str] = []      # カジュアル、フォーマル、スポーティー等
-    preferred_shapes: List[str] = []      # ラウンド、スクエア、オーバル等
-    preferred_materials: List[str] = []   # プラスチック、メタル等
-    preferred_colors: List[str] = []      # ブラック、ブラウン、クリア等
-    
-class RecommendationRequest(BaseModel):
-    """メガネ推薦リクエスト"""
-    face_data: FaceData
-    style_preference: Optional[StylePreference] = None
-    
-class RecommendationDetail(BaseModel):
-    """推薦理由の詳細"""
-    fit_explanation: str  # フィットの説明 (例: "顔幅と鼻の高さに最適です")
-    style_explanation: str  # スタイルの説明 (例: "あなたの好みのカジュアルスタイルに合います")
-    feature_highlights: List[str]  # 特筆すべき特徴 (例: ["軽量設計", "耐久性フレーム"])
-    
+    """ユーザーのスタイル好み設定"""
+    personal_color: Optional[str] = None
+    preferred_styles: List[str] = []
+    preferred_shapes: List[str] = []
+    preferred_materials: List[str] = []
+    preferred_colors: List[str] = []
+
+class FaceAnalysis(BaseModel):
+    """顔分析の結果"""
+    face_shape: str
+    style_category: str
+    demo_mode: bool = False
+
+class RecommendationDetails(BaseModel):
+    """推薦詳細情報"""
+    fit_explanation: str
+    style_explanation: str
+    feature_highlights: List[str] = []
+
 class RecommendationResponse(BaseModel):
-    """メガネ推薦レスポンス"""
+    """フレーム推薦のレスポンス"""
     primary_recommendation: FrameRecommendationResponse
-    alternative_recommendations: List[FrameRecommendationResponse]
-    face_analysis: dict  # 顔分析結果 (例: {"face_shape": "楕円形", "style_category": "クール"})
-    recommendation_details: RecommendationDetail 
+    alternative_recommendations: List[FrameRecommendationResponse] = []
+    face_analysis: FaceAnalysis
+    recommendation_details: RecommendationDetails 
