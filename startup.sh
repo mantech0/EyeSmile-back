@@ -4,21 +4,32 @@
 cd "$HOME/site/wwwroot"
 
 # 環境変数の設定
-export PYTHONPATH="$HOME/site/wwwroot"
-export PORT="${PORT:-8000}"
+echo "環境設定を行っています..."
+export PYTHONPATH=$PYTHONPATH:$(pwd)
 
-# Gunicornの起動
-gunicorn main:app \
-    --bind=0.0.0.0:$PORT \
-    --worker-class=uvicorn.workers.UvicornWorker \
-    --timeout=60 \
-    --workers=2 \
-    --worker-connections=100 \
-    --backlog=50 \
-    --max-requests=100 \
-    --max-requests-jitter=20 \
-    --log-level=info \
-    --access-logfile=- \
-    --error-logfile=- \
-    --capture-output
+# 静的ディレクトリ作成
+echo "静的ディレクトリを作成しています..."
+mkdir -p static/images
+
+# リポジトリから画像をコピー
+if [ -d "$HOME/site/repository/static/images" ]; then
+    echo "リポジトリから画像をコピーしています..."
+    cp -r $HOME/site/repository/static/images/* static/images/
+fi
+
+# 依存関係のインストール
+echo "依存パッケージを確認しています..."
+pip install -r requirements.txt
+
+# データベースマイグレーションの実行
+echo "データベースマイグレーションを実行しています..."
+export APPLY_MIGRATIONS=true
+
+# ファイル一覧を確認（デバッグ用）
+echo "静的ファイルディレクトリの内容:"
+ls -la static/images/
+
+# サーバーの起動
+echo "アプリケーションを起動します..."
+gunicorn src.main:app -k uvicorn.workers.UvicornWorker -b 0.0.0.0:8000 --timeout 180
 
