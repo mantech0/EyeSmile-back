@@ -1,6 +1,7 @@
 from fastapi import FastAPI, Depends, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
+from fastapi.staticfiles import StaticFiles
 from .database import engine, Base, get_db
 from sqlalchemy.orm import Session
 from .routers import frame, questionnaire, recommendation, ai_explanation
@@ -177,6 +178,22 @@ async def face_measurements_endpoint(
         logger.error(f"顔測定データ処理エラー: {str(e)}")
         raise HTTPException(status_code=500, detail=str(e))
 
+# 静的ファイル用のディレクトリを準備
+static_dir = os.getenv("STORAGE_PATH", "static/images")
+os.makedirs(static_dir, exist_ok=True)
+logger.info(f"静的ファイルディレクトリを準備: {static_dir}")
+
+# 静的ファイルを提供する設定
+try:
+    app.mount("/static", StaticFiles(directory="static"), name="static")
+    logger.info("静的ファイルのマウントに成功しました")
+except Exception as e:
+    logger.error(f"静的ファイルのマウントに失敗: {str(e)}")
+
+# Azure App Serviceが8000ポートを使用する設定
+PORT = int(os.getenv("PORT", os.getenv("WEBSITES_PORT", 8000)))
+HOST = os.getenv("HOST", "0.0.0.0")
+
 # ルーターの登録
 app.include_router(frame.router)
 app.include_router(questionnaire.router)
@@ -185,3 +202,9 @@ app.include_router(ai_explanation.router)
 
 # 起動時のログ
 logger.info("アプリケーションが正常に起動しました")
+
+# アプリケーションを直接実行する場合
+if __name__ == "__main__":
+    import uvicorn
+    logger.info(f"サーバーを起動: {HOST}:{PORT}")
+    uvicorn.run("src.main:app", host=HOST, port=PORT, reload=True)
