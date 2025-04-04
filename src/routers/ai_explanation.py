@@ -2,6 +2,7 @@ from fastapi import APIRouter, HTTPException, Body
 from pydantic import BaseModel
 from typing import Dict, List, Optional
 import logging
+from .. import schemas
 
 # ロガーの設定
 logger = logging.getLogger(__name__)
@@ -21,24 +22,11 @@ class FrameData(BaseModel):
     material: str
     color: str
     
-class FaceData(BaseModel):
-    face_width: float
-    eye_distance: float
-    cheek_area: float
-    nose_height: float
-    temple_position: float
-
-class StyleData(BaseModel):
-    personal_color: Optional[str] = None
-    preferred_styles: List[str] = []
-    preferred_shapes: List[str] = []
-    preferred_materials: List[str] = []
-    preferred_colors: List[str] = []
-
+# 共通のFaceDataとStyleDataクラスを利用    
 class ExplanationRequest(BaseModel):
     frame: FrameData
-    face_data: FaceData
-    style_preference: Optional[StyleData] = None
+    face_data: schemas.FaceData
+    style_preference: Optional[schemas.StyleData] = None
 
 class ExplanationResponse(BaseModel):
     status: str

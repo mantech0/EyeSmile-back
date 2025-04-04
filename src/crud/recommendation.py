@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
 import logging
 import math
-from typing import List, Dict, Any, Tuple, Optional
+from typing import List, Dict, Any, Tuple, Optional, Union
 from .. import models, schemas
 from .frame import get_frames, get_recommended_frames
 
@@ -9,7 +9,7 @@ from .frame import get_frames, get_recommended_frames
 logger = logging.getLogger(__name__)
 
 # 顔の形状分析
-def analyze_face_shape(face_data: schemas.FaceMeasurement) -> str:
+def analyze_face_shape(face_data: Union[schemas.FaceMeasurement, schemas.FaceData]) -> str:
     """顔の形状を分析する"""
     # 顔の縦横比を計算
     width_to_height_ratio = face_data.face_width / face_data.nose_height
