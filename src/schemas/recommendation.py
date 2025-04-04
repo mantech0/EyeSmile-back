@@ -29,3 +29,8 @@ class RecommendationResponse(BaseModel):
     alternative_recommendations: List[FrameRecommendationResponse] = []
     face_analysis: FaceAnalysis
     recommendation_details: RecommendationDetails 
+
+class RecommendationRequest(BaseModel):
+    """推薦リクエスト"""
+    face_data: FaceMeasurement
+    style_preference: Optional[StylePreference] = None 
