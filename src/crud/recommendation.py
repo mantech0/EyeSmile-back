@@ -9,7 +9,7 @@ from .frame import get_frames, get_recommended_frames
 logger = logging.getLogger(__name__)
 
 # 顔の形状分析
-def analyze_face_shape(face_data: schemas.FaceData) -> str:
+def analyze_face_shape(face_data: schemas.FaceMeasurement) -> str:
     """顔の形状を分析する"""
     # 顔の縦横比を計算
     width_to_height_ratio = face_data.face_width / face_data.nose_height
@@ -68,7 +68,7 @@ def determine_style_category(face_shape: str, style_pref: Optional[schemas.Style
     return "クラシック"  # デフォルト
 
 # フィットスコアの計算
-def calculate_fit_score(face_data: schemas.FaceData, frame: models.Frame) -> float:
+def calculate_fit_score(face_data: schemas.FaceMeasurement, frame: models.Frame) -> float:
     """フレームと顔のフィット度を計算"""
     score = 100.0  # 初期スコア
     
@@ -195,13 +195,13 @@ def generate_recommendation_reason(
 
 # 推薦詳細の生成
 def generate_recommendation_details(
-    face_data: schemas.FaceData,
+    face_data: schemas.FaceMeasurement,
     face_shape: str,
     style_category: str,
     frame: models.Frame,
     fit_score: float,
     style_score: float
-) -> schemas.RecommendationDetail:
+) -> schemas.RecommendationDetails:
     """推薦の詳細な説明を生成する"""
     
     # フィット説明
@@ -242,7 +242,7 @@ def generate_recommendation_details(
         ]
         feature_highlights.extend(additional_features[:3 - len(feature_highlights)])
     
-    return schemas.RecommendationDetail(
+    return schemas.RecommendationDetails(
         fit_explanation=fit_explanation,
         style_explanation=style_explanation,
         feature_highlights=feature_highlights
@@ -251,41 +251,45 @@ def generate_recommendation_details(
 # メイン推薦機能
 def get_frame_recommendations(
     db: Session,
-    request: schemas.RecommendationRequest,
+    request: schemas.recommendation.RecommendationRequest,
     limit: int = 5
 ) -> schemas.RecommendationResponse:
     """顔データとスタイル好みに基づいてフレームを推薦"""
     try:
+        # リクエストから顔データとスタイル好みを取得
+        face_data = request.face_data
+        style_preference = request.style_preference
+        
         # 顔の形状分析
-        face_shape = analyze_face_shape(request.face_data)
+        face_shape = analyze_face_shape(face_data)
         
         # スタイルカテゴリの判定
-        style_category = determine_style_category(face_shape, request.style_preference)
+        style_category = determine_style_category(face_shape, style_preference)
         
         # 顔分析結果
         face_analysis = {
             "face_shape": face_shape,
             "style_category": style_category,
             "measurements": {
-                "face_width": request.face_data.face_width,
-                "eye_distance": request.face_data.eye_distance,
-                "nose_height": request.face_data.nose_height
+                "face_width": face_data.face_width,
+                "eye_distance": face_data.eye_distance,
+                "nose_height": face_data.nose_height
             }
         }
         
         # 推奨フレームの取得（フィルタリング）
         style_preferences = []
-        if request.style_preference and request.style_preference.preferred_styles:
-            style_preferences = request.style_preference.preferred_styles
+        if style_preference and style_preference.preferred_styles:
+            style_preferences = style_preference.preferred_styles
             
         personal_color = None
-        if request.style_preference and request.style_preference.personal_color:
-            personal_color = request.style_preference.personal_color
+        if style_preference and style_preference.personal_color:
+            personal_color = style_preference.personal_color
             
         frames = get_recommended_frames(
             db=db,
-            face_width=request.face_data.face_width,
-            nose_height=request.face_data.nose_height,
+            face_width=face_data.face_width,
+            nose_height=face_data.nose_height,
             personal_color=personal_color,
             style_preferences=style_preferences,
             limit=limit * 2  # より多くの候補を取得
@@ -299,8 +303,8 @@ def get_frame_recommendations(
         # フレームの評価とランキング
         ranked_frames = []
         for frame in frames:
-            fit_score = calculate_fit_score(request.face_data, frame)
-            style_score = calculate_style_score(face_shape, style_category, frame, request.style_preference)
+            fit_score = calculate_fit_score(face_data, frame)
+            style_score = calculate_style_score(face_shape, style_category, frame, style_preference)
             total_score = (fit_score * 0.6) + (style_score * 0.4)  # 重み付け
             
             reason = generate_recommendation_reason(
@@ -348,7 +352,7 @@ def get_frame_recommendations(
         
         # 推薦詳細の生成
         recommendation_details = generate_recommendation_details(
-            request.face_data,
+            face_data,
             face_shape,
             style_category,
             primary["frame"],
