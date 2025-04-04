@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException, Body
 from pydantic import BaseModel
-from typing import Dict, List, Optional
+from typing import Dict, List, Optional, Union
 import logging
 from .. import schemas
 
@@ -30,7 +30,7 @@ class ExplanationRequest(BaseModel):
 
 class ExplanationResponse(BaseModel):
     status: str
-    explanation: Dict[str, str | List[str]]
+    explanation: Dict[str, Union[str, List[str]]]
 
 @router.post("/generate-explanation", response_model=ExplanationResponse)
 def generate_explanation(request: ExplanationRequest = Body(...)):
