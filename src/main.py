@@ -10,6 +10,7 @@ import traceback
 import os
 import sys
 from .routers import recommendation, ai_explanation
+from sqlalchemy.sql import text
 
 # ロギングの設定
 logging.basicConfig(level=logging.INFO)
@@ -74,6 +75,20 @@ else:
         logger.info("ローカル環境 - データベーステーブルを作成しています...")
         Base.metadata.create_all(bind=engine)
         logger.info("データベーステーブルを正常に作成しました")
+
+        # SQLiteにフォールバックした場合にテーブルが存在するか確認
+        if str(engine.url).startswith('sqlite'):
+            logger.info("SQLite環境を検出 - テーブルの存在を確認します")
+            with engine.connect() as conn:
+                # 主要なテーブルの存在をチェック
+                tables = ['users', 'user_responses', 'face_measurements', 'frames', 'style_questions', 'preferences']
+                for table in tables:
+                    try:
+                        result = conn.execute(text(f"SELECT name FROM sqlite_master WHERE type='table' AND name='{table}'"))
+                        if not result.fetchone():
+                            logger.warning(f"テーブル {table} が見つかりません。テーブルを作成します。")
+                    except Exception as table_e:
+                        logger.error(f"テーブル確認エラー: {str(table_e)}")
     except Exception as e:
         logger.error(f"データベース初期化エラー: {str(e)}")
         logger.error(traceback.format_exc())
