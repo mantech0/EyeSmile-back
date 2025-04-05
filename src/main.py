@@ -12,6 +12,10 @@ import sys
 from .routers import recommendation, ai_explanation
 from sqlalchemy.sql import text
 
+# 全モデルを明示的にインポート
+from .models.user import User, StyleQuestion, Preference, UserResponse, FaceMeasurement
+from .models.frame import Frame
+
 # ロギングの設定
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -62,6 +66,27 @@ if is_azure:
             # SQLiteではなくAzure MySQLに対してテーブル作成を実行
             Base.metadata.create_all(bind=engine)
             logger.info("Azure環境 - データベーステーブルを正常に作成しました")
+            
+            # SQLiteにフォールバックしているか確認
+            if str(engine.url).startswith('sqlite'):
+                logger.info("SQLiteフォールバックを検出しました。すべてのテーブルが存在するか確認します。")
+                with engine.connect() as conn:
+                    # 主要なテーブルの存在をチェック
+                    tables = ['users', 'user_responses', 'face_measurements', 'frames', 'style_questions', 'preferences']
+                    missing_tables = []
+                    for table in tables:
+                        try:
+                            result = conn.execute(text(f"SELECT name FROM sqlite_master WHERE type='table' AND name='{table}'"))
+                            if not result.fetchone():
+                                missing_tables.append(table)
+                        except Exception as table_e:
+                            logger.error(f"テーブル確認エラー: {str(table_e)}")
+                    
+                    if missing_tables:
+                        logger.warning(f"次のテーブルが見つかりません: {', '.join(missing_tables)}。再作成を試みます。")
+                        # 明示的に全テーブルを作成 (SQLiteの場合IF NOT EXISTSが適用される)
+                        Base.metadata.create_all(bind=engine)
+                        logger.info("SQLiteテーブルの再作成が完了しました")
         except Exception as e:
             logger.error(f"Azure環境 - データベースマイグレーションエラー: {str(e)}")
             logger.error(traceback.format_exc())
@@ -82,13 +107,20 @@ else:
             with engine.connect() as conn:
                 # 主要なテーブルの存在をチェック
                 tables = ['users', 'user_responses', 'face_measurements', 'frames', 'style_questions', 'preferences']
+                missing_tables = []
                 for table in tables:
                     try:
                         result = conn.execute(text(f"SELECT name FROM sqlite_master WHERE type='table' AND name='{table}'"))
                         if not result.fetchone():
-                            logger.warning(f"テーブル {table} が見つかりません。テーブルを作成します。")
+                            missing_tables.append(table)
                     except Exception as table_e:
                         logger.error(f"テーブル確認エラー: {str(table_e)}")
+                
+                if missing_tables:
+                    logger.warning(f"次のテーブルが見つかりません: {', '.join(missing_tables)}。再作成を試みます。")
+                    # 明示的に全テーブルを作成 (SQLiteの場合IF NOT EXISTSが適用される)
+                    Base.metadata.create_all(bind=engine)
+                    logger.info("SQLiteテーブルの再作成が完了しました")
     except Exception as e:
         logger.error(f"データベース初期化エラー: {str(e)}")
         logger.error(traceback.format_exc())

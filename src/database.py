@@ -141,6 +141,9 @@ except Exception as e:
     SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
     Base = declarative_base()
     
+    # SQLiteフォールバックフラグを設定
+    os.environ['SQLITE_FALLBACK'] = 'true'
+    
     # SQLiteファイルを作成するためにテーブルを生成
     try:
         Base.metadata.create_all(bind=engine)
