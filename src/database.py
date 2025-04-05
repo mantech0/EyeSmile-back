@@ -22,11 +22,15 @@ try:
     db_user = os.getenv('DB_USER')
     db_password = os.getenv('DB_PASSWORD')
     db_host = os.getenv('DB_HOST')
-    db_port = os.getenv('DB_PORT')
+    db_port = os.getenv('DB_PORT', '3306')
     db_name = os.getenv('DB_NAME')
     
+    # 接続情報のログ
+    masked_password = '*' * (len(db_password) if db_password else 0)
+    logger.info(f"DB接続情報: USER={db_user}, HOST={db_host}, PORT={db_port}, DB={db_name}, PASS={masked_password[:2] + '***' if masked_password else None}")
+    
     # 完全修飾ユーザー名の確認（@がない場合はホスト名を付加）
-    if db_user and '@' not in db_user and '.mysql.database.azure.com' in db_host:
+    if db_user and '@' not in db_user and db_host and '.mysql.database.azure.com' in db_host:
         server_name = db_host.split('.')[0]
         logger.info(f"完全修飾ユーザー名に変換します: {db_user}@{server_name}")
         db_user = f"{db_user}@{server_name}"
@@ -47,60 +51,84 @@ try:
     if is_azure:
         # SSL設定はDB_SSL_MODEに基づいて構成
         ssl_config = {}
-        if db_ssl_mode == 'require':
-            ssl_config = {"ssl": {"ca": None}}  # CA検証なし
-        elif db_ssl_mode == 'verify-ca' or db_ssl_mode == 'verify-full':
-            # CAファイルが必要な場合（カスタム実装時に使用）
-            ca_file = os.getenv('DB_SSL_CA_PATH')
-            ssl_config = {"ssl": {"ca": ca_file}} if ca_file else {"ssl": {"ca": None}}
+        if db_ssl_mode in ['require', 'preferred', 'verify-ca', 'verify-full']:
+            # Azure MySQLはSSLを要求するため、接続オプションを調整
+            ssl_config = {
+                "ssl": {
+                    "ca": None,  # CA検証なしでも接続可能
+                    "check_hostname": False,  # ホスト名検証の無効化（必要に応じて）
+                },
+                "connect_timeout": 60,  # 接続タイムアウトを60秒に設定
+            }
         elif db_ssl_mode == 'disable':
-            ssl_config = {}  # SSL無効
+            ssl_config = {"connect_timeout": 60}  # SSL無効、タイムアウトのみ設定
         else:
             # デフォルトは必須（検証なし）
-            ssl_config = {"ssl": {"ca": None}}
+            ssl_config = {
+                "ssl": {"ca": None},
+                "connect_timeout": 60
+            }
         
         logger.info(f"Azure環境用SSL設定: {ssl_config}")
         
         # Azureでの接続設定（SSL設定を変数から取得）
         engine_params = {
             "connect_args": ssl_config,
-            "pool_recycle": 280,
+            "pool_recycle": 280,  # Azureの接続タイムアウト（5分）より小さく設定
+            "pool_pre_ping": True,  # 接続前にpingを送信して有効性を確認
             "pool_size": 2,
             "max_overflow": 3,
+            "pool_timeout": 60,  # プールからの接続取得タイムアウト
             "echo": True  # デバッグ中はSQLログ出力を有効化
         }
-        logger.info("Azure環境用のデータベース設定を使用")
+        logger.info(f"Azure環境用のデータベース設定: {engine_params}")
     else:
         # ローカル開発環境での設定
         engine_params = {
-            "connect_args": {"ssl": {"ca": None}},
+            "connect_args": {"ssl": {"ca": None}, "connect_timeout": 30},
+            "pool_pre_ping": True,  # 接続前にpingを送信して有効性を確認
             "pool_size": 5,
             "max_overflow": 10,
             "pool_timeout": 30,
             "pool_recycle": 1800,
             "echo": True
         }
-        logger.info("ローカル環境用のデータベース設定を使用")
+        logger.info(f"ローカル環境用のデータベース設定: {engine_params}")
     
     # 最初に接続テストを行う
     logger.info("データベース接続テスト中...")
+    connection_success = False
     try:
         test_engine = create_engine(SQLALCHEMY_DATABASE_URL, **engine_params)
         with test_engine.connect() as conn:
             result = conn.execute("SELECT 1")
             logger.info(f"データベース接続テスト成功: {result.fetchone()}")
+            connection_success = True
     except Exception as e:
         logger.error(f"データベース接続テスト失敗: {str(e)}")
-        logger.error(f"接続URL: {SQLALCHEMY_DATABASE_URL}")
+        logger.error(f"接続URL: {SQLALCHEMY_DATABASE_URL.replace(db_password, '******') if db_password else SQLALCHEMY_DATABASE_URL}")
         logger.error(f"接続パラメータ: {engine_params}")
-        raise  # 再スロー
+        
+        # Azureでの特定のエラーを詳細にログ出力
+        if 'SSL connection error' in str(e):
+            logger.error("SSL接続エラー: Azureの設定を確認してください")
+        elif 'Access denied' in str(e):
+            logger.error("アクセス拒否エラー: ユーザー名とパスワードを確認してください")
+        elif 'Unknown MySQL server host' in str(e):
+            logger.error("ホスト名解決エラー: データベースホスト名を確認してください")
+            
+        # エラーがあってもSQLiteでの起動を試みるためここでは例外を再スローしない
     
     # 実際のエンジン設定
-    logger.info("データベースエンジンを作成しています...")
-    engine = test_engine  # テスト成功したエンジンを使用
-    SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
-    Base = declarative_base()
-    logger.info("データベース設定が完了しました")
+    if connection_success:
+        logger.info("MySQL接続成功: データベースエンジンを設定します")
+        engine = test_engine  # テスト成功したエンジンを使用
+        SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+        Base = declarative_base()
+        logger.info("データベース設定が完了しました")
+    else:
+        # 接続に失敗した場合はSQLiteにフォールバック
+        raise Exception("MySQL接続に失敗しました。SQLiteにフォールバックします。")
     
 except Exception as e:
     logger.error(f"データベース接続設定エラー: {str(e)}")
