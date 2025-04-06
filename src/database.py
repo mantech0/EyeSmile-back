@@ -6,6 +6,9 @@ from dotenv import load_dotenv
 import pymysql
 import logging
 import traceback
+from urllib.parse import quote_plus
+import time
+from pathlib import Path
 
 # ロギングの設定
 logger = logging.getLogger(__name__)
@@ -160,3 +163,156 @@ def get_db():
         logger.error(traceback.format_exc())
     finally:
         db.close()
+
+# 環境変数から接続情報を取得
+def get_db_connection_string():
+    """データベース接続文字列を取得"""
+    try:
+        # MySQLの接続情報
+        db_host = os.environ.get("DB_HOST")
+        db_user = os.environ.get("DB_USER")
+        db_password = os.environ.get("DB_PASSWORD")
+        db_name = os.environ.get("DB_NAME")
+        
+        logger.info(f"DB接続情報: HOST={db_host}, USER={db_user}, DB={db_name}")
+        
+        # MySQLの接続情報がすべて揃っている場合
+        if all([db_host, db_user, db_password, db_name]):
+            # Azure向けの対応: ユーザー名にサーバー名が含まれていない場合は追加
+            if db_host and "@" not in db_user and "localhost" not in db_host and "127.0.0.1" not in db_host:
+                logger.info(f"Azure MySQL用にユーザー名を修正: {db_user}@{db_host.split('.')[0]}")
+                db_user = f"{db_user}@{db_host.split('.')[0]}"
+            
+            # MySQLの接続文字列を生成
+            encoded_password = quote_plus(db_password)
+            connection_string = f"mysql+pymysql://{db_user}:{encoded_password}@{db_host}/{db_name}?charset=utf8mb4"
+            logger.info("MySQLデータベース接続文字列を生成しました")
+            return connection_string
+        
+        # 接続情報が不足している場合はSQLiteにフォールバック
+        logger.warning("MySQL接続情報が不足しています。SQLiteにフォールバックします")
+        return None
+    except Exception as e:
+        logger.error(f"DB接続文字列生成エラー: {str(e)}")
+        logger.error(traceback.format_exc())
+        return None
+
+def get_db_path():
+    """SQLiteデータベースファイルのパスを取得"""
+    # 環境変数からSQLiteパスを取得
+    sqlite_path = os.environ.get("SQLITE_PATH", "test.db")
+    logger.info(f"SQLiteパス: {sqlite_path}")
+    
+    # 絶対パスに変換
+    if not os.path.isabs(sqlite_path):
+        sqlite_path = os.path.join(os.getcwd(), sqlite_path)
+        logger.info(f"SQLite絶対パス: {sqlite_path}")
+    
+    return sqlite_path
+
+# データベースエンジンとセッションの作成
+def create_db_engine():
+    """データベースエンジンを作成"""
+    try:
+        # 接続文字列の取得を試みる
+        connection_string = get_db_connection_string()
+        
+        # MySQL接続が可能な場合
+        if connection_string:
+            logger.info("MySQLエンジンを作成します")
+            return create_engine(
+                connection_string,
+                echo=False,
+                pool_pre_ping=True,
+                pool_recycle=3600,
+                connect_args={"connect_timeout": 10}
+            )
+        
+        # SQLiteにフォールバック
+        logger.warning("SQLiteエンジンにフォールバックします")
+        
+        # SQLiteのフォールバックを示す環境変数を設定
+        os.environ["SQLITE_FALLBACK"] = "true"
+        
+        # SQLiteファイルパスの取得
+        sqlite_path = get_db_path()
+        
+        # データベースファイルのディレクトリを確認
+        db_dir = os.path.dirname(sqlite_path)
+        if db_dir and not os.path.exists(db_dir):
+            os.makedirs(db_dir, exist_ok=True)
+            logger.info(f"SQLiteディレクトリを作成しました: {db_dir}")
+        
+        # SQLiteエンジンの作成
+        sqlite_url = f"sqlite:///{sqlite_path}"
+        logger.info(f"SQLite URL: {sqlite_url}")
+        return create_engine(sqlite_url, echo=False, connect_args={"check_same_thread": False})
+    
+    except Exception as e:
+        logger.error(f"データベースエンジン作成エラー: {str(e)}")
+        logger.error(traceback.format_exc())
+        
+        # 最終的なフォールバック: メモリ内SQLite
+        logger.warning("メモリ内SQLiteエンジンを作成します")
+        return create_engine("sqlite:///:memory:", echo=False, connect_args={"check_same_thread": False})
+
+# MySQLへの接続確認
+def check_mysql_connection():
+    """MySQLへの接続を確認する"""
+    connection_string = get_db_connection_string()
+    if not connection_string:
+        logger.warning("MySQLの接続情報が不足しています")
+        return False
+    
+    try:
+        logger.info("MySQLへの接続確認を開始")
+        # 一時的なエンジンを作成して接続テスト
+        test_engine = create_engine(
+            connection_string,
+            echo=False,
+            pool_pre_ping=True,
+            connect_args={"connect_timeout": 5}
+        )
+        
+        # 接続テスト
+        with test_engine.connect() as connection:
+            result = connection.execute("SELECT 1")
+            logger.info("MySQLへの接続が成功しました")
+            return True
+    except Exception as e:
+        logger.error(f"MySQLへの接続エラー: {str(e)}")
+        logger.error(traceback.format_exc())
+        return False
+
+# データベースエンジンの作成
+engine = create_db_engine()
+
+# セッションの作成
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+
+# モデルのベースクラス
+Base = declarative_base()
+
+# データベースセッションの依存関係
+def get_db():
+    """APIリクエスト処理のためのデータベースセッションを提供"""
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
+
+# テーブル生成
+def generate_tables_for_sqlite():
+    """SQLiteデータベース用のテーブルを生成する"""
+    if os.environ.get("SQLITE_FALLBACK", "false").lower() == "true":
+        try:
+            logger.info("SQLiteテーブルの生成を開始")
+            Base.metadata.create_all(bind=engine)
+            logger.info("SQLiteテーブルの生成が完了しました")
+            return True
+        except Exception as e:
+            logger.error(f"SQLiteテーブル生成エラー: {str(e)}")
+            logger.error(traceback.format_exc())
+            return False
+    return False
