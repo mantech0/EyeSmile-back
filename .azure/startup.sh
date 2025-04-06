@@ -33,16 +33,23 @@ else
     echo "警告: DB_HOSTが設定されていません"
 fi
 
-# SQLiteファイルの確認
+# SQLiteファイルの確認と初期化
+echo "SQLite初期化を実行します..."
 if [ -f "test.db" ]; then
     echo "SQLiteデータベースファイルが存在します: test.db"
-    sqlite3 test.db ".tables" || echo "SQLiteコマンドが実行できません"
+    # 既存のファイルがある場合は権限を設定
+    chmod 666 test.db
+    echo "SQLiteファイルの権限を設定しました"
+    ls -la test.db
 else
-    echo "SQLiteデータベースファイルが存在しません。初期化が必要です。"
+    echo "SQLiteデータベースファイルが見つかりません。初期化が必要です。"
+    touch test.db
+    chmod 666 test.db
+    echo "SQLiteデータベースファイルを作成しました: test.db"
 fi
 
 # データベース初期化スクリプトの実行
-echo "データベース初期化を実行しています..."
+echo "データベース初期化スクリプトを実行しています..."
 python .azure/deploy_settings.py
 DB_INIT_RESULT=$?
 if [ $DB_INIT_RESULT -ne 0 ]; then
@@ -51,15 +58,35 @@ else
     echo "データベース初期化が完了しました。"
 fi
 
-# SQLiteファイルの権限設定
+# SQLiteデータベースの内容確認
 if [ -f "test.db" ]; then
-    chmod 666 test.db
-    echo "SQLiteファイルの権限を設定しました"
+    echo "SQLiteデータベースの内容確認:"
+    
+    # SQLiteコマンドが利用可能か確認
+    if command -v sqlite3 &> /dev/null; then
+        echo "テーブル一覧:"
+        sqlite3 test.db ".tables"
+        
+        # 各テーブルの行数を確認
+        echo "ユーザーテーブルの行数:"
+        sqlite3 test.db "SELECT COUNT(*) FROM users;"
+        
+        echo "face_measurementsテーブルの行数:"
+        sqlite3 test.db "SELECT COUNT(*) FROM face_measurements;" || echo "テーブルが存在しないか、SQLiteコマンドが実行できません"
+        
+        echo "user_responsesテーブルの行数:"
+        sqlite3 test.db "SELECT COUNT(*) FROM user_responses;" || echo "テーブルが存在しないか、SQLiteコマンドが実行できません"
+    else
+        echo "SQLiteコマンドが見つかりません"
+    fi
+    
+    # ファイル権限の確認
     ls -la test.db
 fi
 
 # マイグレーション実行フラグを設定
 export APPLY_MIGRATIONS=true
+export SQLITE_FALLBACK=true
 
 # アプリケーションのデバッグモードを有効にする
 export DEBUG=true
