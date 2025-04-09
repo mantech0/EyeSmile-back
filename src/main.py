@@ -153,11 +153,19 @@ else:
 async def add_cors_headers(request: Request, call_next):
     try:
         response = await call_next(request)
-        # すべてのリクエストに対してCORSヘッダーを追加
-        response.headers["Access-Control-Allow-Origin"] = "*"
-        response.headers["Access-Control-Allow-Methods"] = "GET, POST, PUT, DELETE, OPTIONS"
-        response.headers["Access-Control-Allow-Headers"] = "Content-Type, Authorization, X-Requested-With"
-        response.headers["Access-Control-Max-Age"] = "3600"
+        
+        # 許可されたオリジンを環境変数から取得
+        allowed_origins = os.getenv("ALLOWED_ORIGINS", "*").split(",")
+        origin = request.headers.get("Origin", "")
+        
+        # リクエスト元のオリジンが許可リストにあるか、「*」が設定されている場合
+        if "*" in allowed_origins or origin in allowed_origins:
+            # 具体的なオリジンを設定（安全性向上のため）
+            response.headers["Access-Control-Allow-Origin"] = origin if origin else "*"
+            response.headers["Access-Control-Allow-Credentials"] = "true"
+            response.headers["Access-Control-Allow-Methods"] = "GET, POST, PUT, DELETE, OPTIONS"
+            response.headers["Access-Control-Allow-Headers"] = "Content-Type, Authorization, X-Requested-With"
+            response.headers["Access-Control-Max-Age"] = "3600"
         
         # リクエストパスをログに記録
         logger.info(f"リクエスト処理完了: {request.method} {request.url.path}")
@@ -173,15 +181,25 @@ async def add_cors_headers(request: Request, call_next):
 @app.options("/{path:path}")
 async def options_handler(request: Request, path: str):
     logger.info(f"OPTIONSリクエスト受信: {path}")
-    return JSONResponse(
-        content={},
-        headers={
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-            "Access-Control-Allow-Headers": "Content-Type, Authorization, X-Requested-With",
-            "Access-Control-Max-Age": "3600",
-        },
-    )
+    
+    # 許可されたオリジンを環境変数から取得
+    allowed_origins = os.getenv("ALLOWED_ORIGINS", "*").split(",")
+    origin = request.headers.get("Origin", "")
+    
+    # リクエスト元のオリジンが許可リストにあるか、「*」が設定されている場合
+    if "*" in allowed_origins or origin in allowed_origins:
+        return JSONResponse(
+            content={},
+            headers={
+                "Access-Control-Allow-Origin": origin if origin else "*",
+                "Access-Control-Allow-Credentials": "true",
+                "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+                "Access-Control-Allow-Headers": "Content-Type, Authorization, X-Requested-With",
+                "Access-Control-Max-Age": "3600",
+            },
+        )
+    else:
+        return JSONResponse(content={}, status_code=204)
 
 # 特定エンドポイント用のプレフライトハンドラー
 @app.options("/api/v1/questionnaire/submit")
