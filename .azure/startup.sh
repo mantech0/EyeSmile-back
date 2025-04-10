@@ -144,6 +144,14 @@ EOL
     python create_tables.py || true
 fi
 
+# CORS設定の確認
+echo "CORS設定を確認しています..."
+echo "ALLOWED_ORIGINS=${ALLOWED_ORIGINS}"
+
+# CORSの設定を明示的に行う
+export ALLOWED_ORIGINS="*,https://tech0-gen-8-step4-eyesmile-front.azurestaticapps.net,http://localhost:3000,http://localhost:5173"
+echo "CORS設定を更新: ALLOWED_ORIGINS=${ALLOWED_ORIGINS}"
+
 # アプリケーションの起動（エラーハンドリング付き）
 echo "Gunicornでアプリケーションを起動します..."
 # デモデータフラグをtrueに設定してフェイクデータを返すようにする

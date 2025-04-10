@@ -1,8 +1,8 @@
-from fastapi import FastAPI, Depends, HTTPException, Request
+from fastapi import FastAPI, Depends, HTTPException, Request, BackgroundTasks, Response, Body
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from fastapi.staticfiles import StaticFiles
-from .database import engine, Base, get_db
+from .database import engine, Base, get_db, check_mysql_connection, get_db_path
 from sqlalchemy.orm import Session
 from .routers import frame, questionnaire
 import logging
@@ -65,9 +65,14 @@ origins = [
     "*"
 ]
 
+# 環境変数からCORS設定を取得
+allowed_origins_str = os.getenv("ALLOWED_ORIGINS", "*")
+allowed_origins = [origin.strip() for origin in allowed_origins_str.split(",") if origin.strip()]
+logger.info(f"CORS設定: {allowed_origins}")
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # すべてのオリジンを許可
+    allow_origins=allowed_origins,  # 環境変数から取得したオリジンリストを使用
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

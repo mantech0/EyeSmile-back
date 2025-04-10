@@ -2,6 +2,7 @@ from fastapi import APIRouter, Depends, HTTPException, Response
 from sqlalchemy.orm import Session
 from typing import List, Dict, Any
 import logging
+import os
 from ..database import get_db
 from .. import crud, schemas
 
@@ -22,6 +23,8 @@ def submit_questionnaire(
     """アンケートの回答を送信します"""
     # CORSヘッダーを追加
     if response:
+        # 許可されたオリジンを環境変数から取得
+        allowed_origins = os.getenv("ALLOWED_ORIGINS", "*").split(",")
         response.headers["Access-Control-Allow-Origin"] = "*"
         response.headers["Access-Control-Allow-Methods"] = "POST, OPTIONS"
         response.headers["Access-Control-Allow-Headers"] = "Content-Type, Authorization, X-Requested-With"
@@ -69,6 +72,8 @@ def submit_face_measurements(
     """顔の測定データを送信します"""
     # CORSヘッダーを追加
     if response:
+        # 許可されたオリジンを環境変数から取得
+        allowed_origins = os.getenv("ALLOWED_ORIGINS", "*").split(",")
         response.headers["Access-Control-Allow-Origin"] = "*"
         response.headers["Access-Control-Allow-Methods"] = "POST, OPTIONS"
         response.headers["Access-Control-Allow-Headers"] = "Content-Type, Authorization, X-Requested-With"
