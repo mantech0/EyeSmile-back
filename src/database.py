@@ -57,7 +57,7 @@ try:
         if db_ssl_mode in ['require', 'preferred', 'verify-ca', 'verify-full']:
             # Azure MySQLはSSLを要求するため、接続オプションを調整
             ssl_config = {
-                "ssl": {
+        "ssl": {
                     "ca": None,  # CA検証なしでも接続可能
                     "check_hostname": False,  # ホスト名検証の無効化（必要に応じて）
                 },
@@ -126,7 +126,7 @@ try:
     if connection_success:
         logger.info("MySQL接続成功: データベースエンジンを設定します")
         engine = test_engine  # テスト成功したエンジンを使用
-        SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
         Base = declarative_base()
         logger.info("データベース設定が完了しました")
     else:
@@ -142,8 +142,8 @@ except Exception as e:
     SQLALCHEMY_DATABASE_URL = "sqlite:///./test.db"
     engine = create_engine(SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False})
     SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
-    Base = declarative_base()
-    
+Base = declarative_base()
+
     # SQLiteフォールバックフラグを設定
     os.environ['SQLITE_FALLBACK'] = 'true'
     
@@ -300,7 +300,7 @@ def get_db():
     try:
         yield db
     finally:
-        db.close()
+        db.close() 
 
 # テーブル生成
 def generate_tables_for_sqlite():
