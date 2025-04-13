@@ -55,16 +55,6 @@ app = FastAPI(
 )
 
 # CORSミドルウェア設定（main.pyのインポート後、ルーター登録前に設定）
-origins = [
-    "http://localhost:3000",
-    "http://localhost:5173",
-    "https://eyesmile-frontend.vercel.app",
-    "https://tech0-gen-8-step4-eyesmile.azurewebsites.net",
-    "https://tech0-gen-8-step4-eyesmile-back.azurewebsites.net",
-    "https://tech0-gen-8-step4-eyesmile-front.azurestaticapps.net",
-    "*"
-]
-
 # 環境変数からCORS設定を取得
 allowed_origins_str = os.getenv("ALLOWED_ORIGINS", "*")
 allowed_origins = [origin.strip() for origin in allowed_origins_str.split(",") if origin.strip()]
