@@ -54,19 +54,14 @@ app = FastAPI(
     version="1.0.0"
 )
 
-# CORSミドルウェア設定（main.pyのインポート後、ルーター登録前に設定）
-# 環境変数からCORS設定を取得
-allowed_origins_str = os.getenv("ALLOWED_ORIGINS", "*")
-allowed_origins = [origin.strip() for origin in allowed_origins_str.split(",") if origin.strip()]
-logger.info(f"CORS設定: {allowed_origins}")
-
+# CORSミドルウェア設定
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=allowed_origins,  # 環境変数から取得したオリジンリストを使用
+    allow_origins=["*"],  # 開発環境では全てのオリジンを許可
     allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-    expose_headers=["*"],
+    allow_methods=["*"],  # すべてのHTTPメソッドを許可
+    allow_headers=["*"],  # すべてのHTTPヘッダーを許可
+    expose_headers=["*"]
 )
 
 # デプロイ環境の検出
@@ -455,30 +450,166 @@ def create_tables_with_sql(conn, cursor, missing_tables):
 # アプリケーション起動時の処理
 @app.on_event("startup")
 async def startup_event():
-    """アプリケーション起動時に実行される処理"""
+    """アプリケーション起動時の処理"""
     logger.info("アプリケーション起動処理を開始します")
     
-    # 環境変数の確認
-    apply_migrations = os.environ.get("APPLY_MIGRATIONS", "false").lower() == "true"
-    sqlite_fallback = os.environ.get("SQLITE_FALLBACK", "false").lower() == "true"
-    
-    if apply_migrations:
-        logger.info("データベースマイグレーションが有効になっています")
-        
-        # MySQLへの接続確認
-        mysql_ok = check_mysql_connection()
-        
-        if not mysql_ok and sqlite_fallback:
-            logger.warning("MySQLへの接続に失敗しました。SQLiteにフォールバックします")
-            # SQLiteテーブルの存在確認と作成
-            tables_ok = check_sqlite_tables()
-            if tables_ok:
-                logger.info("SQLiteデータベースの準備が完了しました")
-            else:
-                logger.error("SQLiteデータベースの準備に失敗しました")
-        elif not mysql_ok:
-            logger.error("MySQLへの接続に失敗し、SQLiteフォールバックが無効です")
-        else:
-            logger.info("MySQLへの接続が成功しました")
+    # データベースマイグレーション（必要に応じて）
+    if os.getenv("RUN_MIGRATIONS", "false").lower() == "true":
+        logger.info("データベースマイグレーションを実行します")
+        # マイグレーション処理をここに追加
     else:
         logger.info("データベースマイグレーションはスキップされます")
+    
+    # テストデータの追加（開発環境のみ）
+    if os.getenv("ENV", "development") == "development":
+        try:
+            from sqlalchemy.orm import Session
+            from .database import SessionLocal
+            from . import crud, schemas
+            from .models.frame import Frame as ModelsFrame  # 修正：Frameモデルを正しくインポート
+            
+            db = SessionLocal()
+            
+            # 既存のフレーム数を確認
+            frame_count = db.query(ModelsFrame).count()  # 修正：ModelsFrameを使用
+            logger.info(f"現在のフレーム数: {frame_count}")
+            
+            # フレームが少ない場合はテストデータを追加
+            if frame_count < 5:
+                logger.info("テストデータを追加します")
+                
+                # テストフレームデータ
+                test_frames = [
+                    schemas.FrameCreate(
+                        name="クラシックラウンド",
+                        brand="Zoff",
+                        price=15000,
+                        style="クラシック",
+                        shape="ラウンド",
+                        material="チタン",
+                        color="ブラウン",
+                        frame_width=135.0,
+                        lens_width=45.0,
+                        bridge_width=20.0,
+                        temple_length=145.0,
+                        lens_height=45.0,
+                        weight=20.0,
+                        recommended_face_width_min=120.0,
+                        recommended_face_width_max=140.0,
+                        recommended_nose_height_min=70.0,
+                        recommended_nose_height_max=90.0,
+                        personal_color_season="Winter",
+                        face_shape_types=["楕円", "丸型"],
+                        style_tags=["クラシック", "ビジネス"],
+                        image_urls=["/images/frames/zoff-sporty-round.jpg"]
+                    ),
+                    schemas.FrameCreate(
+                        name="スクエアフレーム",
+                        brand="JINS",
+                        price=12000,
+                        style="モダン",
+                        shape="スクエア",
+                        material="プラスチック",
+                        color="ブラック",
+                        frame_width=140.0,
+                        lens_width=48.0,
+                        bridge_width=19.0,
+                        temple_length=145.0,
+                        lens_height=42.0,
+                        weight=18.0,
+                        recommended_face_width_min=115.0,
+                        recommended_face_width_max=135.0,
+                        recommended_nose_height_min=65.0,
+                        recommended_nose_height_max=85.0,
+                        personal_color_season="Winter",
+                        face_shape_types=["楕円", "ハート型"],
+                        style_tags=["モダン", "カジュアル"],
+                        image_urls=["/images/frames/jins-square.jpg"]
+                    ),
+                    schemas.FrameCreate(
+                        name="ボストンタイプ",
+                        brand="Eyewear Shop",
+                        price=18000,
+                        style="レトロ",
+                        shape="ボストン",
+                        material="セルロース",
+                        color="アンバー",
+                        frame_width=138.0,
+                        lens_width=47.0,
+                        bridge_width=21.0,
+                        temple_length=147.0,
+                        lens_height=43.0,
+                        weight=22.0,
+                        recommended_face_width_min=122.0,
+                        recommended_face_width_max=142.0,
+                        recommended_nose_height_min=72.0,
+                        recommended_nose_height_max=92.0,
+                        personal_color_season="Autumn",
+                        face_shape_types=["四角", "ダイヤモンド"],
+                        style_tags=["レトロ", "ファッション"],
+                        image_urls=["/images/frames/eyewear-boston.jpg"]
+                    ),
+                    schemas.FrameCreate(
+                        name="オーバルメタル",
+                        brand="RayBan",
+                        price=22000,
+                        style="クラシック",
+                        shape="オーバル",
+                        material="メタル",
+                        color="ゴールド",
+                        frame_width=132.0,
+                        lens_width=44.0,
+                        bridge_width=18.0,
+                        temple_length=140.0,
+                        lens_height=40.0,
+                        weight=15.0,
+                        recommended_face_width_min=118.0,
+                        recommended_face_width_max=138.0,
+                        recommended_nose_height_min=68.0,
+                        recommended_nose_height_max=88.0,
+                        personal_color_season="Spring",
+                        face_shape_types=["四角", "長方形"],
+                        style_tags=["ヴィンテージ", "エレガント"],
+                        image_urls=["/images/frames/rayban-oval.jpg"]
+                    ),
+                    schemas.FrameCreate(
+                        name="キャットアイ",
+                        brand="Prada",
+                        price=30000,
+                        style="ファッション",
+                        shape="キャットアイ",
+                        material="アセテート",
+                        color="レッド",
+                        frame_width=136.0,
+                        lens_width=46.0,
+                        bridge_width=19.0,
+                        temple_length=143.0,
+                        lens_height=46.0,
+                        weight=23.0,
+                        recommended_face_width_min=116.0,
+                        recommended_face_width_max=136.0,
+                        recommended_nose_height_min=66.0,
+                        recommended_nose_height_max=86.0,
+                        personal_color_season="Winter",
+                        face_shape_types=["ハート型", "楕円"],
+                        style_tags=["ファッション", "トレンド"],
+                        image_urls=["/images/frames/prada-cateye.jpg"]
+                    )
+                ]
+                
+                # フレームを追加
+                for frame_data in test_frames:
+                    try:
+                        crud.frame.create_frame(db, frame_data)
+                        logger.info(f"フレームを追加しました: {frame_data.brand} {frame_data.name}")
+                    except Exception as e:
+                        logger.error(f"フレーム追加エラー: {e}", exc_info=True)
+                
+                logger.info("テストデータの追加が完了しました")
+            
+            db.close()
+            
+        except Exception as e:
+            logger.error(f"テストデータ追加エラー: {e}", exc_info=True)
+    
+    logger.info("アプリケーション起動処理が完了しました")
