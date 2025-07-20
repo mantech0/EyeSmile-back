@@ -33,15 +33,10 @@ try:
     logger.info(f"DB接続情報: USER={db_user}, HOST={db_host}, PORT={db_port}, DB={db_name}, PASS={masked_password[:2] + '***' if masked_password else None}")
     
     # 完全修飾ユーザー名の確認（@がない場合はホスト名を付加）
-    # ユーザー名に@が含まれている場合や強制シンプルモードの場合は変換しない
-    if (db_user and '@' not in db_user and db_host and '.mysql.database.azure.com' in db_host 
-        and os.getenv('NO_USER_QUALIFICATION', 'false').lower() != 'true'
-        and os.getenv('DB_FORCE_SIMPLE_USER', 'false').lower() != 'true'):
-        # 完全なサーバー名を使用する - 以前に切れていた問題を修正
-        logger.info(f"完全修飾ユーザー名に変換します: {db_user}@{db_host}")
-        db_user = f"{db_user}@{db_host}"
-    else:
-        logger.info("ユーザー名の自動修飾をスキップします（既に修飾されているか、無効化されています）")
+    if db_user and '@' not in db_user and db_host and '.mysql.database.azure.com' in db_host:
+        server_name = db_host.split('.')[0]
+        logger.info(f"完全修飾ユーザー名に変換します: {db_user}@{server_name}")
+        db_user = f"{db_user}@{server_name}"
     
     # SSL設定（環境変数から取得）
     db_ssl_mode = os.getenv('DB_SSL_MODE', 'require').lower()
@@ -131,7 +126,7 @@ try:
     if connection_success:
         logger.info("MySQL接続成功: データベースエンジンを設定します")
         engine = test_engine  # テスト成功したエンジンを使用
-        SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
         Base = declarative_base()
         logger.info("データベース設定が完了しました")
     else:
@@ -147,7 +142,7 @@ except Exception as e:
     SQLALCHEMY_DATABASE_URL = "sqlite:///./test.db"
     engine = create_engine(SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False})
     SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
-    Base = declarative_base()
+Base = declarative_base()
 
     # SQLiteフォールバックフラグを設定
     os.environ['SQLITE_FALLBACK'] = 'true'
@@ -184,15 +179,9 @@ def get_db_connection_string():
         # MySQLの接続情報がすべて揃っている場合
         if all([db_host, db_user, db_password, db_name]):
             # Azure向けの対応: ユーザー名にサーバー名が含まれていない場合は追加
-            # ただし、強制シンプルモードや修飾が無効の場合はスキップ
-            if (db_host and "@" not in db_user and "localhost" not in db_host 
-                and "127.0.0.1" not in db_host 
-                and os.getenv('NO_USER_QUALIFICATION', 'false').lower() != 'true'
-                and os.getenv('DB_FORCE_SIMPLE_USER', 'false').lower() != 'true'):
+            if db_host and "@" not in db_user and "localhost" not in db_host and "127.0.0.1" not in db_host:
                 logger.info(f"Azure MySQL用にユーザー名を修正: {db_user}@{db_host.split('.')[0]}")
                 db_user = f"{db_user}@{db_host.split('.')[0]}"
-            else:
-                logger.info("ユーザー名の自動修飾をスキップ: 既に修飾されているか、無効化されています")
             
             # MySQLの接続文字列を生成
             encoded_password = quote_plus(db_password)
@@ -231,25 +220,12 @@ def create_db_engine():
         # MySQL接続が可能な場合
         if connection_string:
             logger.info("MySQLエンジンを作成します")
-            
-            # SQLAlchemy接続オプション
-            connect_args = {
-                "connect_timeout": int(os.environ.get("DB_CONNECT_TIMEOUT", "10")),
-            }
-            
-            # SSL設定
-            ssl_mode = os.environ.get("DB_SSL_MODE", "").lower()
-            if ssl_mode == "require" or ssl_mode == "preferred":
-                connect_args["ssl"] = {"ca": None}
-                logger.info("SSL接続を有効化しました (requireモード)")
-            
-            # エンジンを作成して返す
             return create_engine(
                 connection_string,
-                echo=os.environ.get("SQL_ECHO", "false").lower() == "true",
+                echo=False,
                 pool_pre_ping=True,
                 pool_recycle=3600,
-                connect_args=connect_args
+                connect_args={"connect_timeout": 10}
             )
         
         # SQLiteにフォールバック
@@ -324,7 +300,7 @@ def get_db():
     try:
         yield db
     finally:
-        db.close()
+        db.close() 
 
 # テーブル生成
 def generate_tables_for_sqlite():

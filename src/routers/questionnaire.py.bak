@@ -60,7 +60,7 @@ def submit_questionnaire(
         raise HTTPException(
             status_code=500,
             detail=f"回答の処理中にエラーが発生しました: {str(e)}"
-            )
+        )
 
 # 顔測定用のエンドポイントを追加
 @router.post("/face-measurements/submit", response_model=schemas.FaceMeasurement)
@@ -86,7 +86,7 @@ def submit_face_measurements(
             db_measurement = crud.face_measurement.create_face_measurement(
                 db=db,
                 face_measurement=measurements
-                )
+            )
             logger.info(f"顔測定データをデータベースに保存しました: ID={db_measurement.id}")
             return db_measurement
         except Exception as db_error:
@@ -109,4 +109,4 @@ def submit_face_measurements(
         raise HTTPException(
             status_code=500,
             detail=f"顔測定データの処理中にエラーが発生しました: {str(e)}"
-        ) 
+        )

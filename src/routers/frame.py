@@ -86,6 +86,15 @@ def get_frames(
             price_max=price_max
         )
         
+        # Noneのリストフィールドを修正
+        for frame in frames:
+            if frame.face_shape_types is None:
+                frame.face_shape_types = []
+            if frame.style_tags is None:
+                frame.style_tags = []
+            if frame.image_urls is None:
+                frame.image_urls = []
+        
         logger.info(f"{len(frames)}件のフレームデータを取得しました")
         return frames
         
